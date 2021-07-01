@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>My AngularJS App</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="lib/html5-boilerplate/dist/css/normalize.css"
+    />
+    <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css" />
+
+    <link
+      rel="stylesheet"
+      href="bower_components/bootstrap/dist/css/bootstrap.min.css"
+    />
+
+    <link rel="stylesheet" href="app.css" />
+    <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+
+    <div id="wrapper">
+      <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+          <h2>Logo</h2>
+        </div>
+        <ul class="sidebar-nav">
+          <li class="active">
+            <a href="#!/view1"><i class="fa fa-home"></i>Home</a>
+          </li>
+          <li>
+            <a href="#!/view2"><i class="fa fa-plug"></i>Plugins</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-user"></i>Users</a>
+          </li>
+        </ul>
+      </aside>
+
+      <div id="navbar-wrapper">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a href="#" class="navbar-brand" id="sidebar-toggle"
+                ><i class="fa fa-bars"></i
+              ></a>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <section id="content-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <div ng-view></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="content"></div>
+
+    <!-- <div>AngularJS seed app: v<span app-version></span></div> -->
+
+    <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="view1/view1.js"></script>
+    <script src="view2/view2.js"></script>
+    <script src="core/version/version.js"></script>
+    <script src="core/version/version-directive.js"></script>
+    <script src="core/version/interpolate-filter.js"></script>
+
+    <script>
+      const $button = document.querySelector("#sidebar-toggle");
+      const $wrapper = document.querySelector("#wrapper");
+
+      $button.addEventListener("click", (e) => {
+        e.preventDefault();
+        $wrapper.classList.toggle("toggled");
+      });
+    </script>
+  </body>
+</html>
