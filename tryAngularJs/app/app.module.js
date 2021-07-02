@@ -1,6 +1,6 @@
 "use strict";
 
-// Define the `phonecatApp` module
+// Define the `myApp` module
 angular.module("myApp", [
   "loading",
   "view1",

@@ -1,6 +1,5 @@
 "use strict";
 
-// Declare app level module which depends on views, and core components
 angular.module("myApp").config([
   "$locationProvider",
   "$routeProvider",
@@ -13,7 +12,7 @@ angular.module("myApp").config([
 
     $routeProvider
       .when("/view1", {
-        template: "<view1></view1>",
+        template: "<view1></view1>", //crud demo
       })
       .when("/view2", {
         template: "<view2></view2>",
