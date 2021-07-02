@@ -2,11 +2,13 @@
 
 // Define the `phonecatApp` module
 angular.module("myApp", [
-  "ngRoute",
+  "loading",
   "view1",
   "view2",
   "myApp.version",
+
   "angular.css.injector",
+  "ngRoute",
   "ngResource",
   // "ui.bootstrap",
 ]);
