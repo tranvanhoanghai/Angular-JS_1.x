@@ -1,0 +1,71 @@
+<link rel="stylesheet" ng-href="{{css}}" />
+
+<div class="">
+  <form>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          id="Name"
+          placeholder="Name"
+          ng-model="name"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          id="Price"
+          placeholder="Price"
+          ng-model="price"
+        />
+      </div>
+      <div class="form-group col-md-12">
+        <input
+          type="text"
+          class="form-control"
+          id="Image"
+          ng-model="image"
+          placeholder="Image"
+        />
+      </div>
+      <div class="form-group col-md-12">
+        <button ng-click="add()" type="submit" class="btn btn-primary">
+          Sign in
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="overflow-auto">
+  <table class="table" ng-controller="View1Ctrl" border="1">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="data in products track by $index">
+        <td scope="row">{{$index+1}}</td>
+
+        <td scope="row">{{data.name}}</td>
+        <td scope="row">{{data.price}}</td>
+        <td>
+          <img style="width: 100px" src="{{data.image}}" alt="{{data.image}}" />
+        </td>
+        <td>
+          <button type="button" class="btn btn-success">update</button>
+          <button class="btn btn-danger" ng-click="delete(data.id)">
+            delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
