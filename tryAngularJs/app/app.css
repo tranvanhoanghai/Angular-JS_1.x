@@ -55,8 +55,8 @@ a, a:hover, a:focus {
 
 
 #sidebar {
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 300px;
+  max-width: 300px;
   background: #7386D5;
   color: #fff;
   transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
@@ -74,7 +74,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul.components {
-  padding: 20px 0;
+  padding: 20px  0 20px 20px;
   border-bottom: 1px solid #47748b;
 }
 
@@ -89,6 +89,13 @@ a, a:hover, a:focus {
   font-size: 1.1em;
   display: block;
 }
+#sidebar ul li a.active {
+  color: #7386D5;
+  background: #fff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius : 20px;
+}
+
 #sidebar ul li a:hover {
   color: #7386D5;
   background: #fff;
