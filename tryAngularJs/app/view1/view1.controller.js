@@ -1,12 +1,8 @@
 "use strict";
 
-angular
-  .module("view1")
-  .component("view1", {
-    templateUrl: "view1/view1.template.html",
-    controller: "View1Ctrl",
-  })
-  .controller("View1Ctrl", [
+angular.module("view1").component("view1", {
+  templateUrl: "view1/view1.template.html",
+  controller: [
     "$scope",
     "cssInjector",
     "CrudService",
@@ -108,4 +104,5 @@ angular
         $scope.image = "";
       };
     },
-  ]);
+  ],
+});
