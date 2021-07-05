@@ -12,6 +12,7 @@
     "angular-resource": "^1.8.2",
     "angular-route": "^1.7.5",
     "angular-ui-bootstrap": "^2.5.6",
+    "angular-ui-notification": "^0.3.6",
     "angularjs-bootstrap": "^1.1.5",
     "bootstrap": "^4.6.0",
     "html5-boilerplate": "0.0.1",

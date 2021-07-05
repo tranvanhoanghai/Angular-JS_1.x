@@ -6,7 +6,8 @@ view1.component("view1", {
     "$scope",
     "cssInjector",
     "CrudService",
-    function ($scope, cssInjector, CrudService) {
+    "Notification",
+    function ($scope, cssInjector, CrudService, Notification) {
       cssInjector.add("view1/view1.template.css");
 
       $scope.GetProduct = function () {
@@ -33,25 +34,37 @@ view1.component("view1", {
           if ($scope.price && $scope.name && $scope.image) {
             CrudService.add(product)
               .then((res) => {
-                alert("Data Save Successfully");
+                Notification.success({
+                  message: "Add data Successfully",
+                });
                 $scope.GetProduct();
                 $scope.Clear();
               })
               .catch((error) => {
-                console.log("Error: " + error);
+                Notification.error({
+                  message: "Add data Error",
+                  replaceMessage: true,
+                });
               });
           }
         } else {
           if ($scope.price && $scope.name && $scope.image) {
             CrudService.update($scope.id, product)
               .then((res) => {
-                alert("Data update Successfully");
+                Notification.success({
+                  message: "Data update Successfully",
+                });
                 $scope.GetProduct();
                 $scope.Clear();
                 $scope.btnText = true;
                 $scope.id = "";
               })
-              .catch((error) => console.log("Error: " + error));
+              .catch((error) => {
+                console.log(error);
+                Notification.error({
+                  message: "Data update Error",
+                });
+              });
           }
         }
       };
@@ -65,17 +78,27 @@ view1.component("view1", {
             $scope.image = res.data.image;
             $scope.btnText = false;
           })
-          .catch((error) => console.log("Error: " + { error }));
+          .catch((error) => {
+            Notification.error({
+              message: "Error",
+            });
+          });
       };
 
       $scope.delete = function (id) {
         CrudService.delete(id)
           .then((res) => {
-            alert("Data Delete Successfully");
+            Notification.success({
+              message: "Data Delete Successfully",
+            });
             $scope.GetProduct();
             $scope.Clear();
           })
-          .catch((error) => console.log("Error: " + { error }));
+          .catch((error) =>
+            Notification.success({
+              message: "Data Delete Error",
+            })
+          );
       };
 
       $scope.Clear = function () {

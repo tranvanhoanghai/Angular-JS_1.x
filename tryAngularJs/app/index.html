@@ -17,6 +17,12 @@
     /> -->
     <!-- <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css" /> -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap/scss/_navbar.scss" />
+    <link
+      rel="stylesheet"
+      href="lib/angular-ui-notification/dist/angular-ui-notification.min.css"
+    />
+
     <link rel="stylesheet" href="app.css" />
     <!-- <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script> -->
     <script
@@ -46,7 +52,7 @@
         </div>
 
         <ul class="list-unstyled components">
-          <li class="active">
+          <li>
             <a
               href="#homeSubmenu"
               data-toggle="collapse"
@@ -56,9 +62,9 @@
             >
               Home
             </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
+            <ul class="collapse list-unstyled show" id="homeSubmenu">
               <li>
-                <a href="#!/view1">view1</a>
+                <a class="active" href="#!/view1">view1</a>
               </li>
               <li>
                 <a href="#!/view2">view2</a>
@@ -119,12 +125,13 @@
     <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-css-injector/angular-css-injector.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
     <script src="lib/angular-loader/angular-loader.min.js"></script>
 
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
