@@ -17,9 +17,18 @@ app.config([
       .when("/view2", {
         template: "<view2></view2>",
       })
-      .when("/view3", {
-        template: "<loading></loading>",
+      .when("/dashboard", {
+        template: "<dashboard></dashboard>",
       })
-      .otherwise("/view1");
+      .when("/contact", {
+        template: "<contact></contact>",
+      })
+      .when("/sales-order", {
+        template: "<salesOrder></salesOrder>",
+      })
+      .when("/user", {
+        template: "<user></user>",
+      })
+      .otherwise("/dashboard");
   },
 ]);

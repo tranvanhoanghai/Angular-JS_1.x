@@ -1,19 +1,20 @@
 "use strict";
 
 // Define the `myApp` module
-angular
+var app = angular
   .module("myApp", [
-    "loading",
     "view1",
     "view2",
-    "share",
-    "myApp.version",
+    "contact",
+    "dashboard",
+    "user",
+    "salesOrder",
 
     "angular.css.injector",
     "ngRoute",
     "ngResource",
     "ui-notification",
-    //1 "ui.bootstrap",
+    // "ui.bootstrap",
   ])
   .config(function (NotificationProvider) {
     NotificationProvider.setOptions({

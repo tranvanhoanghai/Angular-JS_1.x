@@ -2,7 +2,7 @@
 
 <div>
   <div class="">
-    <form>
+    <form ng-submit="expression()">
       <div class="row">
         <div class="form-group col-md-6">
           <input
@@ -35,9 +35,7 @@
           />
         </div>
         <div class="form-group col-md-12">
-          <button ng-click="add()" class="btn btn-primary">
-            {{btnText?"Add":"Update"}}
-          </button>
+          <button class="btn btn-primary">{{btnText?"Add":"Update"}}</button>
         </div>
       </div>
     </form>

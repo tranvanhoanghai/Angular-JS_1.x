@@ -23,7 +23,8 @@ view1.component("view1", {
       $scope.id = "";
       $scope.GetProduct();
 
-      $scope.add = function () {
+      
+      $scope.expression = function () {
         var product = {
           name: $scope.name,
           price: $scope.price,
@@ -32,11 +33,12 @@ view1.component("view1", {
 
         if ($scope.btnText) {
           if ($scope.price && $scope.name && $scope.image) {
-            CrudService.add(product)
+            CrudService.addProduct(product)
               .then((res) => {
                 Notification.success({
                   message: "Add data Successfully",
                 });
+
                 $scope.GetProduct();
                 $scope.Clear();
               })
@@ -68,6 +70,8 @@ view1.component("view1", {
           }
         }
       };
+
+      $scope.addData = function () {};
 
       $scope.edit = function (id) {
         $scope.id = id;

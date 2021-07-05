@@ -1,3 +1,3 @@
 "use strict";
 
-angular.module("view2", []);
+ var app = angular.module("view2", []);
