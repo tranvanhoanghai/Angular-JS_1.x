@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("view1").component("view1", {
+view1.component("view1", {
   templateUrl: "view1/view1.template.html",
   controller: [
     "$scope",
@@ -11,10 +11,13 @@ angular.module("view1").component("view1", {
 
       $scope.GetProduct = function () {
         CrudService.getAll()
-          .then((response) => ($scope.products = response.data))
+          .then((response) => {
+            ($scope.products = response.data), ($scope.loading = false);
+          })
           .catch((error) => console.log("Error", error));
       };
 
+      $scope.loading = true;
       $scope.btnText = true;
       $scope.id = "";
       $scope.GetProduct();
@@ -34,7 +37,9 @@ angular.module("view1").component("view1", {
                 $scope.GetProduct();
                 $scope.Clear();
               })
-              .catch((error) => console.log("Error: " + error));
+              .catch((error) => {
+                console.log("Error: " + error);
+              });
           }
         } else {
           if ($scope.price && $scope.name && $scope.image) {

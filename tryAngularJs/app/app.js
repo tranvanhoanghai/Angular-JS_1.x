@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("myApp").config([
+app.config([
   "$locationProvider",
   "$routeProvider",
   "cssInjectorProvider",
@@ -12,10 +12,13 @@ angular.module("myApp").config([
 
     $routeProvider
       .when("/view1", {
-        template: "<view1></view1>", //crud demo
+        template: "<view1></view1>", //crud demo (<view1></view1> is name component)
       })
       .when("/view2", {
         template: "<view2></view2>",
+      })
+      .when("/view3", {
+        template: "<loading></loading>",
       })
       .otherwise("/view1");
   },

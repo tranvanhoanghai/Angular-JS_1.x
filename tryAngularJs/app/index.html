@@ -17,8 +17,6 @@
     /> -->
     <!-- <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css" /> -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="lib/bootstrap/scss/_navbar.scss" />
-
     <link rel="stylesheet" href="app.css" />
     <!-- <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script> -->
     <script
@@ -66,7 +64,7 @@
                 <a href="#!/view2">view2</a>
               </li>
               <li>
-                <a href="#">Home 3</a>
+                <a href="#!/view3">view3</a>
               </li>
             </ul>
           </li>
@@ -121,14 +119,15 @@
     <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-css-injector/angular-css-injector.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-loader/angular-loader.min.js"></script>
 
-    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script src="app.module.js"></script>
     <script src="app.js"></script>
@@ -139,10 +138,15 @@
     <script src="view2/view2.module.js"></script>
     <script src="view2/view2.controller.js"></script>
     <script src="loading/loading.module.js"></script>
+    <script src="loading/loading.controller.js"></script>
+    <script src="loading/loading.directive.js"></script>
+
+    <script src="shared/share.module.js"></script>
 
     <script src="core/version/version.js"></script>
     <script src="core/version/version-directive.js"></script>
     <script src="core/version/interpolate-filter.js"></script>
+
     <script type="text/javascript">
       $(document).ready(function () {
         $("#sidebarCollapse").on("click", function () {

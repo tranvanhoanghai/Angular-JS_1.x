@@ -1,3 +1,3 @@
 "use strict";
 
-angular.module("loading", []);
+var loading = angular.module("loading", []);

@@ -44,7 +44,8 @@
   </div>
 
   <div class="overflow-auto">
-    <table class="table" border="1">
+    <div class="loader" ng-show="loading"></div>
+    <table class="table" border="1" ng-show="!loading">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -73,14 +74,14 @@
               ng-click="edit(data.id)"
               class="btn btn-success"
             >
-              update
+              <i class="fas fa-edit"></i>
             </button>
             <button
               type="button"
               class="btn btn-danger"
               ng-click="delete(data.id)"
             >
-              delete
+              <i class="fas fa-trash"></i>
             </button>
           </td>
         </tr>

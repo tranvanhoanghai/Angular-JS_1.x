@@ -1,16 +1,15 @@
 "use strict";
 
-angular
-  .module("loading", [])
+loading
   .component("loading", {
     templateUrl: "loading/loading.template.html",
-    controller: "loading",
+    controller: [
+      "$scope",
+      "cssInjector",
+      function ($scope, cssInjector) {
+        $scope.me = "ssss";
+        cssInjector.add("loading/loading.template.css");
+      },
+    ],
   })
-  .controller("loading", [
-    "$scope",
-    "cssInjector",
-    function ($scope, cssInjector) {
-      $scope.me = "ssss";
-      cssInjector.add("loading/loading.template.css");
-    },
-  ]);
+ 

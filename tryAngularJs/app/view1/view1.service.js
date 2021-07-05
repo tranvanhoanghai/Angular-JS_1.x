@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("view1").service("CrudService", function ($http) {
+view1.service("CrudService", function ($http) {
   var baseUrl = "https://5fa04305e21bab0016dfd001.mockapi.io/api/v1/listphone";
 
   this.add = function (data) {
