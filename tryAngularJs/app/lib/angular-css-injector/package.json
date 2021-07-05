@@ -1,22 +1,50 @@
 {
-  "name": "angular-css-injector",
-  "main": "angular-css-injector.js",
-  "version": "1.0.4",
-  "homepage": "https://github.com/Yappli/angular-css-injector",
+  "_args": [
+    [
+      "angular-css-injector@1.0.4",
+      "C:\\Users\\DELL\\Desktop\\FE\\Angular-JS_1.x\\tryAngularJs"
+    ]
+  ],
+  "_from": "angular-css-injector@1.0.4",
+  "_id": "angular-css-injector@1.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-zfGhjUVVERbBe23jxlNpm2FEG3U=",
+  "_location": "/angular-css-injector",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "angular-css-injector@1.0.4",
+    "name": "angular-css-injector",
+    "escapedName": "angular-css-injector",
+    "rawSpec": "1.0.4",
+    "saveSpec": null,
+    "fetchSpec": "1.0.4"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-css-injector/-/angular-css-injector-1.0.4.tgz",
+  "_spec": "1.0.4",
+  "_where": "C:\\Users\\DELL\\Desktop\\FE\\Angular-JS_1.x\\tryAngularJs",
   "authors": [
     "Gabriel Delépine <yappli@github.com>"
   ],
   "description": "angularJS service to load dynamically CSS files",
-  "keywords": [
-    "angularjs",
-    "css"
-  ],
-  "license": "MIT",
+  "homepage": "https://github.com/Yappli/angular-css-injector",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "keywords": [
+    "angularjs",
+    "css"
+  ],
+  "license": "MIT",
+  "main": "angular-css-injector.js",
+  "name": "angular-css-injector",
+  "version": "1.0.4"
 }

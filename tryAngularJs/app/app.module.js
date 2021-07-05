@@ -4,7 +4,6 @@
 var app = angular
   .module("myApp", [
     "view1",
-    "view2",
     "contact",
     "dashboard",
     "user",

@@ -43,21 +43,35 @@
       <!-- Sidebar Holder -->
       <nav id="sidebar">
         <div class="sidebar-header">
-          <h3>Bootstrap Sidebar</h3>
+          <!-- <h3>Bootstrap Sidebar</h3> -->
+          <img
+            style="width: 100%; height: 50px"
+            src="./assets/logo.PNG"
+            alt=""
+          />
         </div>
 
         <ul class="list-unstyled components">
           <li>
-            <a href="#">DashBoard</a>
+            <a href="#!/dashboard" class="active">
+              <i class="fa fa-th-large"></i>
+              <span> DashBoard</span>
+            </a>
           </li>
           <li>
-            <a href="#">Contacts</a>
+            <a href="#!/contact">
+              <i class="fa fa-address-book"></i> <span> Contact</span></a
+            >
           </li>
           <li>
-            <a href="#">Sales Order</a>
+            <a href="#!/sales-order">
+              <i class="fa fa-cart-plus"></i> <span> Sales order </span>
+            </a>
           </li>
           <li>
-            <a href="#">User Management</a>
+            <a href="#!/user">
+              <i class="fa fa-users"></i> <span> User management </span></a
+            >
           </li>
 
           <li>
@@ -68,17 +82,12 @@
               class="dropdown-toggle"
               onclick="return false"
             >
-              Test page
+              <i class="fa fa-vial"></i>
+              <span> Test page </span>
             </a>
-            <ul class="collapse list-unstyled show" id="homeSubmenu">
+            <ul class="collapse list-unstyled" id="homeSubmenu">
               <li>
                 <a class="active" href="#!/view1">view1</a>
-              </li>
-              <li>
-                <a href="#!/view2">view2</a>
-              </li>
-              <li>
-                <a href="#!/view3">view3</a>
               </li>
             </ul>
           </li>
@@ -122,9 +131,6 @@
     <script src="view1/view1.module.js"></script>
     <script src="view1/view1.controller.js"></script>
     <script src="view1/view1.service.js"></script>
-
-    <script src="view2/view2.module.js"></script>
-    <script src="view2/view2.controller.js"></script>
 
     <script src="dashBoard/dashboard.module.js"></script>
     <script src="dashBoard/dashboard.controller.js"></script>

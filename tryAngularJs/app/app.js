@@ -24,7 +24,7 @@ app.config([
         template: "<contact></contact>",
       })
       .when("/sales-order", {
-        template: "<salesOrder></salesOrder>",
+        template: "<sales-order></sales-order>",
       })
       .when("/user", {
         template: "<user></user>",
