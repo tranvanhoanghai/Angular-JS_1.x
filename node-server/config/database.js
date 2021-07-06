@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 async function connect() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/test_db_dev", {
+    await mongoose.connect("mongodb://localhost:27017/crm_db_dev", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,

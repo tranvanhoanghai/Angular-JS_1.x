@@ -13,9 +13,15 @@ view1.component("view1", {
       $scope.GetProduct = function () {
         CrudService.getAll()
           .then((response) => {
-            ($scope.products = response.data), ($scope.loading = false);
+            $scope.products = response.data;
+            $scope.loading = false;
           })
-          .catch((error) => console.log("Error", error));
+          .catch((error) => {
+            console.log("Error", error);
+            setTimeout(function () {
+              $scope.GetProduct();
+            }, 5000);
+          });
       };
 
       $scope.loading = true;
@@ -23,8 +29,7 @@ view1.component("view1", {
       $scope.id = "";
       $scope.GetProduct();
 
-      
-      $scope.expression = function () {
+      $scope.submit = function () {
         var product = {
           name: $scope.name,
           price: $scope.price,
@@ -70,8 +75,6 @@ view1.component("view1", {
           }
         }
       };
-
-      $scope.addData = function () {};
 
       $scope.edit = function (id) {
         $scope.id = id;

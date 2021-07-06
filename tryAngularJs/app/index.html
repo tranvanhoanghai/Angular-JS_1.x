@@ -53,7 +53,7 @@
 
         <ul class="list-unstyled components">
           <li>
-            <a href="#!/dashboard" class="active">
+            <a href="#!/dashboard">
               <i class="fa fa-th-large"></i>
               <span> DashBoard</span>
             </a>
@@ -87,7 +87,7 @@
             </a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
               <li>
-                <a class="active" href="#!/view1">view1</a>
+                <a href="#!/view1">view1</a>
               </li>
             </ul>
           </li>
@@ -122,6 +122,8 @@
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="lib/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
     <script src="lib/angular-loader/angular-loader.min.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.min.js"></script>
+    <script src="lib/ngstorage/ngStorage.min.js"></script>
 
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -140,9 +142,17 @@
 
     <script src="users/user.module.js"></script>
     <script src="users/user.conusertroller.js"></script>
+    <script src="users/user.service.js"></script>
 
     <script src="salesOrder/salesOrder.module.js"></script>
     <script src="salesOrder/salesOrder.controller.js"></script>
+
+    <script src="login/login.module.js"></script>
+    <script src="login/login.controller.js"></script>
+    <script src="login/login.service.js"></script>
+
+    <script src="shared/shared.module.js"></script>
+    <script src="shared/session.service.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function () {

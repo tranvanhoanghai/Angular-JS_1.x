@@ -4,19 +4,30 @@ const Schema = mongoose.Schema;
 
 const User = new Schema(
   {
-    name: { type: String, maxLength: 255, required: true },
-    userName: { type: String, maxLength: 255, required: false },
-    email: { type: String, maxLength: 255, required: false },
+    name: { type: String, maxLength: 255, required: false },
+    username: { type: String, maxLength: 255, required: false, unique: true },
+    password: { type: String, maxLength: 255, required: false },
+    email: { type: String, maxLength: 255, required: false, unique: true },
     phone: { type: String, maxLength: 11, required: false },
-    isAdmin: { type: Boolean, required: false },
-    isActive: { type: Boolean, required: false },
-    creator: { type: String, maxLength: 255, required: false },
+    roles: {
+      type: [
+        {
+          type: String,
+          enum: ["user", "admin"],
+        },
+      ],
+      default: ["user"],
+      required: "Please provide at least one role",
+    },
+    isAdmin: { type: Boolean, required: false, default: false },
+    isActive: { type: Boolean, required: false, default: true },
+    creator: { type: String, maxLength: 255, required: false, default: "" },
   },
   { timestamps: true }
 );
 
 // Duplicate the ID field.
-Test.set("toJSON", {
+User.set("toJSON", {
   virtuals: true,
   versionKey: false,
   transform: function (doc, ret) {

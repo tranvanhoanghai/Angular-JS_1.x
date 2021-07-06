@@ -28,7 +28,6 @@ exports.getById = function (req, res, next) {
 };
 
 exports.add = function (req, res, next) {
-  console.log("aaaaaaaaaaaaaaaa", req.body);
   const test = new Test(req.body);
   test
     .save()

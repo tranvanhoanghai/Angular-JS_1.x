@@ -1,5 +1,6 @@
 const createError = require("http-errors");
 const express = require("express");
+const bodyParser = require("body-parser");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -11,11 +12,17 @@ const app = express();
 const route = require("./routes");
 const db = require("./config/database");
 
-app.use(express.json());
+// app.use(express.json());
 
 // cors setup
 const cors = require("cors");
 app.use(cors());
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // DB setup
 db.connect();
 
