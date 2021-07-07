@@ -75,7 +75,7 @@ angular.module("contact").component("editContact", {
           creator: vm.creator,
           description: vm.description,
         };
-        
+
         ContactService.updateContact(currentId, contact)
           .then((res) => {
             Notification.success({

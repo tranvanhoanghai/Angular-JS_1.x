@@ -128,10 +128,15 @@
           id="assignedTo"
           name="assignedTo"
           ng-model="$ctrl.assignedTo"
+          required
         >
-          <option value="Value1">Value1</option>
-          <option value="Value1">Value3</option>
-          <option value="Value1">Value2</option>
+          <option
+            ng-repeat="data in $ctrl.assignedTos"
+            value="{{data.name}}"
+            ng-selected="$ctrl.assignedTo"
+          >
+            {{data.name}}
+          </option>
         </select>
       </div>
 

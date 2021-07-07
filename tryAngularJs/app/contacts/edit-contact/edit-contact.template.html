@@ -131,11 +131,11 @@
           ng-model="$ctrl.creator"
         >
           <option
-            ng-repeat="x in $ctrl.assignedTos"
-            value="{{x.name}}"
+            ng-repeat="data in $ctrl.assignedTos"
+            value="{{data.name}}"
             ng-selected="$ctrl.creator"
           >
-            {{x.name}}
+            {{data.name}}
           </option>
         </select>
       </div>
@@ -149,11 +149,11 @@
           ng-model="$ctrl.assignedTo"
         >
           <option
-            ng-repeat="x in $ctrl.assignedTos"
-            value="{{x.name}}"
+            ng-repeat="data in $ctrl.assignedTos"
+            value="{{data.name}}"
             ng-selected="$ctrl.assignedTo"
           >
-            {{x.name}}
+            {{data.name}}
           </option>
         </select>
       </div>

@@ -8,6 +8,7 @@ angular.module("contact").component("createContact", {
     "cssInjector",
     "ContactService",
     "BaseUrlService",
+    "UserService",
     "Notification",
     function (
       $scope,
@@ -15,6 +16,7 @@ angular.module("contact").component("createContact", {
       cssInjector,
       ContactService,
       BaseUrlService,
+      UserService,
       Notification
     ) {
       cssInjector.add("contacts/contact.template.css");
@@ -22,6 +24,14 @@ angular.module("contact").component("createContact", {
       vm.loading = true;
 
       vm.createContacts = createContacts;
+
+      UserService.getAll()
+        .then((response) => {
+          vm.assignedTos = response.data;
+        })
+        .catch((error) => {
+          console.log("Error", error);
+        });
 
       function createContacts() {
         var contact = {
@@ -34,7 +44,7 @@ angular.module("contact").component("createContact", {
           address: vm.address,
           leadSource: vm.leadSource,
           assignedTo: vm.assignedTo,
-          creator: "user",
+          creator: "Hai",
           description: vm.description,
         };
 
