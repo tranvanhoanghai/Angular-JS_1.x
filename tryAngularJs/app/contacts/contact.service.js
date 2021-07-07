@@ -1,25 +1,29 @@
 "use strict";
 
-contact.service("ContactService", function ($http) {
-  var baseUrl = "http://localhost:3000";
+angular
+  .module("contact")
+  .service("ContactService", function ($http, BaseUrlService) {
+    var contact = "/contact";
+    var baseUrl = BaseUrlService.getBaseUrl() + contact;
 
-  this.addProduct = function (data) {
-    return $http.post(baseUrl, data);
-  };
+    this.listContact = function () {
+      return $http.get(baseUrl);
+    };
 
-  this.update = function (id, data) {
-    return $http.put(`${baseUrl}/${id}`, data);
-  };
+    this.detailContact = function (id) {
+      return $http.get(`${baseUrl}/${id}`);
+    };
 
-  this.delete = function (id) {
-    return $http.delete(`${baseUrl}/${id}`);
-  };
+    this.createContact = function (data) {
+      console.log(data);
+      return $http.post(baseUrl, data);
+    };
 
-  this.getAll = function () {
-    return $http.get(baseUrl);
-  };
+    this.updateContact = function (id, data) {
+      return $http.put(`${baseUrl}/${id}`, data);
+    };
 
-  this.getByID = function (id) {
-    return $http.get(`${baseUrl}/${id}`);
-  };
-});
+    this.deleteContact = function (id) {
+      return $http.delete(`${baseUrl}/${id}`);
+    };
+  });

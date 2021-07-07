@@ -5,6 +5,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
+const cors = require("cors");
 // const indexRouter = require("./routes/index");
 // const usersRouter = require("./routes/users");
 
@@ -12,11 +13,10 @@ const app = express();
 const route = require("./routes");
 const db = require("./config/database");
 
-// app.use(express.json());
-
 // cors setup
-const cors = require("cors");
 app.use(cors());
+
+app.use(express.json());
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());

@@ -1,6 +1,6 @@
 "use strict";
 
-view1.component("view1", {
+angular.module("view1").component("view1", {
   templateUrl: "view1/view1.template.html",
   controller: [
     "$scope",
@@ -9,43 +9,50 @@ view1.component("view1", {
     "Notification",
     function ($scope, cssInjector, CrudService, Notification) {
       cssInjector.add("view1/view1.template.css");
+      var vm = this;
+      vm.loading = true;
+      vm.btnText = true;
+      vm.id = "";
 
-      $scope.GetProduct = function () {
+      vm.submit = submit;
+      vm.getProduct = getProduct;
+      vm.edit = edit;
+      vm.delete = deleteProduct;
+      vm.clear = clear;
+
+      function getProduct() {
         CrudService.getAll()
           .then((response) => {
-            $scope.products = response.data;
-            $scope.loading = false;
+            vm.products = response.data;
+            vm.loading = false;
           })
           .catch((error) => {
             console.log("Error", error);
             setTimeout(function () {
-              $scope.GetProduct();
+              vm.getProduct();
             }, 5000);
           });
-      };
+      }
 
-      $scope.loading = true;
-      $scope.btnText = true;
-      $scope.id = "";
-      $scope.GetProduct();
+      vm.getProduct();
 
-      $scope.submit = function () {
+      function submit() {
         var product = {
-          name: $scope.name,
-          price: $scope.price,
-          image: $scope.image,
+          name: vm.name,
+          price: vm.price,
+          image: vm.image,
         };
 
-        if ($scope.btnText) {
-          if ($scope.price && $scope.name && $scope.image) {
+        if (vm.btnText) {
+          if (vm.price && vm.name && vm.image) {
             CrudService.addProduct(product)
               .then((res) => {
                 Notification.success({
                   message: "Add data Successfully",
                 });
 
-                $scope.GetProduct();
-                $scope.Clear();
+                vm.getProduct();
+                vm.clear();
               })
               .catch((error) => {
                 Notification.error({
@@ -55,16 +62,16 @@ view1.component("view1", {
               });
           }
         } else {
-          if ($scope.price && $scope.name && $scope.image) {
-            CrudService.update($scope.id, product)
+          if (vm.price && vm.name && vm.image) {
+            CrudService.update(vm.id, product)
               .then((res) => {
                 Notification.success({
                   message: "Data update Successfully",
                 });
-                $scope.GetProduct();
-                $scope.Clear();
-                $scope.btnText = true;
-                $scope.id = "";
+                vm.getProduct();
+                vm.clear();
+                vm.btnText = true;
+                vm.id = "";
               })
               .catch((error) => {
                 console.log(error);
@@ -74,45 +81,45 @@ view1.component("view1", {
               });
           }
         }
-      };
+      }
 
-      $scope.edit = function (id) {
-        $scope.id = id;
+      function edit(id) {
+        vm.id = id;
         CrudService.getByID(id)
           .then((res) => {
-            $scope.name = res.data.name;
-            $scope.price = res.data.price;
-            $scope.image = res.data.image;
-            $scope.btnText = false;
+            vm.name = res.data.name;
+            vm.price = res.data.price;
+            vm.image = res.data.image;
+            vm.btnText = false;
           })
           .catch((error) => {
             Notification.error({
               message: "Error",
             });
           });
-      };
+      }
 
-      $scope.delete = function (id) {
+      function deleteProduct(id) {
         CrudService.delete(id)
           .then((res) => {
             Notification.success({
               message: "Data Delete Successfully",
             });
-            $scope.GetProduct();
-            $scope.Clear();
+            vm.getProduct();
+            vm.clear();
           })
           .catch((error) =>
             Notification.success({
               message: "Data Delete Error",
             })
           );
-      };
+      }
 
-      $scope.Clear = function () {
-        $scope.name = "";
-        $scope.price = "";
-        $scope.image = "";
-      };
+      function clear() {
+        vm.name = "";
+        vm.price = "";
+        vm.image = "";
+      }
     },
   ],
 });

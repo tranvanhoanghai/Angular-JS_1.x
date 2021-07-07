@@ -1,6 +1,6 @@
 "use strict";
 
-share.service("Session", function ($cookies) {
+angular.module("share").service("Session", function ($cookies) {
   this.put = function (key, value) {
     $cookies.put(key, value);
   };

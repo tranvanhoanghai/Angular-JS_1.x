@@ -1,4 +1,7 @@
 /* app css stylesheet */
+body {
+  font-size: 16px;
+}
 
 p {
   font-family: "Poppins", sans-serif;
@@ -28,7 +31,7 @@ p:focus {
   background: #fff;
   border: none;
   border-radius: 0;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -171,9 +174,17 @@ a.article:hover {
 ----------------------------------------------------- */
 #content {
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
   min-height: 100vh;
   transition: all 0.3s;
+}
+
+#content .body-content {
+  padding: 20px;
+}
+
+.breadcrumb {
+  background: #fff;
 }
 
 #sidebarCollapse {

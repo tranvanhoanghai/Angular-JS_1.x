@@ -105,7 +105,9 @@
             </button>
           </div>
         </nav>
-        <div ng-view></div>
+        <div class="body-content">
+          <div ng-view></div>
+        </div>
       </div>
     </div>
 
@@ -139,6 +141,10 @@
 
     <script src="contacts/contact.module.js"></script>
     <script src="contacts/contact.controller.js"></script>
+    <script src="contacts/contact.service.js"></script>
+    <script src="contacts/contact-list/contact-list.controller.js"></script>
+    <script src="contacts/create-contact/create-contact.controller.js"></script>
+    <script src="contacts/edit-contact/edit-contact.controller.js"></script>
 
     <script src="users/user.module.js"></script>
     <script src="users/user.conusertroller.js"></script>
@@ -153,6 +159,7 @@
 
     <script src="shared/shared.module.js"></script>
     <script src="shared/session.service.js"></script>
+    <script src="shared/shared.service.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function () {

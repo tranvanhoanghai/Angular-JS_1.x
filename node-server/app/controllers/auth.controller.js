@@ -1,12 +1,15 @@
 const User = require("../models/User");
-var jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+const key = require("../../config/auth.config");
 
 exports.login = function (req, res, next) {
   // User.find({})
   //   .then((data) => res.json(data))
   //   .catch(next);
   // res.send("respond with a login");
-
+  console.log(key.JWT_SECRET);
   User.findOne({ username: req.body.username, password: req.body.password })
     .then((user) => {
       if (user) {

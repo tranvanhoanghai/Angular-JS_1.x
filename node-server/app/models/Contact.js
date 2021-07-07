@@ -6,18 +6,22 @@ const Contact = new Schema(
   {
     name: { type: String, maxLength: 255, required: true },
     salutation: { type: String, maxLength: 255, required: false },
-    phone: { type: String, maxLength: 255, required: true },
+    phone: { type: Number, maxLength: 255, required: true },
 
     email: { type: String, maxLength: 255, required: true },
     organization: { type: String, maxLength: 255, required: true },
-    dob: { type: String, maxLength: 255, required: true },
+    dateOfBirth: { type: String, maxLength: 255, required: true },
+    address: { type: String, maxLength: 255, required: true },
     leadSource: { type: String, maxLength: 255, required: true },
+    creator: { type: String, maxLength: 255, required: false },
+    assignedTo: { type: String, maxLength: 255, required: true },
+    description: { type: String, maxLength: 255, required: true },
   },
   { timestamps: true }
 );
 
 // Duplicate the ID field.
-Test.set("toJSON", {
+Contact.set("toJSON", {
   virtuals: true,
   versionKey: false,
   transform: function (doc, ret) {

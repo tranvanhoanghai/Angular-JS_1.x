@@ -1,12 +1,14 @@
 "use strict";
 
 app.config([
+  // "$rootScope",
   "$locationProvider",
   "$routeProvider",
   "$httpProvider",
   "cssInjectorProvider",
   "NotificationProvider",
   function (
+    // $rootScope,
     $locationProvider,
     $routeProvider,
     $httpProvider,
@@ -15,8 +17,6 @@ app.config([
   ) {
     $locationProvider.hashPrefix("!");
     cssInjectorProvider.setSinglePageMode(true);
-
-    // $routeProvider.otherwise({ redirectTo: "/view1" });
 
     $routeProvider
       .when("/view1", {
@@ -30,6 +30,12 @@ app.config([
       })
       .when("/contact", {
         template: "<contact></contact>",
+      })
+      .when("/contact/create", {
+        template: "<create-contact></create-contact>",
+      })
+      .when("/contact/edit/:id", {
+        template: "<edit-contact></edit-contact>",
       })
       .when("/sales-order", {
         template: "<sales-order></sales-order>",
@@ -51,47 +57,5 @@ app.config([
       positionX: "right",
       positionY: "top",
     });
-
-    // $httpProvider.interceptors.push([
-    //   "$q",
-    //   "$location",
-    //   "$localStorage",
-    //   function ($q, $location, $localStorage) {
-    //     return {
-    //       request: function (config) {
-    //         config.headers = config.headers || {};
-    //         if ($localStorage.token) {
-    //           config.headers.Authorization = "Bearer " + $localStorage.token;
-    //         }
-    //         return config;
-    //       },
-    //       responseError: function (response) {
-    //         if (response.status === 401 || response.status === 403) {
-    //           $location.path("/login");
-    //         }
-    //         return $q.reject(response);
-    //       },
-    //     };
-    //   },
-    // ]);
   },
 ]);
-// .run([
-//   "$rootScope",
-//   "$location",
-//   "$cookieStore",
-//   "$http",
-//   function ($rootScope, $location, $cookieStore, $http) {
-//     $rootScope.globals = $cookieStore.get("globals") || {};
-//     if ($rootScope.globals.currentUser) {
-//       $http.defaults.headers.common["Authorization"] =
-//         "Basic " + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-//     }
-
-//     $rootScope.$on("$locationChangeStart", function (event, next, current) {
-//       if ($location.path() !== "/login" && !$rootScope.globals.currentUser) {
-//         $location.path("/login");
-//       }
-//     });
-//   },
-// ]);

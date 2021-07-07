@@ -1,0 +1,65 @@
+<div class="content-tables">
+  <div class="loader" ng-show="$ctrl.loading"></div>
+  <table class="table" border="1" ng-show="!$ctrl.loading">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Salutation</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+
+        <th scope="col">Organization</th>
+        <th scope="col">Date of birth</th>
+        <th scope="col">Address</th>
+        <th scope="col">Lead source</th>
+
+        <th scope="col">Assigned to</th>
+        <th scope="col">Creator</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-if="$ctrl.contacts == [] || $ctrl.contacts.length == 0">
+        <td colspan="13" class="text-center">No data</td>
+      </tr>
+
+      <tr ng-repeat="data in $ctrl.contacts track by $index">
+        <td>{{$index+1}}</td>
+
+        <td>{{data.name}}</td>
+        <td>{{data.salutation}}</td>
+        <td>{{data.phone}}</td>
+        <td>{{data.email}}</td>
+
+        <td>{{data.organization}}</td>
+        <td>{{data.dateOfBirth}}</td>
+        <td>{{data.address}}</td>
+        <td>{{data.leadSource}}</td>
+
+        <td>{{data.assignedTo}}</td>
+
+        <td>{{data.creator}}</td>
+        <td>{{data.description}}</td>
+
+        <td>
+          <button
+            type="button"
+            ng-click="$ctrl.editContacts(data.id)"
+            class="btn btn-success"
+          >
+            <i class="fas fa-edit"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            ng-click="$ctrl.deleteContacts(data.id)"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

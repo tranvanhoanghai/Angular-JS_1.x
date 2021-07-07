@@ -1,3 +1,3 @@
 "use strict";
 
-var salesOrder = angular.module("salesOrder", []);
+angular.module("salesOrder", []);

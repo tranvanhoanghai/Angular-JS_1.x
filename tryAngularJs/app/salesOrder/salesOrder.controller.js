@@ -1,6 +1,6 @@
 "use strict";
 
-salesOrder.component("salesOrder", {
+angular.module("salesOrder").component("salesOrder", {
   templateUrl: "salesOrder/salesOrder.template.html",
   controller: [
     "$scope",

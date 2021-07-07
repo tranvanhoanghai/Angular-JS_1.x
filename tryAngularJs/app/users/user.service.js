@@ -1,6 +1,6 @@
 "use strict";
 
-user.service("UserService", function ($http) {
+angular.module("user").service("UserService", function ($http) {
   var baseUrl = "http://localhost:3000";
   var user = "/users";
 

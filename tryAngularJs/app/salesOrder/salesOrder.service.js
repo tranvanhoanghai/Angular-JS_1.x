@@ -1,6 +1,6 @@
 "use strict";
 
-salesOrder.service("SalesOrderService", function ($http) {
+angular.module("salesOrder").service("SalesOrderService", function ($http) {
   // var baseUrl = "http://localhost:3000";
   // this.addProduct = function (data) {
   //   return $http.post(baseUrl, data);

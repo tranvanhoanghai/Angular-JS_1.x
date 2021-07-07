@@ -15,8 +15,8 @@ exports.getById = function (req, res, next) {
 
 exports.add = function (req, res, next) {
   console.log(req);
-  const test = new User(req.body);
-  test
+  const user = new User(req.body);
+  user
     .save()
     .then((data) => res.send(data))
     .catch(next);

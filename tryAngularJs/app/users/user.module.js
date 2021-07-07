@@ -1,3 +1,3 @@
 "use strict";
 
-var user = angular.module("user", []);
+angular.module("user", []);

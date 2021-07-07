@@ -1,3 +1,24 @@
 <link rel="stylesheet" ng-href="{{css}}" />
 
-<div>contact page</div>
+<div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Contact</li>
+    </ol>
+  </nav>
+
+  <div class="header text-center text-uppercase mb-3">
+    <h1>Contact</h1>
+  </div>
+
+  <div class="mb-3">
+    <a href="#!/contact/create">
+      <button class="btn btn-primary">
+        <i class="fa fa-plus"></i>
+      </button>
+    </a>
+  </div>
+
+  <contact-list></contact-list>
+  <!-- <create-contact></create-contact> -->
+</div>

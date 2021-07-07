@@ -1,6 +1,6 @@
 "use strict";
 
-user.component("user", {
+angular.module("user").component("user", {
   templateUrl: "users/user.template.html",
   controller: [
     "$scope",

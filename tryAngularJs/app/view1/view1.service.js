@@ -1,9 +1,10 @@
 "use strict";
 
-view1.service("CrudService", function ($http) {
-  var baseUrl = "http://localhost:3000";
+angular.module("view1").service("CrudService", function ($http) {
+  // var baseUrl = "http://localhost:3300";
 
   this.addProduct = function (data) {
+    console.log(baseUrl);
     return $http.post(baseUrl, data);
   };
 
