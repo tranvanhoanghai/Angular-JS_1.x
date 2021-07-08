@@ -4,17 +4,17 @@ angular.module("salesOrder").component("listSalesOrder", {
   templateUrl: "sales-order/list-sales-order/list-sales-order.template.html",
   controller: [
     "$scope",
+    "NgTableParams",
     "cssInjector",
     "$window",
-    // "ngTableParams",
     "SalesOrderService",
     "Notification",
     function (
       $scope,
+      NgTableParams,
       cssInjector,
       $window,
       SalesOrderService,
-      ngTableParams,
       Notification
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
@@ -26,31 +26,16 @@ angular.module("salesOrder").component("listSalesOrder", {
       vm.edit = editSalesOrder;
       vm.delete = deleteSalesOrder;
 
+      var data = [{ name: "Moroni", age: 50 } /*,*/];
+      vm.tableParams = new NgTableParams({}, { dataset: data });
+
       function getListSalesOrder() {
         SalesOrderService.listSalesOrder()
           .then((response) => {
             vm.salesOrders = response.data;
+            // vm.tableParams = new NgTableParams({}, { dataset: vm.salesOrders });
+            console.log(vm.salesOrders);
 
-            vm.usersTable = new ngTableParams(
-              {
-                page: 1,
-
-                count: 5,
-              },
-              {
-                total: vm.salesOrders.length,
-
-                getData: function ($defer, params) {
-                  vm.data = vm.salesOrders.slice(
-                    (params.page() - 1) * params.count(),
-                    params.page() * params.count()
-                  );
-
-                  $defer.resolve(vm.data);
-                },
-              }
-            );
-            console.log(usersTable);
             vm.loading = false;
           })
           .catch((error) => {
