@@ -26,4 +26,9 @@ angular
     this.deleteContact = function (id) {
       return $http.delete(`${baseUrl}/${id}`);
     };
+
+    this.searchContact = function (key) {
+      return $http.get(baseUrl, key);
+    };
+    
   });

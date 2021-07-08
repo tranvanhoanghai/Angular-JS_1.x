@@ -40,6 +40,12 @@ app.config([
       .when("/sales-order", {
         template: "<sales-order></sales-order>",
       })
+      .when("/sales-order/create", {
+        template: "<create-sales-order></create-sales-order>",
+      })
+      .when("/sales-order/edit/:id", {
+        template: "<edit-sales-order></edit-sales-order>",
+      })
       .when("/user", {
         template: "<user></user>",
       })

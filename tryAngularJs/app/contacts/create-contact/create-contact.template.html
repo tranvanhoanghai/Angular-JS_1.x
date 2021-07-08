@@ -25,17 +25,22 @@
         />
       </div>
       <div class="form-group col-md-6">
-        <label for="name" class="form-label">Salutation</label>
-
-        <input
-          type="text"
+        <label for="salutation" class="form-label">Salutation</label>
+        <select
           class="form-control"
           id="salutation"
-          placeholder="Salutation"
-          autocomplete="off"
+          name="salutation"
           ng-model="$ctrl.salutation"
           required
-        />
+        >
+          <option value="None" ng-selected="None">None</option>
+
+          <option value="Mr">Mr</option>
+          <option value="Ms">Ms</option>
+          <option value="Mrs">Mrs</option>
+          <option value="Dr">Dr</option>
+          <option value="Prof">Prof</option>
+        </select>
       </div>
       <div class="form-group col-md-6">
         <label for="name" class="form-label">Phone</label>
@@ -76,7 +81,7 @@
       <div class="form-group col-md-6">
         <label for="name" class="form-label">Date of birth</label>
         <input
-          type="text"
+          type="date"
           class="form-control"
           id="dob"
           ng-model="$ctrl.dateOfBirth"
@@ -98,16 +103,21 @@
         />
       </div>
       <div class="form-group col-md-6">
-        <label for="name" class="form-label">Lead source</label>
-        <input
-          type="text"
+        <label for="leadSource" class="form-label">Lead source</label>
+        <select
           class="form-control"
           id="leadSource"
+          name="leadSource"
           ng-model="$ctrl.leadSource"
-          autocomplete="off"
-          placeholder="Lead source"
           required
-        />
+        >
+          <option value="Existing Customer">Existing Customer</option>
+          <option value="Partner">Partner</option>
+          <option value="Conference">Conference</option>
+          <option value="Website">Website</option>
+          <option value="Word of mouth">Word of mouth</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
       <div class="form-group col-md-6">
         <label for="name" class="form-label">Description</label>

@@ -4,7 +4,7 @@ angular.module("user").service("UserService", function ($http) {
   var baseUrl = "http://localhost:3000";
   var user = "/users";
 
-  this.getAll = function () {
+  this.getListUser = function () {
     return $http.get(baseUrl + user);
   };
 

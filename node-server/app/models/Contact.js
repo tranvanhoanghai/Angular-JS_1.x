@@ -9,13 +9,13 @@ const Contact = new Schema(
     phone: { type: Number, maxLength: 255, required: true },
 
     email: { type: String, maxLength: 255, required: true },
-    organization: { type: String, maxLength: 255, required: true },
-    dateOfBirth: { type: String, maxLength: 255, required: true },
+    organization: { type: String, required: true },
+    dateOfBirth: { type: Date, maxLength: 255, required: true },
     address: { type: String, maxLength: 255, required: true },
     leadSource: { type: String, maxLength: 255, required: true },
     creator: { type: String, maxLength: 255, required: false },
     assignedTo: { type: String, maxLength: 255, required: true },
-    description: { type: String, maxLength: 255, required: true },
+    description: { type: String, maxLength: 255, required: false },
   },
   { timestamps: true }
 );

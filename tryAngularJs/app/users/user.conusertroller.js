@@ -15,7 +15,7 @@ angular.module("user").component("user", {
       $scope.id = "";
 
       $scope.GetAllUser = function () {
-        UserService.getAll()
+        UserService.getListUser()
           .then((response) => {
             $scope.users = response.data;
             $scope.loading = false;

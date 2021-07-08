@@ -2,6 +2,7 @@ const indexController = require("../app/controllers/test.controller");
 const userRouter = require("./users");
 const authRouter = require("./auth");
 const contactRouter = require("./contact");
+const salesOrderRouter = require("./salesOrder");
 
 /* GET home page. */
 // router.get('/', index.get);
@@ -11,6 +12,7 @@ function route(app) {
 
   app.use("/users", userRouter);
   app.use("/contact", contactRouter);
+  app.use("/sales-order", salesOrderRouter);
 
   app.get("/:id", indexController.getById);
   app.get("/", indexController.get);

@@ -2,19 +2,19 @@ const Contact = require("../models/Contact");
 
 exports.getListContacts = function (req, res, next) {
   Contact.find({})
+    .sort({ createdAt: -1 })
     .then((data) => res.json(data))
     .catch(next);
 };
 
-exports.getIdContacts = function (req, res, next) {
+exports.getIdContact = function (req, res, next) {
   const id = req.params.id;
   Contact.findById(id)
     .then((data) => res.json(data))
     .catch(next);
 };
 
-exports.createdContacts = function (req, res, next) {
-  console.log(req);
+exports.createdContact = function (req, res, next) {
   const contact = new Contact(req.body);
   contact
     .save()
@@ -22,7 +22,7 @@ exports.createdContacts = function (req, res, next) {
     .catch(next);
 };
 
-exports.updateContacts = function (req, res, next) {
+exports.updateContact = function (req, res, next) {
   const id = req.params.id;
   Contact.findByIdAndUpdate(id, req.body)
     .then((data) => {
@@ -35,7 +35,7 @@ exports.updateContacts = function (req, res, next) {
     .catch(next);
 };
 
-exports.deleteContacts = function (req, res, next) {
+exports.deleteContact = function (req, res, next) {
   const id = req.params.id;
   console.log(req);
   Contact.findByIdAndRemove(id)

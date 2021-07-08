@@ -1,0 +1,77 @@
+<section>
+  <div class="d-flex justify-content-end list-action">
+    <div class="action-item">
+      <input
+        class="form-control"
+        type="search"
+        autocomplete="off"
+        ng-model="$ctrl.search"
+        placeholder="Search"
+      />
+    </div>
+
+    <div class="mb-3 action-item">
+      <button class="btn btn-primary" ng-click="$ctrl.create()">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="content-table">
+    <div class="loader" ng-show="$ctrl.loading"></div>
+    <table class="table" border="1" ng-show="!$ctrl.loading">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Contact name</th>
+          <th scope="col">Status</th>
+          <th scope="col">Total</th>
+
+          <th scope="col">Creator</th>
+          <th scope="col">Assigned to</th>
+          <th scope="col">Description</th>
+
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="$ctrl.salesOrders == [] || $ctrl.salesOrders.length == 0">
+          <td colspan="13" class="text-center">No data</td>
+        </tr>
+
+        <tr
+          ng-repeat="data in $ctrl.salesOrders | filter : $ctrl.search track by $index"
+        >
+          <td>{{$index+1}}</td>
+
+          <td>{{data.subject}}</td>
+          <td>{{data.contactName}}</td>
+          <td>{{data.status}}</td>
+          <td>{{data.total}}</td>
+
+          <td>{{data.creator}}</td>
+          <td>{{data.assignedTo}}</td>
+          <td>{{data.description}}</td>
+
+          <td>
+            <button
+              type="button"
+              ng-click="$ctrl.edit(data.id)"
+              class="btn btn-success"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              ng-click="$ctrl.delete(data.id)"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -14,6 +14,7 @@ var app = angular.module("myApp", [
   "ngRoute",
   "ngResource",
   "ui-notification",
+  "ngTable",
   "ngCookies",
   "ngStorage",
   // "ui.bootstrap",

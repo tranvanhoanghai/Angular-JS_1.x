@@ -51,8 +51,8 @@
   </div>
 
   <div class="content-table">
-    <div class="loader" ng-show="loading"></div>
-    <table class="table" border="1" ng-show="!loading">
+    <div class="loader" ng-show="$ctrl.loading"></div>
+    <table class="table" border="1" ng-hide="loading">
       <thead>
         <tr>
           <th scope="col">#</th>

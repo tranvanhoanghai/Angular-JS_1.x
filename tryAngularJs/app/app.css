@@ -3,6 +3,18 @@ body {
   font-size: 16px;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 p {
   font-family: "Poppins", sans-serif;
   font-size: 1.1em;
@@ -222,7 +234,7 @@ a.article:hover {
 
 .content-table {
   overflow: auto;
-  min-height: 700px;
+  min-height: 600px;
 }
 
 /*   Css loading */
@@ -256,6 +268,22 @@ a.article:hover {
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+/* Css list action */
+.list-action .action-item{
+  margin-left: 10px;
+ }
+
+
+
+
+
+
+
 
 /* ---------------------------------------------------
   MEDIAQUERIES

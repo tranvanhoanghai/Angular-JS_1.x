@@ -18,6 +18,7 @@
     "bootstrap": "^4.6.0",
     "html5-boilerplate": "0.0.1",
     "jquery": "^3.6.0",
+    "ng-table": "^3.0.1",
     "ngstorage": "^0.3.11"
   },
   "devDependencies": {

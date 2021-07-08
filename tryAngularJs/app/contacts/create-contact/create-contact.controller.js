@@ -25,7 +25,7 @@ angular.module("contact").component("createContact", {
 
       vm.createContacts = createContacts;
 
-      UserService.getAll()
+      UserService.getListUser()
         .then((response) => {
           vm.assignedTos = response.data;
         })

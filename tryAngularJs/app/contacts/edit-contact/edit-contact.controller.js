@@ -5,6 +5,7 @@ angular.module("contact").component("editContact", {
   controller: [
     "$scope",
     "$window",
+    "$filter",
     "cssInjector",
     "ContactService",
     "$routeParams",
@@ -14,6 +15,7 @@ angular.module("contact").component("editContact", {
     function (
       $scope,
       $window,
+      $filter,
       cssInjector,
       ContactService,
       $routeParams,
@@ -35,7 +37,6 @@ angular.module("contact").component("editContact", {
             UserService.getAll()
               .then((response) => {
                 vm.assignedTos = response.data;
-                console.log(vm.assignedTos);
               })
               .catch((error) => {
                 console.log("Error", error);
@@ -46,7 +47,7 @@ angular.module("contact").component("editContact", {
             vm.phone = res.data.phone;
             vm.email = res.data.email;
             vm.organization = res.data.organization;
-            vm.dateOfBirth = res.data.dateOfBirth;
+            vm.dateOfBirth = new Date(res.data.dateOfBirth);
             vm.address = res.data.address;
             vm.leadSource = res.data.leadSource;
             vm.assignedTo = res.data.assignedTo;

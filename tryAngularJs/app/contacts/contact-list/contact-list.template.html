@@ -1,65 +1,95 @@
-<div class="content-tables">
-  <div class="loader" ng-show="$ctrl.loading"></div>
-  <table class="table" border="1" ng-show="!$ctrl.loading">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Salutation</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Email</th>
+<section>
+  <div class="d-flex justify-content-end list-action">
+    <div class="action-item">
+      <input
+        class="form-control"
+        type="search"
+        autocomplete="off"
+        ng-model="$ctrl.search"
+        placeholder="Search"
+      />
+    </div>
+    <!-- ng-change="$ctrl.searchContact()"  -->
+    <!-- <div class="action-item">
+      <select name="" id="" class="form-control">
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+      </select>
+    </div> -->
 
-        <th scope="col">Organization</th>
-        <th scope="col">Date of birth</th>
-        <th scope="col">Address</th>
-        <th scope="col">Lead source</th>
+    <div class="mb-3 action-item">
+      <button class="btn btn-primary" ng-click="$ctrl.create()">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
 
-        <th scope="col">Assigned to</th>
-        <th scope="col">Creator</th>
-        <th scope="col">Description</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-if="$ctrl.contacts == [] || $ctrl.contacts.length == 0">
-        <td colspan="13" class="text-center">No data</td>
-      </tr>
+  <div class="content-table">
+    <div class="loader" ng-show="$ctrl.loading"></div>
+    <table class="table" border="1" ng-show="!$ctrl.loading">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Salutation</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Email</th>
 
-      <tr ng-repeat="data in $ctrl.contacts track by $index">
-        <td>{{$index+1}}</td>
+          <th scope="col">Organization</th>
+          <th scope="col">Date of birth</th>
+          <th scope="col">Address</th>
+          <th scope="col">Lead source</th>
 
-        <td>{{data.name}}</td>
-        <td>{{data.salutation}}</td>
-        <td>{{data.phone}}</td>
-        <td>{{data.email}}</td>
+          <th scope="col">Assigned to</th>
+          <th scope="col">Creator</th>
+          <th scope="col">Description</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="$ctrl.contacts == [] || $ctrl.contacts.length == 0">
+          <td colspan="13" class="text-center">No data</td>
+        </tr>
 
-        <td>{{data.organization}}</td>
-        <td>{{data.dateOfBirth}}</td>
-        <td>{{data.address}}</td>
-        <td>{{data.leadSource}}</td>
+        <tr
+          ng-repeat="data in $ctrl.contacts | filter : $ctrl.search track by $index"
+        >
+          <td>{{$index+1}}</td>
 
-        <td>{{data.assignedTo}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.salutation}}</td>
+          <td>{{data.phone}}</td>
+          <td>{{data.email}}</td>
 
-        <td>{{data.creator}}</td>
-        <td>{{data.description}}</td>
+          <td>{{data.organization}}</td>
+          <td>{{data.dateOfBirth | date:'dd/MM/yyyy' }}</td>
+          <td>{{data.address}}</td>
+          <td>{{data.leadSource}}</td>
 
-        <td>
-          <button
-            type="button"
-            ng-click="$ctrl.editContacts(data.id)"
-            class="btn btn-success"
-          >
-            <i class="fas fa-edit"></i>
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger"
-            ng-click="$ctrl.deleteContacts(data.id)"
-          >
-            <i class="fas fa-trash"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+          <td>{{data.assignedTo}}</td>
+
+          <td>{{data.creator}}</td>
+          <td>{{data.description}}</td>
+
+          <td>
+            <button
+              type="button"
+              ng-click="$ctrl.editContacts(data.id)"
+              class="btn btn-success"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              ng-click="$ctrl.deleteContacts(data.id)"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
