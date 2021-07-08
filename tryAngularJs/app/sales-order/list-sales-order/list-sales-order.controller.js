@@ -5,6 +5,7 @@ angular.module("salesOrder").component("listSalesOrder", {
   controller: [
     "$scope",
     "NgTableParams",
+    "UserService",
     "cssInjector",
     "$window",
     "SalesOrderService",
@@ -12,6 +13,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     function (
       $scope,
       NgTableParams,
+      UserService,
       cssInjector,
       $window,
       SalesOrderService,
@@ -26,16 +28,21 @@ angular.module("salesOrder").component("listSalesOrder", {
       vm.edit = editSalesOrder;
       vm.delete = deleteSalesOrder;
 
-      var data = [{ name: "Moroni", age: 50 } /*,*/];
-      vm.tableParams = new NgTableParams({}, { dataset: data });
-
       function getListSalesOrder() {
         SalesOrderService.listSalesOrder()
           .then((response) => {
             vm.salesOrders = response.data;
-            // vm.tableParams = new NgTableParams({}, { dataset: vm.salesOrders });
-            console.log(vm.salesOrders);
-
+            vm.tableParams = new NgTableParams(
+              { count: 2 },
+              {
+                // page size buttons (right set of buttons in demo)
+                counts: [],
+                // determines the pager buttons (left set of buttons in demo)
+                paginationMaxBlocks: 13,
+                paginationMinBlocks: 2,
+                dataset: vm.salesOrders,
+              }
+            );
             vm.loading = false;
           })
           .catch((error) => {
