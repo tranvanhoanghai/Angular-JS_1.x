@@ -3,19 +3,15 @@
 angular.module("contact").component("createContact", {
   templateUrl: "contacts/create-contact/create-contact.template.html",
   controller: [
-    "$scope",
-    "$window",
+    "$location",
     "cssInjector",
     "ContactService",
-    "BaseUrlService",
     "UserService",
     "Notification",
     function (
-      $scope,
-      $window,
+      $location,
       cssInjector,
       ContactService,
-      BaseUrlService,
       UserService,
       Notification
     ) {
@@ -23,9 +19,9 @@ angular.module("contact").component("createContact", {
       var vm = this;
       vm.loading = true;
 
-      vm.createContacts = createContacts;
+      vm.create = createContact;
 
-      UserService.getListUser()
+      UserService.listUsers()
         .then((response) => {
           vm.assignedTos = response.data;
         })
@@ -33,7 +29,7 @@ angular.module("contact").component("createContact", {
           console.log("Error", error);
         });
 
-      function createContacts() {
+      function createContact() {
         var contact = {
           name: vm.name,
           salutation: vm.salutation,
@@ -55,7 +51,7 @@ angular.module("contact").component("createContact", {
               replaceMessage: true,
             });
 
-            $window.location.href = "#!/contact/";
+            $location.url("/contact/");
           })
           .catch((error) => {
             console.log("Error", error);

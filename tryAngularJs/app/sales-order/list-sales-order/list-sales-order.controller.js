@@ -8,6 +8,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     "UserService",
     "cssInjector",
     "$window",
+    "$location",
     "SalesOrderService",
     "Notification",
     function (
@@ -16,6 +17,7 @@ angular.module("salesOrder").component("listSalesOrder", {
       UserService,
       cssInjector,
       $window,
+      $location,
       SalesOrderService,
       Notification
     ) {
@@ -56,11 +58,11 @@ angular.module("salesOrder").component("listSalesOrder", {
       vm.getListSalesOrder();
 
       function createSalesOrder() {
-        $window.location.href = "#!/sales-order/create/";
+        $location.url("/sales-order/create/");
       }
 
       function editSalesOrder(id) {
-        $window.location.href = "#!/sales-order/edit/" + id;
+        $location.url("/sales-order/edit/" + id);
       }
 
       function deleteSalesOrder(id) {

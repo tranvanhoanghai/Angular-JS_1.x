@@ -3,24 +3,20 @@
 angular.module("contact").component("editContact", {
   templateUrl: "contacts/edit-contact/edit-contact.template.html",
   controller: [
-    "$scope",
-    "$window",
-    "$filter",
+    "$location",
+    "$uibModal",
     "cssInjector",
     "ContactService",
     "$routeParams",
     "UserService",
-    "BaseUrlService",
     "Notification",
     function (
-      $scope,
-      $window,
-      $filter,
+      $location,
+      $uibModal,
       cssInjector,
       ContactService,
       $routeParams,
       UserService,
-      BaseUrlService,
       Notification
     ) {
       cssInjector.add("contacts/contact.template.css");
@@ -28,20 +24,57 @@ angular.module("contact").component("editContact", {
       var currentId = $routeParams.id;
 
       vm.detailContact = detailContact;
-      vm.editContact = editContact;
+      vm.update = updateContact;
       vm.loading = true;
+      vm.open = open;
+      vm.data = "Lorem Name Test";
+
+      function open(size) {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: "modal-title",
+          ariaDescribedBy: "modal-body",
+          templateUrl: "confirmTpl.html",
+          controller: function ($uibModalInstance, data) {
+            vm.data = data;
+
+            vm.ok = function () {
+              $uibModalInstance.close();
+            };
+
+            vm.cancel = function () {
+              //{...}
+              alert("You clicked the cancel button.");
+              $uibModalInstance.dismiss("cancel");
+            };
+          },
+          size: size,
+          resolve: {
+            data: function () {
+              return vm.data;
+            },
+          },
+        });
+
+        modalInstance.result.then(function () {
+          alert("now I'll close the modal");
+        });
+      }
 
       function detailContact() {
         ContactService.detailContact(currentId)
           .then((res) => {
-            UserService.getAll()
+            UserService.listUsers()
               .then((response) => {
                 vm.assignedTos = response.data;
               })
               .catch((error) => {
                 console.log("Error", error);
+                Notification.error({
+                  message: "Can't get data assignedTos",
+                  replaceMessage: true,
+                });
               });
-
             vm.name = res.data.name;
             vm.salutation = res.data.salutation;
             vm.phone = res.data.phone;
@@ -56,13 +89,14 @@ angular.module("contact").component("editContact", {
           })
           .catch((error) => {
             Notification.error({
-              message: "Error",
+              message: "Can't get data by ID contact",
               replaceMessage: true,
             });
           });
       }
+      vm.detailContact();
 
-      function editContact() {
+      function updateContact() {
         var contact = {
           name: vm.name,
           salutation: vm.salutation,
@@ -82,7 +116,7 @@ angular.module("contact").component("editContact", {
             Notification.success({
               message: "Data update Successfully",
             });
-            $window.location.href = "#!/contact/";
+            $location.url("/contact/");
           })
           .catch((error) => {
             console.log(error);
@@ -91,8 +125,6 @@ angular.module("contact").component("editContact", {
             });
           });
       }
-
-      vm.detailContact();
     },
   ],
 });

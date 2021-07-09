@@ -10,7 +10,7 @@
     <h1>edit Contact</h1>
   </div>
 
-  <form ng-submit="$ctrl.editContact()" name="form" role="form">
+  <form ng-submit="$ctrl.update()" name="form" role="form">
     <div class="row">
       <div class="form-group col-md-6">
         <label for="name" class="form-label">Name</label>
@@ -31,7 +31,6 @@
           id="salutation"
           name="salutation"
           ng-model="$ctrl.salutation"
-          required
         >
           <option value="None" ng-selected="None">None</option>
 
@@ -75,7 +74,6 @@
           ng-model="$ctrl.organization"
           autocomplete="off"
           placeholder="Organization"
-          required
         />
       </div>
       <div class="form-group col-md-6">
@@ -86,7 +84,6 @@
           id="dob"
           ng-model="$ctrl.dateOfBirth"
           autocomplete="off"
-          required
         />
       </div>
       <div class="form-group col-md-6">
@@ -98,7 +95,6 @@
           ng-model="$ctrl.address"
           autocomplete="new-password"
           placeholder="Address"
-          required
         />
       </div>
       <div class="form-group col-md-6">
@@ -155,18 +151,51 @@
           ng-model="$ctrl.description"
           autocomplete="off"
           placeholder="Description"
-          required
         />
       </div>
 
       <div class="form-group col-md-12 d-flex justify-content-end">
         <button
-          type="submit"
+          type="button"
           class="btn btn-primary"
           ng-disabled="form.$invalid"
+          ng-click="$ctrl.promote({name: 'Dave'})"
         >
           Update
         </button>
+
+        <button type="button" class="btn btn-default" ng-click="$ctrl.open()">
+          Open me!
+        </button>
+
+        <script id="confirmTpl.html" type="text/ng-template">
+            <div class="modal-header">
+              <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+          </div>
+          <div class="modal-body" id="modal-body">
+              <ul>
+                  {{$ctrl.data}}
+              </ul>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+              <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+          </div>
+        </script>
+
+        <!-- <script id="confirmTpl.html" type="text/ng-template">
+          <div class="modal-header">
+            <h3 class="modal-title">Are you sure?</h3>
+          </div>
+          <div class="modal-body">
+            <p>You are about to promote someone. Are you sure?</p>
+            <p>{{employee.name}}</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="$dismiss()">No</button>
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.update()">Yes</button>
+          </div>
+        </script> -->
       </div>
     </div>
   </form>

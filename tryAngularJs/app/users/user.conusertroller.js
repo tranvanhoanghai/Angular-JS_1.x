@@ -10,26 +10,6 @@ angular.module("user").component("user", {
     function ($scope, cssInjector, UserService, Notification) {
       cssInjector.add("users/user.template.css");
 
-      $scope.loading = true;
-      $scope.btnText = true;
-      $scope.id = "";
-
-      $scope.GetAllUser = function () {
-        UserService.getListUser()
-          .then((response) => {
-            $scope.users = response.data;
-            $scope.loading = false;
-          })
-          .catch((error) => {
-            console.log("Error", error);
-            setTimeout(function () {
-              $scope.GetAllUser();
-            }, 5000);
-          });
-      };
-
-      $scope.GetAllUser();
-
       $scope.submit = function () {
         var user = {
           name: $scope.name,

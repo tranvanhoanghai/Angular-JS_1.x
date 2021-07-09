@@ -1,128 +1,17 @@
 <link rel="stylesheet" ng-href="{{css}}" />
 
 <div>
-  <div class="">
-    <form ng-submit="submit()" name="form" role="form">
-      <div class="row">
-        <div class="form-group col-md-6">
-          <input
-            type="text"
-            class="form-control"
-            id="Name"
-            placeholder="Name"
-            ng-model="name"
-            autocomplete="off"
-            required
-          />
-        </div>
-        <div class="form-group col-md-6">
-          <input
-            type="text"
-            class="form-control"
-            id="username"
-            placeholder="Username"
-            autocomplete="off"
-            ng-model="username"
-            required
-          />
-        </div>
-        <div class="form-group col-md-6">
-          <input
-            type="text"
-            class="form-control"
-            id="password"
-            ng-model="password"
-            autocomplete="off"
-            placeholder="Password"
-            required
-          />
-        </div>
-        <div class="form-group col-md-6">
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            ng-model="email"
-            autocomplete="off"
-            placeholder="Email"
-            required
-          />
-        </div>
-        <div class="form-group col-md-6">
-          <input
-            type="number"
-            class="form-control"
-            id="phone"
-            ng-model="phone"
-            autocomplete="off"
-            placeholder="Phone"
-            required
-          />
-        </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">
+        User management
+      </li>
+    </ol>
+  </nav>
 
-        <div class="form-group col-md-12">
-          <button class="btn btn-primary" ng-disabled="form.$invalid">
-            {{btnText?"Add":"Update"}}
-          </button>
-        </div>
-      </div>
-    </form>
+  <div class="header text-center text-uppercase mb-3">
+    <h1>User management</h1>
   </div>
 
-  <div class="content-table">
-    <div class="loader" ng-show="loading"></div>
-    <table class="table" border="1" ng-show="!loading">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Image</th>
-          <th scope="col">Image</th>
-          <th scope="col">Image</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- <tr *ngIf="products == null || products.length == 0">
-          <td colspan="5" class="text-center">No data</td>
-        </tr> -->
-        <tr ng-if="users == [] || users.length == 0">
-          <td colspan="5" class="text-center">No data</td>
-        </tr>
-
-        <tr ng-repeat="data in users track by $index">
-          <td scope="row">{{$index+1}}</td>
-
-          <td scope="row">{{data.name}}</td>
-          <td scope="row">{{data.username}}</td>
-          <td scope="row">{{data.password}}</td>
-          <td scope="row">{{data.isActive}}</td>
-          <td>
-            <img
-              style="width: 100px"
-              ng-src="{{data.image}}"
-              alt="{{data.image}}"
-            />
-          </td>
-          <td>
-            <button
-              type="button"
-              ng-click="edit(data.id)"
-              class="btn btn-success"
-            >
-              <i class="fas fa-edit"></i>
-            </button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              ng-click="delete(data.id)"
-            >
-              <i class="fas fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <list-user></list-user>
 </div>

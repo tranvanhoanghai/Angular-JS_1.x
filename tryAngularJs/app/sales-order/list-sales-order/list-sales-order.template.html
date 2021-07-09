@@ -1,15 +1,5 @@
 <section>
   <div class="d-flex justify-content-end list-action">
-    <div class="action-item">
-      <input
-        class="form-control"
-        type="search"
-        autocomplete="off"
-        ng-model="$ctrl.search"
-        placeholder="Search"
-      />
-    </div>
-
     <div class="mb-3 action-item">
       <button class="btn btn-primary" ng-click="$ctrl.create()">
         <i class="fa fa-plus"></i>
@@ -19,35 +9,14 @@
 
   <div class="content-table">
     <div class="loader" ng-show="$ctrl.loading"></div>
+
     <table
+      ng-hide="$ctrl.loading"
       ng-table="$ctrl.tableParams"
-      ng-show="!$ctrl.loading"
       show-filter="true"
       class="table table-condensed table-bordered table-striped"
     >
-      <!-- <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col" filter="{ subject: 'text'}" sortable="'subject'">
-            Subject
-          </th>
-          <th scope="col">Contact name</th>
-          <th scope="col">Status</th>
-          <th scope="col">Total</th>
-
-          <th scope="col">Creator</th>
-          <th scope="col">Assigned to</th>
-          <th scope="col">Description</th>
-
-          <th scope="col">Action</th>
-        </tr>
-      </thead> -->
-      <!-- <tbody> -->
-      <!-- <tr ng-if="$data == [] || $data.length == 0">
-        <td colspan="13" class="text-center">No data</td>
-      </tr> -->
-
-      <tr ng-repeat="data in $data | filter : $ctrl.search track by $index">
+      <tr ng-repeat="data in $data track by $index">
         <td data-title="'#'">{{$index+1}}</td>
 
         <td

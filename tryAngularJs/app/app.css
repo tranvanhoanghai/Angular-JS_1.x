@@ -2,7 +2,20 @@
 body {
   font-size: 16px;
 }
+.fade.in {
+  opacity: 1;
+}
 
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -11,7 +24,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -269,21 +282,10 @@ a.article:hover {
   }
 }
 
-
-
-
-
 /* Css list action */
-.list-action .action-item{
+.list-action .action-item {
   margin-left: 10px;
- }
-
-
-
-
-
-
-
+}
 
 /* ---------------------------------------------------
   MEDIAQUERIES

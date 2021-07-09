@@ -3,17 +3,15 @@
 angular.module("salesOrder").component("editSalesOrder", {
   templateUrl: "sales-order/edit-sales-order/edit-sales-order.template.html",
   controller: [
-    "$scope",
-    "$window",
     "$routeParams",
+    "$mdDialog",
+    "$interval",
     "cssInjector",
     "SalesOrderService",
     "UserService",
     "ContactService",
     "Notification",
     function (
-      $scope,
-      $window,
       $routeParams,
       cssInjector,
       SalesOrderService,
@@ -32,7 +30,7 @@ angular.module("salesOrder").component("editSalesOrder", {
       function detailSalesOrder() {
         SalesOrderService.detailSalesOrder(currentId)
           .then((res) => {
-            UserService.getListUser()
+            UserService.listUsers()
               .then((response) => {
                 vm.assignedTos = response.data;
               })
@@ -88,7 +86,7 @@ angular.module("salesOrder").component("editSalesOrder", {
             Notification.success({
               message: "Data update Successfully",
             });
-            $window.location.href = "#!/sales-order";
+            $location.url("/sales-order/");
           })
           .catch((error) => {
             console.log(error);
@@ -97,7 +95,6 @@ angular.module("salesOrder").component("editSalesOrder", {
             });
           });
       }
-
       vm.detailSalesOrder();
     },
   ],

@@ -1,0 +1,67 @@
+<section>
+  <div class="d-flex justify-content-end list-action">
+    <div class="mb-3 action-item">
+      <button class="btn btn-primary" ng-click="$ctrl.create()">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="content-table">
+    <table
+      ng-table="$ctrl.tableParams"
+      show-filter="true"
+      class="table table-condensed table-bordered table-striped"
+    >
+      <tr ng-hide="$ctrl.loading" ng-repeat="data in $data track by $index">
+        <div class="loader" ng-show="$ctrl.loading"></div>
+
+        <td data-title="'#'">{{$index+1}}</td>
+
+        <td data-title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+          {{data.name}}
+        </td>
+
+        <td
+          data-title="'User name'"
+          filter="{ username: 'text'}"
+          sortable="'username'"
+        >
+          {{data.username}}
+        </td>
+        <td data-title="'Email'" filter="{ email: 'text'}" sortable="'email'">
+          {{data.email}}
+        </td>
+
+        <td data-title="'Phone'" filter="{ phone: 'number'}" sortable="'phone'">
+          {{data.phone}}
+        </td>
+
+        <td
+          data-title="'creator'"
+          filter="{ creator: 'text'}"
+          sortable="'creator'"
+        >
+          {{data.creator}}
+        </td>
+
+        <td data-title="'Action'">
+          <button
+            type="button"
+            ng-click="$ctrl.edit(data.id)"
+            class="btn btn-success"
+          >
+            <i class="fas fa-edit"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            ng-click="$ctrl.delete(data.id)"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>

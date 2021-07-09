@@ -7,17 +7,19 @@ app.config([
   "$httpProvider",
   "cssInjectorProvider",
   "NotificationProvider",
+  "$qProvider",
   function (
     // $rootScope,
     $locationProvider,
     $routeProvider,
     $httpProvider,
     cssInjectorProvider,
-    NotificationProvider
+    NotificationProvider,
+    $qProvider
   ) {
     $locationProvider.hashPrefix("!");
     cssInjectorProvider.setSinglePageMode(true);
-
+    $qProvider.errorOnUnhandledRejections(false);
     $routeProvider
       .when("/view1", {
         template: "<view1></view1>", //crud demo (<view1></view1> is name component)
@@ -48,6 +50,12 @@ app.config([
       })
       .when("/user", {
         template: "<user></user>",
+      })
+      .when("/user/create", {
+        template: "<create-user></create-user>",
+      })
+      .when("/user/edit/:id", {
+        template: "<edit-user></edit-user>",
       })
       .when("/login", {
         template: "<login></login>",

@@ -10,7 +10,7 @@
     <h1>create Contact</h1>
   </div>
 
-  <form ng-submit="$ctrl.createContacts()" name="form" role="form">
+  <form ng-submit="$ctrl.create()" name="form" role="form">
     <div class="row">
       <div class="form-group col-md-6">
         <label for="name" class="form-label">Name</label>
@@ -31,7 +31,6 @@
           id="salutation"
           name="salutation"
           ng-model="$ctrl.salutation"
-          required
         >
           <option value="None" ng-selected="None">None</option>
 
@@ -75,7 +74,6 @@
           ng-model="$ctrl.organization"
           autocomplete="off"
           placeholder="Organization"
-          required
         />
       </div>
       <div class="form-group col-md-6">
@@ -87,7 +85,6 @@
           ng-model="$ctrl.dateOfBirth"
           autocomplete="off"
           placeholder="Date of birth"
-          required
         />
       </div>
       <div class="form-group col-md-6">
@@ -99,7 +96,6 @@
           ng-model="$ctrl.address"
           autocomplete="new-password"
           placeholder="Address"
-          required
         />
       </div>
       <div class="form-group col-md-6">
@@ -128,7 +124,6 @@
           ng-model="$ctrl.description"
           autocomplete="off"
           placeholder="Description"
-          required
         />
       </div>
       <div class="form-group col-md-6">

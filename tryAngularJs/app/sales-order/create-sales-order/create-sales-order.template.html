@@ -9,10 +9,10 @@
   </nav>
 
   <div class="header text-center text-uppercase mb-3">
-    <h1>Sales order</h1>
+    <h1>Create Sales order</h1>
   </div>
 
-  <form ng-submit="$ctrl.createContacts()" name="form" role="form">
+  <form ng-submit="$ctrl.create()" name="form" role="form">
     <div class="row">
       <div class="form-group col-md-6">
         <label for="subject" class="form-label">Subject</label>
@@ -93,7 +93,6 @@
           ng-model="$ctrl.description"
           autocomplete="off"
           placeholder="Description"
-          required
         />
       </div>
 

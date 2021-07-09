@@ -4,16 +4,14 @@ angular.module("contact").component("createSalesOrder", {
   templateUrl:
     "sales-order/create-sales-order/create-sales-order.template.html",
   controller: [
-    "$scope",
-    "$window",
+    "$location",
     "cssInjector",
     "SalesOrderService",
     "UserService",
     "ContactService",
     "Notification",
     function (
-      $scope,
-      $window,
+      $location,
       cssInjector,
       SalesOrderService,
       UserService,
@@ -24,9 +22,9 @@ angular.module("contact").component("createSalesOrder", {
       var vm = this;
       vm.loading = true;
 
-      vm.createContacts = createContacts;
+      vm.create = createSalesOrder;
 
-      UserService.getListUser()
+      UserService.listUsers()
         .then((response) => {
           vm.assignedTos = response.data;
         })
@@ -50,7 +48,7 @@ angular.module("contact").component("createSalesOrder", {
           });
         });
 
-      function createContacts() {
+      function createSalesOrder() {
         var salesOrder = {
           subject: vm.subject,
           contactName: vm.contactName,
@@ -67,8 +65,7 @@ angular.module("contact").component("createSalesOrder", {
               message: "Add data Successfully",
               replaceMessage: true,
             });
-
-            $window.location.href = "#!/sales-order/";
+            $location.url("/sales-order/");
           })
           .catch((error) => {
             console.log("Error", error);

@@ -17,5 +17,6 @@ var app = angular.module("myApp", [
   "ngTable",
   "ngCookies",
   "ngStorage",
-  // "ui.bootstrap",
+  // "ngAnimate",
+  "ui.bootstrap",
 ]);

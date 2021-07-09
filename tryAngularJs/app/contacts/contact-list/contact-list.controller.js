@@ -5,19 +5,18 @@ angular.module("contact").component("contactList", {
   controller: [
     "$scope",
     "cssInjector",
-    "$window",
+    "$location",
     "ContactService",
     "Notification",
-    function ($scope, cssInjector, $window, ContactService, Notification) {
+    function ($scope, cssInjector, $location, ContactService, Notification) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
       vm.loading = true;
 
       vm.getListContacts = getListContacts;
       vm.create = createContact;
-      vm.editContacts = editContacts;
-      vm.deleteContacts = deleteContacts;
-      vm.searchContact = searchContact;
+      vm.edit = editContact;
+      vm.delete = deleteContact;
 
       function getListContacts() {
         ContactService.listContact()
@@ -36,18 +35,14 @@ angular.module("contact").component("contactList", {
       vm.getListContacts();
 
       function createContact() {
-        $window.location.href = "#!/contact/create/";
+        $location.url("/contact/create/");
       }
 
-      function editContacts(id) {
-        $window.location.href = "#!/contact/edit/" + id;
+      function editContact(id) {
+        $location.url("/contact/edit/" + id);
       }
 
-      function searchContact() {
-        console.log(vm.search);
-      }
-
-      function deleteContacts(id) {
+      function deleteContact(id) {
         ContactService.deleteContact(id)
           .then((response) => {
             Notification.success({

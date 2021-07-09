@@ -1,27 +1,26 @@
 "use strict";
 
-angular.module("user").service("UserService", function ($http) {
-  var baseUrl = "http://localhost:3000";
-  var user = "/users";
+angular.module("user").service("UserService", function ($http, BaseUrlService) {
+  var user = "/user";
+  var baseUrl = BaseUrlService.getBaseUrl() + user;
 
-  this.getListUser = function () {
-    return $http.get(baseUrl + user);
+  this.listUsers = function () {
+    return $http.get(baseUrl);
   };
 
-  this.getByID = function (id) {
+  this.detailUser = function (id) {
     return $http.get(`${baseUrl}/${id}`);
   };
 
-  this.addUser = function (data) {
-    console.log(data);
-    return $http.post(baseUrl + user, data);
+  this.createUser = function (data) {
+    return $http.post(baseUrl, data);
   };
 
-  this.update = function (id, data) {
+  this.updateUser = function (id, data) {
     return $http.put(`${baseUrl}/${id}`, data);
   };
 
-  this.delete = function (id) {
+  this.deleteUser = function (id) {
     return $http.delete(`${baseUrl}/${id}`);
   };
 });
