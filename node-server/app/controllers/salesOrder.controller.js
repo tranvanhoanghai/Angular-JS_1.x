@@ -7,7 +7,7 @@ exports.getListSalesOrders = function (req, res, next) {
     .catch(next);
 };
 
-exports.getIdSalesOrder = function (req, res, next) {
+exports.detailSalesOrder = function (req, res, next) {
   const id = req.params.id;
   SalesOrder.findById(id)
     .then((data) => res.json(data))

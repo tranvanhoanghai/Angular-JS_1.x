@@ -7,7 +7,7 @@ exports.getListContacts = function (req, res, next) {
     .catch(next);
 };
 
-exports.getIdContact = function (req, res, next) {
+exports.detailContact = function (req, res, next) {
   const id = req.params.id;
   Contact.findById(id)
     .then((data) => res.json(data))

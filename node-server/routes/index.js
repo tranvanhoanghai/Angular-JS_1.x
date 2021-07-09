@@ -10,7 +10,7 @@ const salesOrderRouter = require("./salesOrder");
 function route(app) {
   app.use("/auth/login", authRouter);
 
-  app.use("/users", userRouter);
+  app.use("/user", userRouter);
   app.use("/contact", contactRouter);
   app.use("/sales-order", salesOrderRouter);
 

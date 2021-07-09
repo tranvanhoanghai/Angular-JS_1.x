@@ -1,19 +1,19 @@
 const User = require("../models/User");
 
-exports.getAllUser = function (req, res, next) {
+exports.getListUsers = function (req, res, next) {
   User.find({})
     .then((data) => res.json(data))
     .catch(next);
 };
 
-exports.getById = function (req, res, next) {
+exports.detailUser = function (req, res, next) {
   const id = req.params.id;
   User.findById(id)
     .then((data) => res.json(data))
     .catch(next);
 };
 
-exports.add = function (req, res, next) {
+exports.createUser = function (req, res, next) {
   console.log(req);
   const user = new User(req.body);
   user
@@ -22,23 +22,23 @@ exports.add = function (req, res, next) {
     .catch(next);
 };
 
-exports.update = function (req, res, next) {
+exports.updateUser = function (req, res, next) {
   const id = req.params.id;
-  Test.findByIdAndUpdate(id, req.body)
+  User.findByIdAndUpdate(id, req.body)
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`,
+          message: `Cannot update with id=${id}. Maybe User was not found!`,
         });
-      } else res.send({ message: "Tutorial was updated successfully." });
+      } else res.send({ message: "User was updated successfully." });
     })
     .catch(next);
 };
 
-exports.delete = function (req, res, next) {
+exports.deleteUser = function (req, res, next) {
   const id = req.params.id;
   console.log(req);
-  Test.findByIdAndRemove(id)
+  User.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
         res.status(404).send({
