@@ -4,18 +4,58 @@ angular.module("user").component("editUser", {
   templateUrl: "users/edit-user/edit-user.template.html",
   controller: [
     "$location",
+    "$uibModal",
     "$routeParams",
     "cssInjector",
     "UserService",
     "Notification",
-    function ($location, $routeParams, cssInjector, UserService, Notification) {
+    function (
+      $location,
+      $uibModal,
+      $routeParams,
+      cssInjector,
+      UserService,
+      Notification
+    ) {
       cssInjector.add("users/user.template.css");
       var vm = this;
       var currentId = $routeParams.id;
 
       vm.detailUser = detailUser;
       vm.update = updateUser;
-      vm.loading = true;
+      vm.open = openModal;
+      vm.data = "Do you want to update it?";
+
+      function openModal(size) {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: "modal-title",
+          ariaDescribedBy: "modal-body",
+          templateUrl: "shared/dialog.template.html",
+          controller: function ($uibModalInstance, data, $scope) {
+            $scope.data = data;
+
+            $scope.ok = function () {
+              updateUser();
+              $uibModalInstance.close();
+            };
+
+            $scope.cancel = function () {
+              $uibModalInstance.dismiss("cancel");
+            };
+          },
+          size: size,
+          resolve: {
+            data: function () {
+              return vm.data;
+            },
+          },
+        });
+
+        modalInstance.result.then(function () {
+          // alert("now I'll close the modal");
+        });
+      }
 
       function detailUser() {
         UserService.detailUser(currentId)

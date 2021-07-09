@@ -156,6 +156,7 @@
 
       <div class="form-group col-md-12 d-flex justify-content-end">
         <button
+          ng-click="$ctrl.open()"
           type="button"
           class="btn btn-primary"
           ng-disabled="form.$invalid"
@@ -163,39 +164,6 @@
         >
           Update
         </button>
-
-        <button type="button" class="btn btn-default" ng-click="$ctrl.open()">
-          Open me!
-        </button>
-
-        <script id="confirmTpl.html" type="text/ng-template">
-            <div class="modal-header">
-              <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
-          </div>
-          <div class="modal-body" id="modal-body">
-              <ul>
-                  {{$ctrl.data}}
-              </ul>
-          </div>
-          <div class="modal-footer">
-              <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-              <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-          </div>
-        </script>
-
-        <!-- <script id="confirmTpl.html" type="text/ng-template">
-          <div class="modal-header">
-            <h3 class="modal-title">Are you sure?</h3>
-          </div>
-          <div class="modal-body">
-            <p>You are about to promote someone. Are you sure?</p>
-            <p>{{employee.name}}</p>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-warning" ng-click="$dismiss()">No</button>
-            <button type="submit" class="btn btn-primary" ng-click="$ctrl.update()">Yes</button>
-          </div>
-        </script> -->
       </div>
     </div>
   </form>

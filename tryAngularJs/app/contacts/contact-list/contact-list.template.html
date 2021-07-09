@@ -1,7 +1,5 @@
 <section>
   <div class="d-flex justify-content-end list-action">
- 
-
     <div class="mb-3 action-item">
       <button class="btn btn-primary" ng-click="$ctrl.create()">
         <i class="fa fa-plus"></i>
@@ -36,9 +34,7 @@
           <td colspan="13" class="text-center">No data</td>
         </tr>
 
-        <tr
-          ng-repeat="data in $ctrl.contacts track by $index"
-        >
+        <tr ng-repeat="data in $ctrl.contacts track by $index">
           <td>{{$index+1}}</td>
 
           <td>{{data.name}}</td>
@@ -65,9 +61,9 @@
               <i class="fas fa-edit"></i>
             </button>
             <button
+              ng-click="$ctrl.open(data.id)"
               type="button"
               class="btn btn-danger"
-              ng-click="$ctrl.delete(data.id)"
             >
               <i class="fas fa-trash"></i>
             </button>

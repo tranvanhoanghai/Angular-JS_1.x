@@ -26,25 +26,24 @@ angular.module("contact").component("editContact", {
       vm.detailContact = detailContact;
       vm.update = updateContact;
       vm.loading = true;
-      vm.open = open;
-      vm.data = "Lorem Name Test";
+      vm.open = openModal;
+      vm.data = "Do you want to update it?";
 
-      function open(size) {
+      function openModal(size) {
         var modalInstance = $uibModal.open({
           animation: true,
           ariaLabelledBy: "modal-title",
           ariaDescribedBy: "modal-body",
-          templateUrl: "confirmTpl.html",
-          controller: function ($uibModalInstance, data) {
-            vm.data = data;
+          templateUrl: "shared/dialog.template.html",
+          controller: function ($uibModalInstance, data, $scope) {
+            $scope.data = data;
 
-            vm.ok = function () {
+            $scope.ok = function () {
+              updateContact();
               $uibModalInstance.close();
             };
 
-            vm.cancel = function () {
-              //{...}
-              alert("You clicked the cancel button.");
+            $scope.cancel = function () {
               $uibModalInstance.dismiss("cancel");
             };
           },
@@ -57,7 +56,7 @@ angular.module("contact").component("editContact", {
         });
 
         modalInstance.result.then(function () {
-          alert("now I'll close the modal");
+          // alert("now I'll close the modal");
         });
       }
 

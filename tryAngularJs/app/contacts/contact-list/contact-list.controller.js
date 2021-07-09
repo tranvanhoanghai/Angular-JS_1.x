@@ -3,12 +3,12 @@
 angular.module("contact").component("contactList", {
   templateUrl: "contacts/contact-list/contact-list.template.html",
   controller: [
-    "$scope",
     "cssInjector",
     "$location",
+    "$uibModal",
     "ContactService",
     "Notification",
-    function ($scope, cssInjector, $location, ContactService, Notification) {
+    function (cssInjector, $location, $uibModal, ContactService, Notification) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
       vm.loading = true;
@@ -17,6 +17,40 @@ angular.module("contact").component("contactList", {
       vm.create = createContact;
       vm.edit = editContact;
       vm.delete = deleteContact;
+      vm.open = openModal;
+
+      vm.data = "Do you want to delete it?";
+
+      function openModal(id) {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: "modal-title",
+          ariaDescribedBy: "modal-body",
+          templateUrl: "shared/dialog.template.html",
+          controller: function ($uibModalInstance, data, $scope) {
+            $scope.data = data;
+
+            $scope.ok = function () {
+              deleteContact(id);
+              $uibModalInstance.close();
+            };
+
+            $scope.cancel = function () {
+              $uibModalInstance.dismiss("cancel");
+            };
+          },
+          // size: size,
+          resolve: {
+            data: function () {
+              return vm.data;
+            },
+          },
+        });
+
+        modalInstance.result.then(function () {
+          // alert("now I'll close the modal");
+        });
+      }
 
       function getListContacts() {
         ContactService.listContact()
