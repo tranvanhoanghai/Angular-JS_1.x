@@ -9,67 +9,113 @@
 
   <div class="content-table">
     <div class="loader" ng-show="$ctrl.loading"></div>
-    <table class="table" border="1" ng-show="!$ctrl.loading">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Salutation</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Email</th>
 
-          <th scope="col">Organization</th>
-          <th scope="col">Date of birth</th>
-          <th scope="col">Address</th>
-          <th scope="col">Lead source</th>
+    <table
+      ng-hide="$ctrl.loading"
+      ng-table="$ctrl.tableParams"
+      show-filter="true"
+      class="table table-condensed table-bordered table-striped"
+    >
+      <!-- <tr ng-if="$data == [] || $data.length == 0">
+        <td colspan="13" class="text-center">
+          No data
+        </td>
+      </tr> -->
+      <tr ng-repeat="data in $data track by $index">
+        <td data-title="'#'">{{$index+1}}</td>
 
-          <th scope="col">Assigned to</th>
-          <th scope="col">Creator</th>
-          <th scope="col">Description</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-if="$ctrl.contacts == [] || $ctrl.contacts.length == 0">
-          <td colspan="13" class="text-center">No data</td>
-        </tr>
+        <td data-title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+          {{data.name}}
+        </td>
 
-        <tr ng-repeat="data in $ctrl.contacts track by $index">
-          <td>{{$index+1}}</td>
+        <td data-title="'salutation'" filter="{ salutation: 'text'}">
+          {{data.salutation}}
+        </td>
 
-          <td>{{data.name}}</td>
-          <td>{{data.salutation}}</td>
-          <td>{{data.phone}}</td>
-          <td>{{data.email}}</td>
+        <td data-title="'Phone'" filter="{ phone: 'number'}">{{data.phone}}</td>
 
-          <td>{{data.organization}}</td>
-          <td>{{data.dateOfBirth | date:'dd/MM/yyyy' }}</td>
-          <td>{{data.address}}</td>
-          <td>{{data.leadSource}}</td>
+        <td data-title="'Email'" filter="{ email: 'text'}" sortable="'email'">
+          {{data.email}}
+        </td>
 
-          <td>{{data.assignedTo}}</td>
+        <td
+          data-title="'Organization'"
+          filter="{ organization: 'text'}"
+          sortable="'organization'"
+        >
+          {{data.organization}}
+        </td>
 
-          <td>{{data.creator}}</td>
-          <td>{{data.description}}</td>
+        <td
+          data-title="'Date of birth'"
+          filter="{ dateOfBirth: 'text'}"
+          sortable="'dateOfBirth'"
+        >
+          {{data.dateOfBirth | date:'dd/MM/yyyy' }}
+        </td>
 
-          <td>
-            <button
-              type="button"
-              ng-click="$ctrl.edit(data.id)"
-              class="btn btn-success"
-            >
-              <i class="fas fa-edit"></i>
-            </button>
-            <button
-              ng-click="$ctrl.open(data.id)"
-              type="button"
-              class="btn btn-danger"
-            >
-              <i class="fas fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
+        <td
+          data-title="'Address'"
+          filter="{ address: 'text'}"
+          sortable="'address'"
+        >
+          {{data.address}}
+        </td>
+
+        <td
+          data-title="'Lead source'"
+          filter="{ leadSource: 'text'}"
+          sortable="'leadSource'"
+        >
+          {{data.leadSource}}
+        </td>
+
+        <td
+          data-title="'Assigned to'"
+          filter="{ assignedTo: 'text'}"
+          sortable="'assignedTo'"
+        >
+          {{data.assignedTo}}
+        </td>
+
+        <td
+          data-title="'Creator'"
+          filter="{ creator: 'text'}"
+          sortable="'creator'"
+        >
+          {{data.creator}}
+        </td>
+
+        <td
+          data-title="'Description'"
+          filter="{ description: 'text'}"
+          sortable="'description'"
+        >
+          {{data.description}}
+        </td>
+
+        <td data-title="'Action'" class="d-flex">
+          <button
+            type="button"
+            ng-click="$ctrl.edit(data.id)"
+            class="btn btn-success"
+          >
+            <i class="fas fa-edit"></i>
+          </button>
+          <button
+            ng-click="$ctrl.open(data.id)"
+            type="button"
+            class="btn btn-danger ml-1"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="13" class="text-center" ng-show="$data.length == 0">
+          Oops, no record found!
+        </td>
+      </tr>
     </table>
   </div>
 </section>

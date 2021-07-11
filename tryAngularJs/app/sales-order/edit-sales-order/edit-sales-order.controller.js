@@ -28,39 +28,6 @@ angular.module("salesOrder").component("editSalesOrder", {
       vm.detailSalesOrder = detailSalesOrder;
       vm.update = updateSalesOrder;
       vm.loading = true;
-      vm.open = openModal;
-      vm.data = "Do you want to update it?";
-
-      function openModal(size) {
-        var modalInstance = $uibModal.open({
-          animation: true,
-          ariaLabelledBy: "modal-title",
-          ariaDescribedBy: "modal-body",
-          templateUrl: "shared/dialog.template.html",
-          controller: function ($uibModalInstance, data, $scope) {
-            $scope.data = data;
-
-            $scope.ok = function () {
-              updateSalesOrder();
-              $uibModalInstance.close();
-            };
-
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss("cancel");
-            };
-          },
-          size: size,
-          resolve: {
-            data: function () {
-              return vm.data;
-            },
-          },
-        });
-
-        modalInstance.result.then(function () {
-          // alert("now I'll close the modal");
-        });
-      }
 
       function detailSalesOrder() {
         SalesOrderService.detailSalesOrder(currentId)

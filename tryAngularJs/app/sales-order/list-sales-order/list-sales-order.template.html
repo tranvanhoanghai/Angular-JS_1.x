@@ -76,14 +76,18 @@
           </button>
           <button
             type="button"
-            class="btn btn-danger"
+            class="btn btn-danger ml-3"
             ng-click="$ctrl.open(data.id)"
           >
             <i class="fas fa-trash"></i>
           </button>
         </td>
       </tr>
-      <!-- </tbody> -->
+      <tr>
+        <td colspan="9" class="text-center" ng-show="$data.length == 0">
+          Oops, no record found!
+        </td>
+      </tr>
     </table>
   </div>
 </section>

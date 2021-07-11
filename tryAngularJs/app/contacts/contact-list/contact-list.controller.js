@@ -3,12 +3,20 @@
 angular.module("contact").component("contactList", {
   templateUrl: "contacts/contact-list/contact-list.template.html",
   controller: [
+    "NgTableParams",
     "cssInjector",
     "$location",
     "$uibModal",
     "ContactService",
     "Notification",
-    function (cssInjector, $location, $uibModal, ContactService, Notification) {
+    function (
+      NgTableParams,
+      cssInjector,
+      $location,
+      $uibModal,
+      ContactService,
+      Notification
+    ) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
       vm.loading = true;
@@ -56,6 +64,17 @@ angular.module("contact").component("contactList", {
         ContactService.listContact()
           .then((response) => {
             vm.contacts = response.data;
+            vm.tableParams = new NgTableParams(
+              { count: 2 },
+              {
+                // page size buttons (right set of buttons in demo)
+                counts: [],
+                // determines the pager buttons (left set of buttons in demo)
+                paginationMaxBlocks: 13,
+                paginationMinBlocks: 2,
+                dataset: vm.contacts,
+              }
+            );
             vm.loading = false;
           })
           .catch((error) => {
