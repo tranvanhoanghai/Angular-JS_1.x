@@ -5,12 +5,14 @@ angular.module("salesOrder").component("listSalesOrder", {
   controller: [
     "NgTableParams",
     "$uibModal",
+    "$routeParams",
     "cssInjector",
     "$location",
     "SalesOrderService",
     "Notification",
     function (
       NgTableParams,
+      $routeParams,
       $uibModal,
       cssInjector,
       $location,
@@ -19,6 +21,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
       var vm = this;
+      var paramFilter = $location.search().filter;
       vm.loading = true;
 
       vm.getListSalesOrder = getListSalesOrder;
@@ -64,8 +67,9 @@ angular.module("salesOrder").component("listSalesOrder", {
         SalesOrderService.listSalesOrder()
           .then((response) => {
             vm.salesOrders = response.data;
+            vm.status = paramFilter;
             vm.tableParams = new NgTableParams(
-              { count: 2 },
+              { count: 10 },
               {
                 // page size buttons (right set of buttons in demo)
                 counts: [],

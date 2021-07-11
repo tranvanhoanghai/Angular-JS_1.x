@@ -1,6 +1,35 @@
 <section>
   <div class="d-flex justify-content-end list-action">
     <div class="mb-3 action-item">
+      <input
+        class="form-control"
+        type="search"
+        name=""
+        id=""
+        ng-model="$ctrl.search "
+      />
+    </div>
+
+    <div class="mb-3 action-item">
+      <select
+        class="form-control"
+        id="leadSource"
+        name="leadSource"
+        ng-model="$ctrl.leadSource"
+        required
+      >
+        <option value=""></option>
+
+        <option value="Existing Customer">Existing Customer</option>
+        <option value="Partner">Partner</option>
+        <option value="Conference">Conference</option>
+        <option value="Website">Website</option>
+        <option value="Word of mouth">Word of mouth</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="mb-3 action-item">
       <button class="btn btn-primary" ng-click="$ctrl.create()">
         <i class="fa fa-plus"></i>
       </button>
@@ -13,86 +42,40 @@
     <table
       ng-hide="$ctrl.loading"
       ng-table="$ctrl.tableParams"
-      show-filter="true"
       class="table table-condensed table-bordered table-striped"
     >
-      <!-- <tr ng-if="$data == [] || $data.length == 0">
-        <td colspan="13" class="text-center">
-          No data
-        </td>
-      </tr> -->
-      <tr ng-repeat="data in $data track by $index">
+      <tr
+        ng-repeat="data in $data  | filter : $ctrl.search | filter : $ctrl.leadSource track by $index"
+      >
         <td data-title="'#'">{{$index+1}}</td>
 
-        <td data-title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-          {{data.name}}
-        </td>
+        <td data-title="'Name'" sortable="'name'">{{data.name}}</td>
 
-        <td data-title="'salutation'" filter="{ salutation: 'text'}">
-          {{data.salutation}}
-        </td>
+        <td data-title="'salutation'">{{data.salutation}}</td>
 
-        <td data-title="'Phone'" filter="{ phone: 'number'}">{{data.phone}}</td>
+        <td data-title="'Phone'">{{data.phone}}</td>
 
-        <td data-title="'Email'" filter="{ email: 'text'}" sortable="'email'">
-          {{data.email}}
-        </td>
+        <td data-title="'Email'" sortable="'email'">{{data.email}}</td>
 
-        <td
-          data-title="'Organization'"
-          filter="{ organization: 'text'}"
-          sortable="'organization'"
-        >
+        <td data-title="'Organization'" sortable="'organization'">
           {{data.organization}}
         </td>
 
-        <td
-          data-title="'Date of birth'"
-          filter="{ dateOfBirth: 'text'}"
-          sortable="'dateOfBirth'"
-        >
+        <td data-title="'Date of birth'" sortable="'dateOfBirth'">
           {{data.dateOfBirth | date:'dd/MM/yyyy' }}
         </td>
 
-        <td
-          data-title="'Address'"
-          filter="{ address: 'text'}"
-          sortable="'address'"
-        >
-          {{data.address}}
-        </td>
+        <td data-title="'Address'" sortable="'address'">{{data.address}}</td>
 
-        <td
-          data-title="'Lead source'"
-          filter="{ leadSource: 'text'}"
-          sortable="'leadSource'"
-        >
-          {{data.leadSource}}
-        </td>
+        <td data-title="'Lead source'">{{data.leadSource}}</td>
 
-        <td
-          data-title="'Assigned to'"
-          filter="{ assignedTo: 'text'}"
-          sortable="'assignedTo'"
-        >
+        <td data-title="'Assigned to'" sortable="'assignedTo'">
           {{data.assignedTo}}
         </td>
 
-        <td
-          data-title="'Creator'"
-          filter="{ creator: 'text'}"
-          sortable="'creator'"
-        >
-          {{data.creator}}
-        </td>
+        <td data-title="'Creator'" sortable="'creator'">{{data.creator}}</td>
 
-        <td
-          data-title="'Description'"
-          filter="{ description: 'text'}"
-          sortable="'description'"
-        >
-          {{data.description}}
-        </td>
+        <td data-title="'Description'">{{data.description}}</td>
 
         <td data-title="'Action'" class="d-flex">
           <button

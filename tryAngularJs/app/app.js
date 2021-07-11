@@ -24,9 +24,6 @@ app.config([
       .when("/view1", {
         template: "<view1></view1>", //crud demo (<view1></view1> is name component)
       })
-      .when("/view2", {
-        template: "<view2></view2>",
-      })
       .when("/dashboard", {
         template: "<dashboard></dashboard>",
       })
@@ -45,6 +42,9 @@ app.config([
       .when("/sales-order/create", {
         template: "<create-sales-order></create-sales-order>",
       })
+      .when("/sales-order?filter=:filter", {
+        template: "<sales-order></sales-order>",
+      })
       .when("/sales-order/edit/:id", {
         template: "<edit-sales-order></edit-sales-order>",
       })
@@ -59,8 +59,8 @@ app.config([
       })
       .when("/login", {
         template: "<login></login>",
-      })
-      .otherwise("/dashboard");
+      });
+    // .otherwise("/dashboard");
 
     NotificationProvider.setOptions({
       delay: 2000,

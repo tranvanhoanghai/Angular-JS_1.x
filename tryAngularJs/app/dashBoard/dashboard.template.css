@@ -1,3 +1,98 @@
-p{
-  color: red;
+p {
+  color: white;
+}
+
+.small-box {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+  display: block;
+  margin-bottom: 20px;
+  position: relative;
+  color: white;
+}
+.small-box p {
+  color: white;
+}
+
+.small-box h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+  padding: 0;
+  white-space: nowrap;
+}
+.small-box > .inner {
+  padding: 10px;
+}
+
+.small-box .icon {
+  color: rgba(0, 0, 0, 0.15);
+  z-index: 0;
+}
+
+.small-box .icon > svg.fa {
+  font-size: 70px;
+  top: 20px;
+}
+
+.small-box .icon > svg {
+  font-size: 60px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  transition: transform 0.3s linear;
+}
+.small-box > .small-box-footer {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  display: block;
+  padding: 3px 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.dash-content {
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.dash-sales-order .title-header {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.dash-sales-order label {
+  margin-bottom: 0;
+  margin-right: 20px;
+}
+
+.dash-sales-order .sales-order-item {
+  border-right: 1px solid #cccccc;
+  display: flex;
+  align-items: center;
+}
+
+.dash-sales-order .sales-order-icon {
+  border-radius: 100%;
+  color: #fff;
+  width: 30px !important;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-sales-order .sales-order-title {
+  font-weight: bold !important;
+}
+
+.dash-sales-order .sales-order-count {
+  font-size: 30px;
+  color: #0094da;
+  cursor: pointer;
 }

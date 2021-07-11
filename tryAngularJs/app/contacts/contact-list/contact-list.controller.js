@@ -3,6 +3,7 @@
 angular.module("contact").component("contactList", {
   templateUrl: "contacts/contact-list/contact-list.template.html",
   controller: [
+    "$scope",
     "NgTableParams",
     "cssInjector",
     "$location",
@@ -10,6 +11,7 @@ angular.module("contact").component("contactList", {
     "ContactService",
     "Notification",
     function (
+      $scope,
       NgTableParams,
       cssInjector,
       $location,
@@ -65,7 +67,7 @@ angular.module("contact").component("contactList", {
           .then((response) => {
             vm.contacts = response.data;
             vm.tableParams = new NgTableParams(
-              { count: 2 },
+              { count: 10 },
               {
                 // page size buttons (right set of buttons in demo)
                 counts: [],

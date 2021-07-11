@@ -1,0 +1,67 @@
+<div class="dash-content dash-sales-order container-fluid">
+  <div class="row">
+    <div class="col-lg-12 text-uppercase title-header">
+      <h5>Sales order</h5>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <div class="sales-order-item">
+        <label class="sales-order-icon bg-info">
+          <i class="fas fa-plus-square"></i>
+        </label>
+
+        <div class="sales-order-title">
+          <span>Created</span>
+          <p class="sales-order-count" ng-click="$ctrl.redirect('Created')">
+            {{$ctrl.countCreated}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <div class="sales-order-item">
+        <label class="sales-order-icon bg-success">
+          <i class="fas fa-check"></i>
+        </label>
+
+        <div class="sales-order-title">
+          <span>Approved</span>
+          <p class="sales-order-count" ng-click="$ctrl.redirect('Approved')">
+            {{$ctrl.countApproved}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <div class="sales-order-item">
+        <label class="sales-order-icon bg-primary">
+          <i class="fas fa-people-carry"></i>
+        </label>
+
+        <div class="sales-order-title">
+          <span>Delivered</span>
+          <p class="sales-order-count" ng-click="$ctrl.redirect('Delivered')">
+            {{$ctrl.countDelivered}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <div class="sales-order-item">
+        <label class="sales-order-icon bg-danger">
+          <i class="fas fa-ban"></i>
+        </label>
+
+        <div class="sales-order-title">
+          <span>Cancelled</span>
+          <p class="sales-order-count" ng-click="$ctrl.redirect('Cancelled')">
+            {{$ctrl.countCancelled}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

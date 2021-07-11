@@ -1,25 +1,28 @@
 "use strict";
 
-dashboard.service("DashBoardService", function ($http) {
-  var baseUrl = "http://localhost:3000";
+angular
+  .module("dashboard")
+  .service("DashboardService", function ($http, BaseUrlService) {
+    var dashboard = "/dashboard";
+    var baseUrl = BaseUrlService.getBaseUrl() + dashboard;
 
-  this.addProduct = function (data) {
-    return $http.post(baseUrl, data);
-  };
+    this.listDashBoard = function () {
+      return $http.get(baseUrl);
+    };
 
-  this.update = function (id, data) {
-    return $http.put(`${baseUrl}/${id}`, data);
-  };
+    this.detailSalesOrder = function (id) {
+      return $http.get(`${baseUrl}/${id}`);
+    };
 
-  this.delete = function (id) {
-    return $http.delete(`${baseUrl}/${id}`);
-  };
+    this.createSalesOrder = function (data) {
+      return $http.post(baseUrl, data);
+    };
 
-  this.getAll = function () {
-    return $http.get(baseUrl);
-  };
+    this.updateSalesOrder = function (id, data) {
+      return $http.put(`${baseUrl}/${id}`, data);
+    };
 
-  this.getByID = function (id) {
-    return $http.get(`${baseUrl}/${id}`);
-  };
-});
+    this.deleteSalesOrder = function (id) {
+      return $http.delete(`${baseUrl}/${id}`);
+    };
+  });

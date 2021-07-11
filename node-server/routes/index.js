@@ -3,6 +3,7 @@ const userRouter = require("./users");
 const authRouter = require("./auth");
 const contactRouter = require("./contact");
 const salesOrderRouter = require("./salesOrder");
+const dashboardRouter = require("./dashboard");
 
 /* GET home page. */
 // router.get('/', index.get);
@@ -13,6 +14,7 @@ function route(app) {
   app.use("/user", userRouter);
   app.use("/contact", contactRouter);
   app.use("/sales-order", salesOrderRouter);
+  app.use("/dashboard", dashboardRouter);
 
   app.get("/:id", indexController.getById);
   app.get("/", indexController.get);

@@ -1,6 +1,6 @@
 "use strict";
 
-dashboard.component("login", {
+login.component("login", {
   templateUrl: "login/login.template.html",
   controller: [
     "$scope",

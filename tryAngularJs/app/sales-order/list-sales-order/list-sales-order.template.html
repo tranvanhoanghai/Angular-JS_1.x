@@ -1,6 +1,25 @@
 <section>
   <div class="d-flex justify-content-end list-action">
     <div class="mb-3 action-item">
+      <input
+        class="form-control"
+        type="search"
+        name=""
+        id=""
+        ng-model="$ctrl.search"
+      />
+    </div>
+
+    <div class="mb-3 action-item">
+      <select class="form-control" id="Status" ng-model="$ctrl.status" required>
+        <option value=""></option>
+        <option value="Created">Created</option>
+        <option value="Approved">Approved</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+    <div class="mb-3 action-item">
       <button class="btn btn-primary" ng-click="$ctrl.create()">
         <i class="fa fa-plus"></i>
       </button>
@@ -13,56 +32,25 @@
     <table
       ng-hide="$ctrl.loading"
       ng-table="$ctrl.tableParams"
-      show-filter="true"
       class="table table-condensed table-bordered table-striped"
     >
-      <tr ng-repeat="data in $data track by $index">
+      <tr
+        ng-repeat="data in $data | filter : $ctrl.search | filter : $ctrl.status track by $index"
+      >
         <td data-title="'#'">{{$index+1}}</td>
 
-        <td
-          data-title="'Subject'"
-          filter="{ subject: 'text'}"
-          sortable="'subject'"
-        >
-          {{data.subject}}
-        </td>
-        <td
-          data-title="'ContactName'"
-          filter="{ contactName: 'text'}"
-          sortable="'contactName'"
-        >
+        <td data-title="'Subject'" sortable="'subject'">{{data.subject}}</td>
+        <td data-title="'ContactName'" sortable="'contactName'">
           {{data.contactName}}
         </td>
-        <td
-          data-title="'Status'"
-          filter="{ status: 'text'}"
-          sortable="'status'"
-        >
-          {{data.status}}
-        </td>
-        <td data-title="'Total'" filter="{ total: 'number'}" sortable="'total'">
-          {{data.total}}
-        </td>
+        <td data-title="'Status'" sortable="'status'">{{data.status}}</td>
+        <td data-title="'Total'" sortable="'total'">{{data.total}}</td>
 
-        <td
-          data-title="'Creator'"
-          filter="{ creator: 'text'}"
-          sortable="'creator'"
-        >
-          {{data.creator}}
-        </td>
-        <td
-          data-title="'assignedTo'"
-          filter="{ assignedTo: 'text'}"
-          sortable="'assignedTo'"
-        >
+        <td data-title="'Creator'" sortable="'creator'">{{data.creator}}</td>
+        <td data-title="'assignedTo'" sortable="'assignedTo'">
           {{data.assignedTo}}
         </td>
-        <td
-          data-title="'Description'"
-          filter="{ description: 'text'}"
-          sortable="'description'"
-        >
+        <td data-title="'Description'" sortable="'description'">
           {{data.description}}
         </td>
 
