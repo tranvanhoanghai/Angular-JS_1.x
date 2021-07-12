@@ -15,10 +15,15 @@ angular.module("dashboard").component("dashboardContact", {
       DashboardService,
       Notification
     ) {
-      cssInjector.add("contacts/contact.template.css");
+      cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
       vm.loading = true;
       vm.getCountContact = getCountContact;
+      vm.redirect = redirect;
+
+      function redirect(filter) {
+        $location.url("contact?leadSource=" + filter);
+      }
 
       function getCountContact() {
         DashboardService.listDashBoard()
@@ -59,14 +64,6 @@ angular.module("dashboard").component("dashboardContact", {
       }
 
       vm.getCountContact();
-
-      //   function createContact() {
-      //     $location.url("/contact/create/");
-      //   }
-
-      //   function editContact(id) {
-      //     $location.url("/contact/edit/" + id);
-      //   }
     },
   ],
 });

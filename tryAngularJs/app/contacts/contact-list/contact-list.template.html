@@ -1,15 +1,18 @@
 <section>
   <div class="d-flex justify-content-end list-action">
     <div class="mb-3 action-item">
-      <input
+      <select
         class="form-control"
-        type="search"
-        name=""
-        id=""
-        ng-model="$ctrl.search "
-      />
+        id="assignedTo"
+        name="assignedTo"
+        ng-model="$ctrl.assignedTo"
+        required
+      >
+        <option ng-repeat="data in $ctrl.assignedTos" value="{{data.name}}">
+          {{data.name}}
+        </option>
+      </select>
     </div>
-
     <div class="mb-3 action-item">
       <select
         class="form-control"
@@ -45,17 +48,21 @@
       class="table table-condensed table-bordered table-striped"
     >
       <tr
-        ng-repeat="data in $data  | filter : $ctrl.search | filter : $ctrl.leadSource track by $index"
+        ng-repeat="data in $data | filter :{ assignedTo:$ctrl.assignedTo, leadSource:$ctrl.leadSource} track by $index"
       >
         <td data-title="'#'">{{$index+1}}</td>
 
-        <td data-title="'Name'" sortable="'name'">{{data.name}}</td>
+        <td data-title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+          {{data.name}}
+        </td>
 
         <td data-title="'salutation'">{{data.salutation}}</td>
 
         <td data-title="'Phone'">{{data.phone}}</td>
 
-        <td data-title="'Email'" sortable="'email'">{{data.email}}</td>
+        <td data-title="'Email'" filter="{ email: 'text'}" sortable="'email'">
+          {{data.email}}
+        </td>
 
         <td data-title="'Organization'" sortable="'organization'">
           {{data.organization}}
@@ -65,7 +72,13 @@
           {{data.dateOfBirth | date:'dd/MM/yyyy' }}
         </td>
 
-        <td data-title="'Address'" sortable="'address'">{{data.address}}</td>
+        <td
+          data-title="'Address'"
+          filter="{ address: 'text'}"
+          sortable="'address'"
+        >
+          {{data.address}}
+        </td>
 
         <td data-title="'Lead source'">{{data.leadSource}}</td>
 

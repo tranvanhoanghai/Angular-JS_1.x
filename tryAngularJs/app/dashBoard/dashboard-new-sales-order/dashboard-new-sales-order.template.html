@@ -1,0 +1,101 @@
+<div class="dash-content dash-sales-order container-fluid">
+  <div class="col-lg-12 text-uppercase title-header">
+    <h5>new Sales order in the last 7 days</h5>
+  </div>
+  <div class="row">
+    <div class="loader" ng-show="$ctrl.loading"></div>
+
+    <div ng-show="$ctrl.showDetail" class="showDetail container-fluid">
+      <div class="row">
+        <div
+          class="
+            col-12
+            text-center text-uppercase
+            d-flex
+            justify-content-between
+          "
+        >
+          <h6>detail sales order</h6>
+          <button class="btn btn" ng-click="$ctrl.hideDetail()">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+
+        <div class="col-4 detail-item">
+          <p>Subject:</p>
+        </div>
+
+        <div class="col-8 detail-item">
+          <p>{{$ctrl.subject}}</p>
+        </div>
+
+        <div class="col-4 detail-item">
+          <p>Contact name:</p>
+        </div>
+
+        <div class="col-8 detail-item">
+          <p>{{$ctrl.contactName}}</p>
+        </div>
+
+        <div class="col-4 detail-item">
+          <p>Status:</p>
+        </div>
+
+        <div class="col-8 detail-item">
+          <p>{{$ctrl.status}}</p>
+        </div>
+
+        <div class="col-4 detail-item">
+          <p>Total:</p>
+        </div>
+
+        <div class="col-8 detail-item">
+          <p>{{$ctrl.total}}</p>
+        </div>
+
+        <div class="col-4 detail-item">
+          <p>Creator:</p>
+        </div>
+
+        <div class="col-8 detail-item">
+          <p>{{$ctrl.creator}}</p>
+        </div>
+
+        <div class="col-4 detail-item">
+          <p>Assigned to:</p>
+        </div>
+
+        <div class="col-8 detail-item">
+          <p>{{$ctrl.assignedTo}}</p>
+        </div>
+
+        <div class="col-4 detail-item">
+          <p>Description:</p>
+        </div>
+
+        <div class="col-8 detail-item">
+          <p>{{$ctrl.description}}</p>
+        </div>
+      </div>
+    </div>
+
+    <table
+      ng-hide="$ctrl.loading"
+      ng-table="$ctrl.tableParams"
+      class="table table-condensed table-bordered table-striped"
+    >
+      <tr
+        ng-repeat="data in $data track by $index"
+        style="cursor: pointer"
+        ng-click="$ctrl.show(data._id)"
+      >
+        <td data-title="'#'">{{$index+1}}</td>
+        <td data-title="'Subject'">{{data.subject}}</td>
+        <td data-title="'Total'">{{data.total}}</td>
+        <td data-title="'Created at'">
+          {{data.createdAt | date:'dd-MM-yyyy HH:mm:ss'}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

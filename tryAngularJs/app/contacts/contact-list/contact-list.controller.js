@@ -3,7 +3,7 @@
 angular.module("contact").component("contactList", {
   templateUrl: "contacts/contact-list/contact-list.template.html",
   controller: [
-    "$scope",
+    "UserService",
     "NgTableParams",
     "cssInjector",
     "$location",
@@ -11,7 +11,7 @@ angular.module("contact").component("contactList", {
     "ContactService",
     "Notification",
     function (
-      $scope,
+      UserService,
       NgTableParams,
       cssInjector,
       $location,
@@ -21,6 +21,9 @@ angular.module("contact").component("contactList", {
     ) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
+      var paramLeadSource = $location.search().leadSource;
+      var paramAssignedTo = $location.search().assignedTo;
+
       vm.loading = true;
 
       vm.getListContacts = getListContacts;
@@ -65,7 +68,20 @@ angular.module("contact").component("contactList", {
       function getListContacts() {
         ContactService.listContact()
           .then((response) => {
+            UserService.listUsers()
+              .then((response) => {
+                var nullData = { name: "" };
+                vm.assignedTos = response.data;
+                vm.assignedTos.unshift(nullData);
+              })
+              .catch((error) => {
+                console.log("Error", error);
+              });
+
             vm.contacts = response.data;
+            vm.leadSource = paramLeadSource;
+            vm.assignedTo = paramAssignedTo;
+
             vm.tableParams = new NgTableParams(
               { count: 10 },
               {

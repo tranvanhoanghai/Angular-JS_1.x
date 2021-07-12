@@ -36,6 +36,12 @@ app.config([
       .when("/contact/edit/:id", {
         template: "<edit-contact></edit-contact>",
       })
+      .when("/contact?leadSource=:filter", {
+        template: "<contact></contact>",
+      })
+      .when("/contact?assignedTo=:filter", {
+        template: "<contact></contact>",
+      })
       .when("/sales-order", {
         template: "<sales-order></sales-order>",
       })

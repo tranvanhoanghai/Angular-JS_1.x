@@ -1,0 +1,28 @@
+<div class="dash-content dash-contact container-fluid">
+  <div class="das-title text-uppercase">
+    <h5>new contacts in the last 7 days</h5>
+  </div>
+  <div class="row">
+    <div class="loader" ng-show="$ctrl.loading"></div>
+    <table
+      ng-hide="$ctrl.loading"
+      ng-table="$ctrl.tableParams"
+      class="table table-condensed table-bordered table-striped"
+    >
+      <tr ng-repeat="data in $data track by $index">
+        <td data-title="'#'">{{$index+1}}</td>
+        <td data-title="'Name'">{{data.name}}</td>
+        <td
+          class="link-assigned"
+          data-title="'Assigned to'"
+          ng-click="$ctrl.redirect(data.assignedTo)"
+        >
+          {{data.assignedTo}}
+        </td>
+        <td data-title="'Created at'">
+          {{data.createdAt | date:'dd-MM-yyyy HH:mm:ss'}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.sales-order-content {
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 4px;
+}

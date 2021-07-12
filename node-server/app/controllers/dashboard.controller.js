@@ -19,5 +19,28 @@ exports.getDataDashBoard = function (req, res, next) {
       },
     },
   ]);
-  Promise.all([contact, salesOrder]).then((data) => res.send(data));
+  const newContact = Contact.aggregate([
+    {
+      $match: {
+        createdAt: {
+          $gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
+        },
+      },
+    },
+    { $sort: { createdAt: -1 } },
+  ]);
+
+  const newSalesOrder = SalesOrder.aggregate([
+    {
+      $match: {
+        createdAt: {
+          $gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
+        },
+      },
+    },
+    { $sort: { createdAt: -1 } },
+  ]);
+  Promise.all([contact, salesOrder, newContact, newSalesOrder]).then((data) =>
+    res.send(data)
+  );
 };

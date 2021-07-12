@@ -9,14 +9,13 @@ angular.module("dashboard").component("dashboardSalesOrder", {
     "DashboardService",
     "Notification",
     function (cssInjector, $location, DashboardService, Notification) {
-      cssInjector.add("contacts/contact.template.css");
+      cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
       vm.loading = true;
 
       vm.getCountSalesOrder = getCountSalesOrder;
       vm.redirect = redirect;
-      // vm.edit = editContact;
-      // vm.delete = deleteContact;
+
       function redirect(filter) {
         $location.url("sales-order?filter=" + filter);
       }
@@ -42,7 +41,6 @@ angular.module("dashboard").component("dashboardSalesOrder", {
                   break;
               }
             });
-
             vm.loading = false;
           })
           .catch((error) => {
@@ -54,14 +52,6 @@ angular.module("dashboard").component("dashboardSalesOrder", {
       }
 
       vm.getCountSalesOrder();
-
-      //   function createContact() {
-      //     $location.url("/contact/create/");
-      //   }
-
-      //   function editContact(id) {
-      //     $location.url("/contact/edit/" + id);
-      //   }
     },
   ],
 });

@@ -51,6 +51,7 @@ p {
   text-align: center;
   text-decoration: none;
   z-index: 10;
+  cursor: pointer;
 }
 
 .dash-content {
@@ -60,6 +61,7 @@ p {
   overflow: hidden;
   background-color: #fff;
   border-radius: 4px;
+  position: relative;
 }
 
 .dash-sales-order .title-header {
@@ -95,4 +97,27 @@ p {
   font-size: 30px;
   color: #0094da;
   cursor: pointer;
+}
+
+.link-assigned {
+  color: blue;
+  cursor: pointer;
+}
+.showDetail {
+  color: black;
+  position: absolute;
+  background: white;
+  width: 100%;
+  z-index: 9;
+  height: 100%;
+  padding: 10px;
+}
+
+.detail-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+}
+
+.detail-item p {
+  color: #000;
 }

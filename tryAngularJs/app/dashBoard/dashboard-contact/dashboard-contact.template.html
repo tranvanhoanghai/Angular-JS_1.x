@@ -1,8 +1,11 @@
 <div class="dash-content dash-contact container-fluid">
-  <div class="das-title text-uppercase">
+  <div class="col-lg-12 das-title text-uppercase">
     <h5>contacts</h5>
   </div>
-  <div class="row">
+
+  <div class="loader" ng-show="$ctrl.loading"></div>
+
+  <div class="row" ng-hide="$ctrl.loading">
     <div class="col-lg-2 col-md-4 col-sm-6 col-12">
       <div class="small-box bg-info">
         <div class="inner">
@@ -13,9 +16,12 @@
         <div class="icon">
           <i class="fa fa-user"></i>
         </div>
-        <a href="#" class="small-box-footer"
-          >More info <i class="fas fa-arrow-circle-right"></i
-        ></a>
+        <p
+          class="small-box-footer"
+          ng-click="$ctrl.redirect('Existing Customer')"
+        >
+          More info <i class="fas fa-arrow-circle-right"></i>
+        </p>
       </div>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-6 col-12">
@@ -28,9 +34,9 @@
         <div class="icon">
           <i class="fa fa-user"></i>
         </div>
-        <a href="#" class="small-box-footer"
-          >More info <i class="fas fa-arrow-circle-right"></i
-        ></a>
+        <p class="small-box-footer" ng-click="$ctrl.redirect('Partner')">
+          More info <i class="fas fa-arrow-circle-right"></i>
+        </p>
       </div>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-6 col-12">
@@ -43,9 +49,9 @@
         <div class="icon">
           <i class="fa fa-user"></i>
         </div>
-        <a href="#" class="small-box-footer"
-          >More info <i class="fas fa-arrow-circle-right"></i
-        ></a>
+        <p class="small-box-footer" ng-click="$ctrl.redirect('Conference')">
+          More info <i class="fas fa-arrow-circle-right"></i>
+        </p>
       </div>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-6 col-12">
@@ -58,9 +64,9 @@
         <div class="icon">
           <i class="fa fa-user"></i>
         </div>
-        <a href="#" class="small-box-footer"
-          >More info <i class="fas fa-arrow-circle-right"></i
-        ></a>
+        <p class="small-box-footer" ng-click="$ctrl.redirect('Website')">
+          More info <i class="fas fa-arrow-circle-right"></i>
+        </p>
       </div>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-6 col-12">
@@ -73,9 +79,9 @@
         <div class="icon">
           <i class="fa fa-user"></i>
         </div>
-        <a href="#" class="small-box-footer"
-          >More info <i class="fas fa-arrow-circle-right"></i
-        ></a>
+        <p class="small-box-footer" ng-click="$ctrl.redirect('Word of mouth')">
+          More info <i class="fas fa-arrow-circle-right"></i>
+        </p>
       </div>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-6 col-12">
@@ -88,9 +94,9 @@
         <div class="icon">
           <i class="fa fa-user"></i>
         </div>
-        <a href="#" class="small-box-footer"
-          >More info <i class="fas fa-arrow-circle-right"></i
-        ></a>
+        <p class="small-box-footer" ng-click="$ctrl.redirect('Other')">
+          More info <i class="fas fa-arrow-circle-right"></i>
+        </p>
       </div>
     </div>
   </div>

@@ -4,16 +4,12 @@ angular.module("salesOrder").component("listSalesOrder", {
   templateUrl: "sales-order/list-sales-order/list-sales-order.template.html",
   controller: [
     "NgTableParams",
-    "$uibModal",
-    "$routeParams",
     "cssInjector",
     "$location",
     "SalesOrderService",
     "Notification",
     function (
       NgTableParams,
-      $routeParams,
-      $uibModal,
       cssInjector,
       $location,
       SalesOrderService,
@@ -29,7 +25,6 @@ angular.module("salesOrder").component("listSalesOrder", {
       vm.edit = editSalesOrder;
       vm.delete = deleteSalesOrder;
       vm.open = openModal;
-
       vm.data = "Do you want to delete it?";
 
       function openModal(id) {
