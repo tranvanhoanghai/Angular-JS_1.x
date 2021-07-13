@@ -63,7 +63,10 @@
           data-title="'Status'"
           filter="{status: 'select'}"
           sortable="'status'"
-          filter-data="[{'title': 'Created', 'id': 'Created'}, {'title': 'Approved', 'id': 'Approved'}, {'title': 'Delivered', 'id': 'Delivered'}, {'title': 'Cancelled', 'id': 'Cancelled'}, ]"
+          filter-data="[{'title': 'Created', 'id': 'Created'},
+                        {'title': 'Approved', 'id': 'Approved'},
+                        {'title': 'Delivered', 'id': 'Delivered'},
+                        {'title': 'Cancelled', 'id': 'Cancelled'}]"
           class="{{data.status | lowercase }}"
         >
           {{data.status}}

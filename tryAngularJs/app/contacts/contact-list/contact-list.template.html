@@ -89,7 +89,9 @@
           filter-data="$ctrl.ngTableAssignedTos"
           sortable="'assignedTo'"
         >
-          {{data.assignedTo}} {{$ctrl.ngTableAssignedTos}}
+          {{data.assignedTo}}
+          <!-- filter-data="$ctrl.names" it work -->
+          <!-- {{$ctrl.ngTableAssignedTos}} -->
         </td>
 
         <td data-title="'Creator'" sortable="'creator'">{{data.creator}}</td>
