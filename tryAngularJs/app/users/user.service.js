@@ -23,4 +23,5 @@ angular.module("user").service("UserService", function ($http, BaseUrlService) {
   this.deleteUser = function (id) {
     return $http.delete(`${baseUrl}/${id}`);
   };
+  
 });

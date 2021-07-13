@@ -60,10 +60,12 @@ angular.module("user").component("editUser", {
       function detailUser() {
         UserService.detailUser(currentId)
           .then((res) => {
+            console.log(res.data.isActive);
             vm.name = res.data.name;
             vm.username = res.data.username;
             vm.email = res.data.email;
             vm.phone = res.data.phone;
+            vm.isActive = res.data.isActive;
           })
           .catch((error) => {
             Notification.error({
@@ -81,6 +83,7 @@ angular.module("user").component("editUser", {
           username: vm.username,
           email: vm.email,
           phone: vm.phone,
+          isActive: vm.isActive,
         };
 
         UserService.updateUser(currentId, user)

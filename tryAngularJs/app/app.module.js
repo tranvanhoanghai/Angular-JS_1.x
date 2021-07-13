@@ -1,13 +1,14 @@
 "use strict";
 
 // Define the `myApp` module
-var app = angular.module("myApp", [
+angular.module("myApp", [
   "dashboard",
   "salesOrder",
   "contact",
   "user",
   "auth",
   "share",
+  "error",
 
   "angular.css.injector",
   "ngRoute",

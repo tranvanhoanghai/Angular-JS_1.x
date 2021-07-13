@@ -7,7 +7,6 @@ angular.module("dashboard").component("dashboard", {
     "Notification",
     function (cssInjector, Notification) {
       cssInjector.add("dashboard/dashboard.template.css");
-     
     },
   ],
 });

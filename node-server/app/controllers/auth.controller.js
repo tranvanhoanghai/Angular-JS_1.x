@@ -33,28 +33,25 @@ exports.authenticate = function (req, res, next) {
 exports.login = function (req, res, next) {
   User.findOne({ username: req.body.username, password: req.body.password })
     .then((user) => {
-      if (user) {
+      if (user.isActive == "true") {
         res.json({
           type: true,
-          data: user,
+          user: user,
+          message: "Login Successfully",
           token: jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: 604800, // 1 week
           }),
         });
       } else {
         res.json({
-          type: false,
-          data: "Incorrect email/password",
+          message: "You are not active",
         });
       }
     })
     .catch((err) => {
-      if (err) {
-        res.json({
-          type: false,
-          data: "Error occured: " + err,
-        });
-      }
+      res.status(500).send({
+        message: "Incorrect username or password",
+      });
     });
 };
 

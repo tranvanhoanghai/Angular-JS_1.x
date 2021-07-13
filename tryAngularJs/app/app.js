@@ -1,7 +1,6 @@
 "use strict";
 
-app.config([
-  // "$rootScope",
+angular.module("myApp").config([
   "$locationProvider",
   "$routeProvider",
   "$httpProvider",
@@ -11,7 +10,6 @@ app.config([
   "NotificationProvider",
   "$qProvider",
   function (
-    // $rootScope,
     $locationProvider,
     $routeProvider,
     $httpProvider,
@@ -64,6 +62,9 @@ app.config([
       .when("/login", {
         template: "<login></login>",
       })
+      .when("/403", {
+        template: "<error></error>",
+      })
       .otherwise("/dashboard");
 
     NotificationProvider.setOptions({
@@ -87,7 +88,6 @@ app.config([
             if ($localStorage.token) {
               config.headers.Authorization = "Bearer " + $localStorage.token;
             }
-            console.log();
             return config;
           },
           responseError: function (response) {

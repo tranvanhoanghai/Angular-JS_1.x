@@ -20,9 +20,10 @@ angular.module("auth").component("login", {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
 
-      if ($localStorage.token) {
-        $location.path("/dashboard");
+      if ($localStorage.data) {
+        $location.url("/dashboard");
       }
+      // console.log($localStorage.data.user.name);
 
       vm.login = function () {
         var formData = {
@@ -31,17 +32,21 @@ angular.module("auth").component("login", {
         };
 
         LoginService.login(formData)
-          .then(
-            function (res) {
-              console.log(res);
-              $localStorage.token = res.data.token;
-              $location.path("/dashboard");
-            },
-            function () {
-              $rootScope.error = "Failed to signin";
-            }
-          )
-          .catch((err) => console.log("lỗi", err));
+          .then((res) => {
+            $localStorage.token = res.data.token;
+            $localStorage.data = res.data.user;
+            $location.url("/dashboard");
+
+            Notification.success({
+              message: res.data.message,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+            Notification.error({
+              message: err.data.message,
+            });
+          });
       };
     },
   ],

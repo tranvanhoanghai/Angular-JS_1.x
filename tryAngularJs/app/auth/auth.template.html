@@ -1,1 +1,18 @@
 <!-- <login></login> -->
+
+<div class="btn-group" ng-show="$ctrl.token">
+  <button
+    type="button"
+    class="btn btn-info"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    {{$ctrl.name}}
+  </button>
+  <div class="dropdown-menu dropdown-menu-right">
+    <button class="dropdown-item" type="button" ng-click="$ctrl.logout()">
+      Logout
+    </button>
+  </div>
+</div>

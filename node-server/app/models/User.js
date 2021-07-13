@@ -19,8 +19,8 @@ const User = new Schema(
       default: ["user"],
       required: "Please provide at least one role",
     },
-    isAdmin: { type: Boolean, required: false, default: false },
-    isActive: { type: Boolean, required: false, default: true },
+    isAdmin: { type: String, required: false, default: "false" },
+    isActive: { type: String, required: false, default: "true" },
     creator: { type: String, maxLength: 255, required: false, default: "" },
   },
   { timestamps: true }
