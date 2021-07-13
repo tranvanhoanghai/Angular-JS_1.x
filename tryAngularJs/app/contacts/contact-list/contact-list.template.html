@@ -1,11 +1,12 @@
 <section>
   <div class="d-flex justify-content-end list-action">
     <div class="mb-3 action-item">
+      <label for="assignedTo">Assigned to:</label>
       <select
         class="form-control"
         id="assignedTo"
         name="assignedTo"
-        ng-model="$ctrl.assignedTo"
+        ng-model="$ctrl.tableParams.filter()['assignedTo']"
         required
       >
         <option ng-repeat="data in $ctrl.assignedTos" value="{{data.name}}">
@@ -13,12 +14,14 @@
         </option>
       </select>
     </div>
+
     <div class="mb-3 action-item">
+      <label for="leadSource">Lead source:</label>
       <select
         class="form-control"
         id="leadSource"
         name="leadSource"
-        ng-model="$ctrl.leadSource"
+        ng-model="$ctrl.tableParams.filter()['leadSource']"
         required
       >
         <option value=""></option>
@@ -47,9 +50,7 @@
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
     >
-      <tr
-        ng-repeat="data in $data | filter :{ assignedTo:$ctrl.assignedTo, leadSource:$ctrl.leadSource} track by $index"
-      >
+      <tr ng-repeat="data in $data track by $index">
         <td data-title="'#'">{{$index+1}}</td>
 
         <td data-title="'Name'" filter="{ name: 'text'}" sortable="'name'">
@@ -82,8 +83,13 @@
 
         <td data-title="'Lead source'">{{data.leadSource}}</td>
 
-        <td data-title="'Assigned to'" sortable="'assignedTo'">
-          {{data.assignedTo}}
+        <td
+          data-title="'Assigned to'"
+          filter="{assignedTo: 'select'}"
+          filter-data="$ctrl.ngTableAssignedTos"
+          sortable="'assignedTo'"
+        >
+          {{data.assignedTo}} {{$ctrl.ngTableAssignedTos}}
         </td>
 
         <td data-title="'Creator'" sortable="'creator'">{{data.creator}}</td>

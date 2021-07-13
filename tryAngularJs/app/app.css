@@ -256,6 +256,15 @@ a.article:hover {
   min-height: 600px;
 }
 
+.content-main {
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
 /*   Css loading */
 
 .loader {
@@ -291,6 +300,15 @@ a.article:hover {
 /* Css list action */
 .list-action .action-item {
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.list-action .action-item label {
+  margin-bottom: 0px;
+  width: 100%;
+  text-align: right;
+  margin-right: 10px;
 }
 
 /* ---------------------------------------------------

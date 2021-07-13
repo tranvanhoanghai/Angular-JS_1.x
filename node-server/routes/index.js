@@ -5,16 +5,18 @@ const contactRouter = require("./contact");
 const salesOrderRouter = require("./salesOrder");
 const dashboardRouter = require("./dashboard");
 
+const auth = require("../app/controllers/auth.controller");
+
 /* GET home page. */
 // router.get('/', index.get);
 
 function route(app) {
   app.use("/auth/login", authRouter);
 
-  app.use("/user", userRouter);
-  app.use("/contact", contactRouter);
-  app.use("/sales-order", salesOrderRouter);
-  app.use("/dashboard", dashboardRouter);
+  app.use("/user", auth.verifyToken, userRouter);
+  app.use("/contact", auth.verifyToken, contactRouter);
+  app.use("/sales-order", auth.verifyToken, salesOrderRouter);
+  app.use("/dashboard", auth.verifyToken, dashboardRouter);
 
   app.get("/:id", indexController.getById);
   app.get("/", indexController.get);

@@ -59,24 +59,6 @@
               <i class="fa fa-users"></i> <span> User management </span></a
             >
           </li>
-
-          <li>
-            <a
-              href="#homeSubmenu"
-              data-toggle="collapse"
-              aria-expanded="false"
-              class="dropdown-toggle"
-              onclick="return false"
-            >
-              <i class="fa fa-vial"></i>
-              <span> Test page </span>
-            </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-              <li>
-                <a href="#!/view1">view1</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
 
@@ -93,6 +75,7 @@
         </nav>
         <div class="body-content">
           <div ng-view></div>
+          <!-- <div ui-view></div> -->
         </div>
       </div>
     </div>
@@ -121,20 +104,14 @@
     <script src="lib/ngstorage/ngStorage.min.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="lib/ng-table/bundles/ng-table.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 
-    <script src="lib/angular-material/angular-material.min.js"></script>
     <script src="lib/angular-messages/angular-messages.min.js"></script>
-    <script src="lib/angular-animate/angular-animate.min.js"></script>
-    <script src="lib/angular-aria/angular-aria.min.js"></script>
 
     <script src="lib/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
 
     <script src="app.module.js"></script>
     <script src="app.js"></script>
-
-    <script src="view1/view1.module.js"></script>
-    <script src="view1/view1.controller.js"></script>
-    <script src="view1/view1.service.js"></script>
 
     <script src="dashboard/dashboard.module.js"></script>
     <script src="dashboard/dashboard.service.js"></script>
@@ -165,9 +142,10 @@
     <script src="sales-order/list-sales-order/list-sales-order.controller.js"></script>
     <script src="sales-order/edit-sales-order/edit-sales-order.controller.js"></script>
 
-    <script src="login/login.module.js"></script>
-    <script src="login/login.controller.js"></script>
-    <script src="login/login.service.js"></script>
+    <script src="auth/auth.module.js"></script>
+    <script src="auth/auth.controller.js"></script>
+    <script src="auth/auth.service.js"></script>
+    <script src="auth/login/login.controller.js"></script>
 
     <script src="shared/shared.module.js"></script>
     <script src="shared/session.service.js"></script>

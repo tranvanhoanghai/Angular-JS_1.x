@@ -64,9 +64,10 @@ p {
   position: relative;
 }
 
-.dash-sales-order .title-header {
+.title-header {
   text-transform: uppercase;
   margin-bottom: 10px;
+  padding: 0;
 }
 .dash-sales-order label {
   margin-bottom: 0;

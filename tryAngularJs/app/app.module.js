@@ -2,12 +2,11 @@
 
 // Define the `myApp` module
 var app = angular.module("myApp", [
-  "view1",
-  "contact",
   "dashboard",
-  "user",
   "salesOrder",
-  "login",
+  "contact",
+  "user",
+  "auth",
   "share",
 
   "angular.css.injector",
@@ -17,6 +16,6 @@ var app = angular.module("myApp", [
   "ngTable",
   "ngCookies",
   "ngStorage",
-  // "ngAnimate",
   "ui.bootstrap",
+  "ui.router",
 ]);

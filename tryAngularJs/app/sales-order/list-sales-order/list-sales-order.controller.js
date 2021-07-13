@@ -17,13 +17,14 @@ angular.module("salesOrder").component("listSalesOrder", {
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
       var vm = this;
-      var paramFilter = $location.search().filter;
+      var paramFilterStatus = $location.search().filter;
       vm.loading = true;
 
       vm.getListSalesOrder = getListSalesOrder;
       vm.create = createSalesOrder;
       vm.edit = editSalesOrder;
       vm.delete = deleteSalesOrder;
+      vm.ngTable = ngTable;
       vm.open = openModal;
       vm.data = "Do you want to delete it?";
 
@@ -62,18 +63,8 @@ angular.module("salesOrder").component("listSalesOrder", {
         SalesOrderService.listSalesOrder()
           .then((response) => {
             vm.salesOrders = response.data;
-            vm.status = paramFilter;
-            vm.tableParams = new NgTableParams(
-              { count: 10 },
-              {
-                // page size buttons (right set of buttons in demo)
-                counts: [],
-                // determines the pager buttons (left set of buttons in demo)
-                paginationMaxBlocks: 13,
-                paginationMinBlocks: 2,
-                dataset: vm.salesOrders,
-              }
-            );
+            vm.ngTable(vm.salesOrders);
+            $location.search({});
             vm.loading = false;
           })
           .catch((error) => {
@@ -85,6 +76,22 @@ angular.module("salesOrder").component("listSalesOrder", {
       }
 
       vm.getListSalesOrder();
+
+      function ngTable(data) {
+        vm.tableParams = new NgTableParams(
+          { page: 1, count: 5 },
+          {
+            // page size buttons (right set of buttons in demo)
+            counts: [],
+            // determines the pager buttons (left set of buttons in demo)
+            paginationMaxBlocks: 13,
+            paginationMinBlocks: 2,
+            dataset: data,
+          }
+        );
+
+        vm.tableParams.filter()["status"] = paramFilterStatus;
+      }
 
       function createSalesOrder() {
         $location.url("/sales-order/create/");

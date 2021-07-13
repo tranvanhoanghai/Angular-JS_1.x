@@ -76,9 +76,11 @@ angular.module("dashboard").component("dashboardNewSalesOrder", {
           })
           .catch((error) => {
             console.log("Error", error);
-            setTimeout(function () {
-              vm.getNewSalesOrder();
-            }, 5000);
+            if (error.status !== 403) {
+              setTimeout(function () {
+                vm.getCountSalesOrder();
+              }, 5000);
+            }
           });
       }
 

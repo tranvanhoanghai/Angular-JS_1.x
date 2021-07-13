@@ -5,7 +5,6 @@ angular.module("contact").component("contactList", {
   controller: [
     "UserService",
     "NgTableParams",
-    "cssInjector",
     "$location",
     "$uibModal",
     "ContactService",
@@ -13,20 +12,17 @@ angular.module("contact").component("contactList", {
     function (
       UserService,
       NgTableParams,
-      cssInjector,
       $location,
       $uibModal,
       ContactService,
       Notification
     ) {
-      cssInjector.add("contacts/contact.template.css");
       var vm = this;
-      var paramLeadSource = $location.search().leadSource;
-      var paramAssignedTo = $location.search().assignedTo;
-
       vm.loading = true;
 
       vm.getListContacts = getListContacts;
+      vm.getListAssignedTos = getListAssignedTos;
+      vm.ngTable = ngTable;
       vm.create = createContact;
       vm.edit = editContact;
       vm.delete = deleteContact;
@@ -68,31 +64,11 @@ angular.module("contact").component("contactList", {
       function getListContacts() {
         ContactService.listContact()
           .then((response) => {
-            UserService.listUsers()
-              .then((response) => {
-                var nullData = { name: "" };
-                vm.assignedTos = response.data;
-                vm.assignedTos.unshift(nullData);
-              })
-              .catch((error) => {
-                console.log("Error", error);
-              });
-
+            vm.getListAssignedTos();
             vm.contacts = response.data;
-            vm.leadSource = paramLeadSource;
-            vm.assignedTo = paramAssignedTo;
+            vm.ngTable(vm.contacts);
+            $location.search({});
 
-            vm.tableParams = new NgTableParams(
-              { count: 10 },
-              {
-                // page size buttons (right set of buttons in demo)
-                counts: [],
-                // determines the pager buttons (left set of buttons in demo)
-                paginationMaxBlocks: 13,
-                paginationMinBlocks: 2,
-                dataset: vm.contacts,
-              }
-            );
             vm.loading = false;
           })
           .catch((error) => {
@@ -104,6 +80,45 @@ angular.module("contact").component("contactList", {
       }
 
       vm.getListContacts();
+
+      function getListAssignedTos() {
+        UserService.listUsers()
+          .then((response) => {
+            vm.nullData = { name: "" };
+            vm.assignedTos = response.data;
+            vm.assignedTos.unshift(vm.nullData);
+
+            vm.ngTableAssignedTos = [];
+            vm.assignedTos.forEach((element) => {
+              vm.ngTableAssignedTos.push({
+                id: element.name,
+                title: element.name,
+              });
+            });
+          })
+          .catch((error) => {
+            console.log("Error", error);
+          });
+      }
+
+      function ngTable(data) {
+        var paramLeadSource = $location.search().leadSource;
+        var paramAssignedTo = $location.search().assignedTo;
+        vm.tableParams = new NgTableParams(
+          { page: 1, count: 5 },
+          {
+            // page size buttons (right set of buttons in demo)
+            counts: [],
+            // determines the pager buttons (left set of buttons in demo)
+            paginationMaxBlocks: 13,
+            paginationMinBlocks: 2,
+            dataset: data,
+          }
+        );
+
+        vm.tableParams.filter()["assignedTo"] = paramAssignedTo;
+        vm.tableParams.filter()["leadSource"] = paramLeadSource;
+      }
 
       function createContact() {
         $location.url("/contact/create/");

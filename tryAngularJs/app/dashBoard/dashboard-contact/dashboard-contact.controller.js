@@ -57,9 +57,11 @@ angular.module("dashboard").component("dashboardContact", {
           })
           .catch((error) => {
             console.log("Error", error);
-            setTimeout(function () {
-              vm.getCountSalesOrder();
-            }, 5000);
+            if (error.status !== 403) {
+              setTimeout(function () {
+                vm.getCountSalesOrder();
+              }, 5000);
+            }
           });
       }
 
