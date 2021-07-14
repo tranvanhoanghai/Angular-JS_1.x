@@ -3,7 +3,6 @@
 angular.module("contact").component("contactList", {
   templateUrl: "contacts/contact-list/contact-list.template.html",
   controller: [
-    "$rootScope",
     "UserService",
     "NgTableParams",
     "$state",
@@ -12,7 +11,6 @@ angular.module("contact").component("contactList", {
     "ContactService",
     "Notification",
     function (
-      $rootScope,
       UserService,
       NgTableParams,
       $state,
@@ -22,7 +20,6 @@ angular.module("contact").component("contactList", {
       Notification
     ) {
       var vm = this;
-      $rootScope.$state = $state;
       vm.loading = true;
 
       vm.getListContacts = getListContacts;

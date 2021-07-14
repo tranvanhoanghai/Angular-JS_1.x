@@ -4,20 +4,16 @@ angular.module("auth").component("auth", {
   templateUrl: "auth/auth.template.html",
   controller: [
     "$localStorage",
-    "$location",
+    "$state",
     "cssInjector",
-    "LoginService",
+    "AuthService",
     "Notification",
-    function (
-      $localStorage,
-      $location,
-      cssInjector,
-      LoginService,
-      Notification
-    ) {
+    function ($localStorage, $state, cssInjector, AuthService, Notification) {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
       vm.check = check;
+      vm.changePassword = changePassword;
+
       function check() {
         setInterval(() => {
           vm.token = $localStorage.data;
@@ -27,6 +23,10 @@ angular.module("auth").component("auth", {
         }, 100);
       }
       vm.check();
+
+      function changePassword() {
+        $state.go("changePassword");
+      }
     },
   ],
 });

@@ -3,46 +3,31 @@
 angular.module("auth").component("changePassword", {
   templateUrl: "auth/change-password/change-password.template.html",
   controller: [
-    "$location",
+    "$state",
     "$localStorage",
-    "$rootScope",
     "cssInjector",
-    "LoginService",
+    "AuthService",
     "Notification",
-    function (
-      $location,
-      $localStorage,
-      $rootScope,
-      cssInjector,
-      LoginService,
-      Notification
-    ) {
+    function ($state, $localStorage, cssInjector, AuthService, Notification) {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
+      vm.change = change;
+      console.log();
 
-      vm.login = function () {
-        var formData = {
-          username: vm.username,
-          password: vm.password,
-        };
-
-        LoginService.login(formData)
-          .then((res) => {
-            $localStorage.token = res.data.token;
-            $localStorage.data = res.data.user;
-            $location.url("/dashboard");
-
-            Notification.success({
-              message: res.data.message,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-            Notification.error({
-              message: err.data.message,
-            });
+      function change() {
+        if (vm.newPass !== vm.confirmPass) {
+          Notification.error({
+            message: "Your new password and confirmation password do not match",
           });
-      };
+          return false;
+        }
+        var data = {
+          id: $localStorage.data.id,
+          oldPass: vm.oldPass,
+          newPass: vm.newPass,
+        };
+        AuthService.changePassword(data);
+      }
     },
   ],
 });

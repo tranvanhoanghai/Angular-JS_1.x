@@ -10,7 +10,7 @@ exports.detailUser = function (req, res, next) {
   const id = req.params.id;
   User.findById(id)
     .then((data) => res.json(data))
-    .catch(next);
+    .catch((err) => res.send(err));
 };
 
 exports.createUser = function (req, res, next) {
@@ -19,7 +19,11 @@ exports.createUser = function (req, res, next) {
   user
     .save()
     .then((data) => res.send(data))
-    .catch(next);
+    .catch((err) => {
+      res.status(500).send({
+        message: "username or email is exist",
+      });
+    });
 };
 
 exports.updateUser = function (req, res, next) {
@@ -32,7 +36,7 @@ exports.updateUser = function (req, res, next) {
         });
       } else res.send({ message: "User was updated successfully." });
     })
-    .catch(next);
+    .catch((err) => res.send(err));
 };
 
 exports.deleteUser = function (req, res, next) {

@@ -3,23 +3,23 @@
 angular.module("user").component("editUser", {
   templateUrl: "users/edit-user/edit-user.template.html",
   controller: [
-    "$location",
+    "$state",
     "$uibModal",
-    "$routeParams",
+    "$stateParams",
     "cssInjector",
     "UserService",
     "Notification",
     function (
-      $location,
+      $state,
       $uibModal,
-      $routeParams,
+      $stateParams,
       cssInjector,
       UserService,
       Notification
     ) {
       cssInjector.add("users/user.template.css");
       var vm = this;
-      var currentId = $routeParams.id;
+      var currentId = $stateParams.id;
 
       vm.detailUser = detailUser;
       vm.update = updateUser;
@@ -91,7 +91,7 @@ angular.module("user").component("editUser", {
             Notification.success({
               message: res.data.message,
             });
-            $location.url("user");
+            $state.go("user");
           })
           .catch((error) => {
             console.log(error);

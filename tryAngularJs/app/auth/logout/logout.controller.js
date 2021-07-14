@@ -6,13 +6,13 @@ angular.module("auth").component("logout", {
     "$location",
     "$localStorage",
     "cssInjector",
-    "LoginService",
+    "AuthService",
     "Notification",
     function (
       $location,
       $localStorage,
       cssInjector,
-      LoginService,
+      AuthService,
       Notification
     ) {
       cssInjector.add("auth/auth.template.css");

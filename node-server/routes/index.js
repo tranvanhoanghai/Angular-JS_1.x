@@ -11,7 +11,7 @@ const auth = require("../app/controllers/auth.controller");
 // router.get('/', index.get);
 
 function route(app) {
-  app.use("/auth/login", authRouter);
+  app.use("/auth", authRouter);
 
   app.use("/user", auth.verifyToken, userRouter);
   app.use("/contact", auth.verifyToken, contactRouter);

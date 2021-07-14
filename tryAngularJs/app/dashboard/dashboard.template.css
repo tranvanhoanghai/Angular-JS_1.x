@@ -106,10 +106,8 @@ p {
 }
 .showDetail {
   color: black;
-  position: absolute;
   background: white;
   width: 100%;
-  z-index: 9;
   height: 100%;
   padding: 10px;
 }

@@ -4,6 +4,7 @@ angular.module("contact").component("createSalesOrder", {
   templateUrl:
     "sales-order/create-sales-order/create-sales-order.template.html",
   controller: [
+    "$state",
     "$location",
     "cssInjector",
     "SalesOrderService",
@@ -11,6 +12,7 @@ angular.module("contact").component("createSalesOrder", {
     "ContactService",
     "Notification",
     function (
+      $state,
       $location,
       cssInjector,
       SalesOrderService,
@@ -65,7 +67,8 @@ angular.module("contact").component("createSalesOrder", {
               message: "Add data Successfully",
               replaceMessage: true,
             });
-            $location.url("/sales-order/");
+            // $location.url("/sales-order/");
+            $state.go("sales-order");
           })
           .catch((error) => {
             console.log("Error", error);

@@ -3,6 +3,7 @@
 angular.module("contact").component("editContact", {
   templateUrl: "contacts/edit-contact/edit-contact.template.html",
   controller: [
+    "$state",
     "$location",
     "$uibModal",
     "cssInjector",
@@ -11,6 +12,7 @@ angular.module("contact").component("editContact", {
     "UserService",
     "Notification",
     function (
+      $state,
       $location,
       $uibModal,
       cssInjector,
@@ -22,7 +24,6 @@ angular.module("contact").component("editContact", {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
       var currentId = $stateParams.id;
-
       vm.detailContact = detailContact;
       vm.update = updateContact;
       vm.loading = true;
@@ -115,7 +116,7 @@ angular.module("contact").component("editContact", {
             Notification.success({
               message: "Data update Successfully",
             });
-            $location.url("/contact/");
+            $state.go("contact");
           })
           .catch((error) => {
             console.log(error);

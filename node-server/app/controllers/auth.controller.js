@@ -1,34 +1,34 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 require("dotenv").config();
 
-exports.authenticate = function (req, res, next) {
-  User.findOne({ username: req.body.username, password: req.body.password })
-    .then((user) => {
-      if (user) {
-        res.json({
-          type: true,
-          data: user,
-          token: key.JWT_SECRET,
-        });
-      } else {
-        res.json({
-          type: false,
-          data: "Incorrect email/password",
-        });
-      }
-    })
-    .catch((err) => {
-      if (err) {
-        res.json({
-          type: false,
-          data: "Error occured: " + err,
-        });
-      }
-    });
-};
+// exports.authenticate = function (req, res, next) {
+//   User.findOne({ username: req.body.username, password: req.body.password })
+//     .then((user) => {
+//       if (user) {
+//         res.json({
+//           type: true,
+//           data: user,
+//           token: key.JWT_SECRET,
+//         });
+//       } else {
+//         res.json({
+//           type: false,
+//           data: "Incorrect email/password",
+//         });
+//       }
+//     })
+//     .catch((err) => {
+//       if (err) {
+//         res.json({
+//           type: false,
+//           data: "Error occured: " + err,
+//         });
+//       }
+//     });
+// };
 
 exports.login = function (req, res, next) {
   User.findOne({ username: req.body.username, password: req.body.password })
@@ -53,6 +53,10 @@ exports.login = function (req, res, next) {
         message: "Incorrect username or password",
       });
     });
+};
+
+exports.changePassword = function (req, res, next) {
+  console.log(req.body);
 };
 
 exports.verifyToken = function (req, res, next) {

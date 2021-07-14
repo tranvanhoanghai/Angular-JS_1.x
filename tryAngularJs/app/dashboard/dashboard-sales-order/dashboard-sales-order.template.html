@@ -15,7 +15,7 @@
         <div class="sales-order-title">
           <span>Created</span>
           <p class="sales-order-count" ng-click="$ctrl.redirect('Created')">
-            {{$ctrl.countCreated}}
+            {{ $ctrl.countCreated == undefined ? 0 : $ctrl.countCreated}}
           </p>
         </div>
       </div>
@@ -30,7 +30,7 @@
         <div class="sales-order-title">
           <span>Approved</span>
           <p class="sales-order-count" ng-click="$ctrl.redirect('Approved')">
-            {{$ctrl.countApproved}}
+            {{ $ctrl.countApproved == undefined ? 0 : $ctrl.countApproved}}
           </p>
         </div>
       </div>
@@ -45,7 +45,7 @@
         <div class="sales-order-title">
           <span>Delivered</span>
           <p class="sales-order-count" ng-click="$ctrl.redirect('Delivered')">
-            {{$ctrl.countDelivered}}
+            {{ $ctrl.countDelivered == undefined ? 0 : $ctrl.countDelivered}}
           </p>
         </div>
       </div>
@@ -60,7 +60,7 @@
         <div class="sales-order-title">
           <span>Cancelled</span>
           <p class="sales-order-count" ng-click="$ctrl.redirect('Cancelled')">
-            {{$ctrl.countCancelled}}
+            {{ $ctrl.countCancelled == undefined ? 0 : $ctrl.countCancelled}}
           </p>
         </div>
       </div>

@@ -8,6 +8,7 @@ angular.module("user").component("listUser", {
     "UserService",
     "cssInjector",
     "$location",
+    "$state",
     "Notification",
     function (
       NgTableParams,
@@ -15,6 +16,7 @@ angular.module("user").component("listUser", {
       UserService,
       cssInjector,
       $location,
+      $state,
       Notification
     ) {
       cssInjector.add("users/user.template.css");
@@ -88,11 +90,11 @@ angular.module("user").component("listUser", {
       vm.getListUsers();
 
       function createUser() {
-        $location.url("/user/create/");
+        $state.go("createUser");
       }
 
       function editUser(id) {
-        $location.url("/user/edit/" + id);
+        $state.go("editUser", { id: id });
       }
 
       function deleteUser(id) {

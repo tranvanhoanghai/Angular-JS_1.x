@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../app/controllers/auth.controller");
 
-/* GET users listing. */
-router.post("/", auth.login);
-router.post("/", auth.logout);
+router.post("/login", auth.login);
+router.post("/changePassword", auth.changePassword);
 
 module.exports = router;

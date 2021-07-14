@@ -3,18 +3,12 @@
 angular.module("contact").component("createContact", {
   templateUrl: "contacts/create-contact/create-contact.template.html",
   controller: [
-    "$location",
+    "$state",
     "cssInjector",
     "ContactService",
     "UserService",
     "Notification",
-    function (
-      $location,
-      cssInjector,
-      ContactService,
-      UserService,
-      Notification
-    ) {
+    function ($state, cssInjector, ContactService, UserService, Notification) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
       vm.loading = true;
@@ -50,8 +44,7 @@ angular.module("contact").component("createContact", {
               message: "Add data Successfully",
               replaceMessage: true,
             });
-
-            $location.url("/contact/");
+            $state.go("contact");
           })
           .catch((error) => {
             console.log("Error", error);

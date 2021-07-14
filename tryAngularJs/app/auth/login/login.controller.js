@@ -7,14 +7,14 @@ angular.module("auth").component("login", {
     "$localStorage",
     "$rootScope",
     "cssInjector",
-    "LoginService",
+    "AuthService",
     "Notification",
     function (
       $location,
       $localStorage,
       $rootScope,
       cssInjector,
-      LoginService,
+      AuthService,
       Notification
     ) {
       cssInjector.add("auth/auth.template.css");
@@ -31,7 +31,7 @@ angular.module("auth").component("login", {
           password: vm.password,
         };
 
-        LoginService.login(formData)
+        AuthService.login(formData)
           .then((res) => {
             $localStorage.token = res.data.token;
             $localStorage.data = res.data.user;

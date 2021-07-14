@@ -3,11 +3,11 @@
 angular.module("user").component("createUser", {
   templateUrl: "users/create-user/create-user.template.html",
   controller: [
-    "$location",
+    "$state",
     "cssInjector",
     "UserService",
     "Notification",
-    function ($location, cssInjector, UserService, Notification) {
+    function ($state, cssInjector, UserService, Notification) {
       cssInjector.add("users/user.template.css");
 
       var vm = this;
@@ -30,12 +30,12 @@ angular.module("user").component("createUser", {
               replaceMessage: true,
             });
 
-            $location.url("user");
+            $state.go("user");
           })
           .catch((error) => {
-            console.log("Error", error);
+            console.log("Error", error.data.message);
             Notification.error({
-              message: error,
+              message: error.data.message,
               replaceMessage: true,
             });
           });
