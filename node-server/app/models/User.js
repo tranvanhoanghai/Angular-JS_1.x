@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 const User = new Schema(
   {
-    name: { type: String, maxLength: 255, required: false },
-    username: { type: String, maxLength: 255, required: false, unique: true },
-    password: { type: String, maxLength: 255, required: false },
-    email: { type: String, maxLength: 255, required: false, unique: true },
-    phone: { type: Number, maxLength: 11, required: false },
+    name: { type: String, maxLength: 255, required: true },
+    username: { type: String, maxLength: 255, required: true, unique: true },
+    password: { type: String, maxLength: 255, required: true },
+    email: { type: String, maxLength: 255, required: true, unique: true },
+    phone: { type: Number, maxLength: 11, required: true },
     roles: {
       type: [
         {
@@ -19,9 +19,9 @@ const User = new Schema(
       default: ["user"],
       required: "Please provide at least one role",
     },
-    isAdmin: { type: String, required: false, default: "false" },
-    isActive: { type: String, required: false, default: "true" },
-    creator: { type: String, maxLength: 255, required: false, default: "" },
+    isAdmin: { type: String, required: true, default: "false" },
+    isActive: { type: String, required: true, default: "true" },
+    creator: { type: String, maxLength: 255, required: true, default: "" },
   },
   { timestamps: true }
 );

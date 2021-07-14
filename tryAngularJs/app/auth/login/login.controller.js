@@ -3,14 +3,14 @@
 angular.module("auth").component("login", {
   templateUrl: "auth/login/login.template.html",
   controller: [
-    "$location",
+    "$state",
     "$localStorage",
     "$rootScope",
     "cssInjector",
     "AuthService",
     "Notification",
     function (
-      $location,
+      $state,
       $localStorage,
       $rootScope,
       cssInjector,
@@ -19,13 +19,13 @@ angular.module("auth").component("login", {
     ) {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
+      vm.login = login;
 
       if ($localStorage.data) {
-        $location.url("/dashboard");
+        $state.go("dashboard");
       }
-      // console.log($localStorage.data.user.name);
 
-      vm.login = function () {
+      function login() {
         var formData = {
           username: vm.username,
           password: vm.password,
@@ -35,7 +35,7 @@ angular.module("auth").component("login", {
           .then((res) => {
             $localStorage.token = res.data.token;
             $localStorage.data = res.data.user;
-            $location.url("/dashboard");
+            $state.go("dashboard");
 
             Notification.success({
               message: res.data.message,
@@ -47,7 +47,7 @@ angular.module("auth").component("login", {
               message: err.data.message,
             });
           });
-      };
+      }
     },
   ],
 });

@@ -14,16 +14,24 @@ exports.detailUser = function (req, res, next) {
 };
 
 exports.createUser = function (req, res, next) {
-  console.log(req);
-  const user = new User(req.body);
-  user
-    .save()
-    .then((data) => res.send(data))
-    .catch((err) => {
+  User.findOne({ username: req.body.username }).then((data) => {
+    if (data) {
       res.status(500).send({
         message: "username or email is exist",
       });
-    });
+      return false;
+    } else {
+      const user = new User(req.body);
+      user
+        .save()
+        .then((data) => res.send(data))
+        .catch((err) => {
+          res.status(500).send({
+            message: "error",
+          });
+        });
+    }
+  });
 };
 
 exports.updateUser = function (req, res, next) {

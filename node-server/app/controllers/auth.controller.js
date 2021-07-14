@@ -1,34 +1,8 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 
 require("dotenv").config();
-
-// exports.authenticate = function (req, res, next) {
-//   User.findOne({ username: req.body.username, password: req.body.password })
-//     .then((user) => {
-//       if (user) {
-//         res.json({
-//           type: true,
-//           data: user,
-//           token: key.JWT_SECRET,
-//         });
-//       } else {
-//         res.json({
-//           type: false,
-//           data: "Incorrect email/password",
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       if (err) {
-//         res.json({
-//           type: false,
-//           data: "Error occured: " + err,
-//         });
-//       }
-//     });
-// };
 
 exports.login = function (req, res, next) {
   User.findOne({ username: req.body.username, password: req.body.password })
@@ -39,11 +13,11 @@ exports.login = function (req, res, next) {
           user: user,
           message: "Login Successfully",
           token: jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: 604800, // 1 week
+            expiresIn: 60 * 60 * 24 * 7, // 1 week
           }),
         });
       } else {
-        res.json({
+        res.status(500).send({
           message: "You are not active",
         });
       }
@@ -56,7 +30,30 @@ exports.login = function (req, res, next) {
 };
 
 exports.changePassword = function (req, res, next) {
-  console.log(req.body);
+  const id = req.body.id;
+
+  User.findOne({ _id: id, password: req.body.oldPass }).then((user) => {
+    if (user) {
+      const updatePass = { password: req.body.newPass };
+      User.findByIdAndUpdate(id, updatePass)
+        .then((data) => {
+          if (!data) {
+            res.status(500).send({
+              message: `Cannot change password`,
+            });
+          } else {
+            res.json({
+              message: "Change password successfully.",
+            });
+          }
+        })
+        .catch((err) => res.send(err));
+    } else {
+      res.status(500).send({
+        message: "Incorrect old password",
+      });
+    }
+  });
 };
 
 exports.verifyToken = function (req, res, next) {
@@ -70,10 +67,4 @@ exports.verifyToken = function (req, res, next) {
   } else {
     res.sendStatus(403);
   }
-};
-
-exports.logout = function (req, res, next) {
-  const refreshToken = req.body.token;
-  refreshTokens = refreshTokens.filter((refToken) => refToken !== refreshToken);
-  res.sendStatus(200);
 };

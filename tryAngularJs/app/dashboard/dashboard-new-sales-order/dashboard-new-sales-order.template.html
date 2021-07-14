@@ -80,7 +80,7 @@
     </div>
 
     <table
-      ng-hide="$ctrl.loading"
+      ng-hide="$ctrl.loading || $ctrl.showDetail"
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
     >

@@ -26,7 +26,21 @@ angular.module("auth").component("changePassword", {
           oldPass: vm.oldPass,
           newPass: vm.newPass,
         };
-        AuthService.changePassword(data);
+        AuthService.changePassword(data)
+          .then((res) => {
+            AuthService.logout();
+            Notification.success({
+              message: res.data.message,
+              replaceMessage: true,
+            });
+          })
+          .catch((error) => {
+            console.log("Error", error.data.message);
+            Notification.error({
+              message: error.data.message,
+              replaceMessage: true,
+            });
+          });
       }
     },
   ],
