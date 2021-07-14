@@ -20,52 +20,94 @@ angular.module("myApp").config([
     $qProvider
   ) {
     $locationProvider.hashPrefix("!");
-    cssInjectorProvider.setSinglePageMode(true);
+    cssInjectorProvider.setSinglePageMode(false);
     $qProvider.errorOnUnhandledRejections(false);
 
-    $routeProvider
-      .when("/", {
-        template: "<dashboard></dashboard>", //(<view1></view1> is name component)
+    $stateProvider
+      .state("dashboard", {
+        url: "/dashboard",
+        template: "<dashboard></dashboard>",
       })
-      .when("/dashboard", {
-        template: "<dashboard></dashboard>", //(<view1></view1> is name component)
-      })
-      .when("/contact", {
+      .state("contact", {
+        url: "/contact",
         template: "<contact></contact>",
-        reloadOnSearch: false,
       })
-      .when("/contact/create", {
+      .state("create", {
+        url: "/contact/create",
         template: "<create-contact></create-contact>",
       })
-      .when("/contact/edit/:id", {
+      .state("edit", {
+        url: "/contact/edit/:id",
         template: "<edit-contact></edit-contact>",
       })
-      .when("/sales-order", {
+      .state("sales-order", {
+        url: "/sales-order",
         template: "<sales-order></sales-order>",
-        reloadOnSearch: false,
       })
-      .when("/sales-order/create", {
+      .state("sales-orderCreate", {
+        url: "/sales-order/create",
         template: "<create-sales-order></create-sales-order>",
       })
-      .when("/sales-order/edit/:id", {
+      .state("sales-orderEdit", {
+        url: "/sales-order/edit/:id",
         template: "<edit-sales-order></edit-sales-order>",
       })
-      .when("/user", {
+      .state("user", {
+        url: "/user",
         template: "<user></user>",
       })
-      .when("/user/create", {
-        template: "<create-user></create-user>",
-      })
-      .when("/user/edit/:id", {
-        template: "<edit-user></edit-user>",
-      })
-      .when("/login", {
-        template: "<login></login>",
-      })
-      .when("/403", {
+      .state("403", {
+        url: "/403",
         template: "<error></error>",
       })
-      .otherwise("/dashboard");
+      .state("login", {
+        url: "/login",
+        template: "<login></login>",
+      });
+
+    // $routeProvider
+    //   .when("/", {
+    //     template: "<dashboard></dashboard>", //(<view1></view1> is name component)
+    //   })
+    //   .when("/dashboard", {
+    //     template: "<dashboard></dashboard>", //(<view1></view1> is name component)
+    //   })
+    //   .when("/contact", {
+    //     template: "<contact></contact>",
+    //     reloadOnSearch: false,
+    //   })
+    //   .when("/contact/create", {
+    //     template: "<create-contact></create-contact>",
+    //   })
+    // .when("/contact/edit/:id", {
+    //   template: "<edit-contact></edit-contact>",
+    // })
+    //   .when("/sales-order", {
+    //     template: "<sales-order></sales-order>",
+    //     reloadOnSearch: false,
+    //   })
+    //   .when("/sales-order/create", {
+    //     template: "<create-sales-order></create-sales-order>",
+    //   })
+    //   .when("/sales-order/edit/:id", {
+    //     template: "<edit-sales-order></edit-sales-order>",
+    //   })
+    //   .when("/user", {
+    //     template: "<user></user>",
+    //   })
+    //   .when("/user/create", {
+    //     template: "<create-user></create-user>",
+    //   })
+    //   .when("/user/edit/:id", {
+    //     template: "<edit-user></edit-user>",
+    //   })
+    //   .when("/login", {
+    //     template: "<login></login>",
+    //   })
+    //   .when("/403", {
+    //     template: "<error></error>",
+    //   })
+    //   .otherwise("/contact");
 
     NotificationProvider.setOptions({
       delay: 2000,

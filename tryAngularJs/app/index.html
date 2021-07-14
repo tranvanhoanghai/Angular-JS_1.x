@@ -39,23 +39,23 @@
 
         <ul class="list-unstyled components">
           <li>
-            <a href="#!/dashboard">
+            <a ui-sref="dashboard">
               <i class="fa fa-th-large"></i>
               <span>DashBoard</span>
             </a>
           </li>
           <li>
-            <a href="#!/contact">
+            <a ui-sref="contact">
               <i class="fa fa-address-book"></i> <span> Contact</span></a
             >
           </li>
           <li>
-            <a href="#!/sales-order">
+            <a ui-sref="sales-order"">
               <i class="fa fa-cart-plus"></i> <span> Sales order </span>
             </a>
           </li>
           <li>
-            <a href="#!/user">
+            <a ui-sref="user">
               <i class="fa fa-users"></i>
               <span>User management</span></a
             >
@@ -75,8 +75,8 @@
           <auth />
         </nav>
         <div class="body-content">
-          <div ng-view></div>
-          <!-- <div ui-view></div> -->
+          <!-- <div ng-view></div> -->
+          <div ui-view></div>
         </div>
       </div>
     </div>
@@ -147,6 +147,8 @@
     <script src="auth/auth.controller.js"></script>
     <script src="auth/auth.service.js"></script>
     <script src="auth/login/login.controller.js"></script>
+    <script src="auth/logout/logout.controller.js"></script>
+    <script src="auth/change-password/change-password.controller.js"></script>
 
     <script src="shared/shared.module.js"></script>
     <script src="shared/session.service.js"></script>

@@ -6,12 +6,14 @@ angular.module("salesOrder").component("listSalesOrder", {
     "NgTableParams",
     "cssInjector",
     "$location",
+    "$state",
     "SalesOrderService",
     "Notification",
     function (
       NgTableParams,
       cssInjector,
       $location,
+      $state,
       SalesOrderService,
       Notification
     ) {
@@ -94,11 +96,11 @@ angular.module("salesOrder").component("listSalesOrder", {
       }
 
       function createSalesOrder() {
-        $location.url("/sales-order/create/");
+        $state.go("sales-orderCreate");
       }
 
       function editSalesOrder(id) {
-        $location.url("/sales-order/edit/" + id);
+        $state.go("sales-orderEdit", { id: id });
       }
 
       function deleteSalesOrder(id) {

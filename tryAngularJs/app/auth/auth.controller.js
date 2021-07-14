@@ -17,22 +17,16 @@ angular.module("auth").component("auth", {
     ) {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
-      vm.logout = logout;
-      vm.token = $localStorage.data;
-      if ($localStorage.data) {
-        vm.name = $localStorage.data.name;
+      vm.check = check;
+      function check() {
+        setInterval(() => {
+          vm.token = $localStorage.data;
+          if ($localStorage.data) {
+            vm.name = $localStorage.data.name;
+          }
+        }, 100);
       }
-
-      function logout() {
-        delete $localStorage.data;
-        delete $localStorage.token;
-        $location.url("/login");
-        vm.token = $localStorage.data;
-
-        Notification.success({
-          message: "Logout Successfully",
-        });
-      }
+      vm.check();
     },
   ],
 });

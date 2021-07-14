@@ -7,7 +7,7 @@ angular.module("contact").component("editContact", {
     "$uibModal",
     "cssInjector",
     "ContactService",
-    "$routeParams",
+    "$stateParams",
     "UserService",
     "Notification",
     function (
@@ -15,13 +15,13 @@ angular.module("contact").component("editContact", {
       $uibModal,
       cssInjector,
       ContactService,
-      $routeParams,
+      $stateParams,
       UserService,
       Notification
     ) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
-      var currentId = $routeParams.id;
+      var currentId = $stateParams.id;
 
       vm.detailContact = detailContact;
       vm.update = updateContact;
@@ -61,7 +61,7 @@ angular.module("contact").component("editContact", {
       }
 
       function detailContact() {
-        ContactService.detailContact(currentId)
+        ContactService.detailContact($stateParams.id)
           .then((res) => {
             UserService.listUsers()
               .then((response) => {

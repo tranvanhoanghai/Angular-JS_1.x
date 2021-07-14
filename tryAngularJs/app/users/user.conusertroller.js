@@ -3,22 +3,17 @@
 angular.module("user").component("user", {
   templateUrl: "users/user.template.html",
   controller: [
-    "$location",
+    "$state",
     "$localStorage",
     "cssInjector",
     "UserService",
     "Notification",
-    function (
-      $location,
-      $localStorage,
-      cssInjector,
-      UserService,
-      Notification
-    ) {
+    function ($state, $localStorage, cssInjector, UserService, Notification) {
       cssInjector.add("users/user.template.css");
       if ($localStorage.data) {
         if ($localStorage.data.isAdmin == "false") {
-          $location.url("/403");
+          // $location.path("/403");
+          $state.go("403");
         }
       }
     },

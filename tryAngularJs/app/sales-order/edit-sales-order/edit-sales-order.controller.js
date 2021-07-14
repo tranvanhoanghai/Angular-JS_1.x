@@ -3,18 +3,16 @@
 angular.module("salesOrder").component("editSalesOrder", {
   templateUrl: "sales-order/edit-sales-order/edit-sales-order.template.html",
   controller: [
-    "$routeParams",
-    "$location",
-    "$uibModal",
+    "$stateParams",
+    "$state",
     "cssInjector",
     "SalesOrderService",
     "UserService",
     "ContactService",
     "Notification",
     function (
-      $routeParams,
-      $location,
-      $uibModal,
+      $stateParams,
+      $state,
       cssInjector,
       SalesOrderService,
       UserService,
@@ -23,7 +21,7 @@ angular.module("salesOrder").component("editSalesOrder", {
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
       var vm = this;
-      var currentId = $routeParams.id;
+      var currentId = $stateParams.id;
 
       vm.detailSalesOrder = detailSalesOrder;
       vm.update = updateSalesOrder;
@@ -88,7 +86,7 @@ angular.module("salesOrder").component("editSalesOrder", {
             Notification.success({
               message: "Data update Successfully",
             });
-            $location.url("/sales-order/");
+            $state.go("sales-order");
           })
           .catch((error) => {
             console.log(error);

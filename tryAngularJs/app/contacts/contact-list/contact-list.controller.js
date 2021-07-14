@@ -3,21 +3,26 @@
 angular.module("contact").component("contactList", {
   templateUrl: "contacts/contact-list/contact-list.template.html",
   controller: [
+    "$rootScope",
     "UserService",
     "NgTableParams",
+    "$state",
     "$location",
     "$uibModal",
     "ContactService",
     "Notification",
     function (
+      $rootScope,
       UserService,
       NgTableParams,
+      $state,
       $location,
       $uibModal,
       ContactService,
       Notification
     ) {
       var vm = this;
+      $rootScope.$state = $state;
       vm.loading = true;
 
       vm.getListContacts = getListContacts;
@@ -129,11 +134,11 @@ angular.module("contact").component("contactList", {
       }
 
       function createContact() {
-        $location.url("/contact/create/");
+        $state.go("create");
       }
 
       function editContact(id) {
-        $location.url("/contact/edit/" + id);
+        $state.go("edit", { id: id });
       }
 
       function deleteContact(id) {

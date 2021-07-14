@@ -1,6 +1,6 @@
-<section>
+<section ng-if="$ctrl.ngTableAssignedTos.length">
   <div class="d-flex justify-content-end list-action">
-    <div class="mb-3 action-item">
+    <!-- <div class="mb-3 action-item">
       <label for="assignedTo">Assigned to:</label>
       <select
         class="form-control"
@@ -13,9 +13,9 @@
           {{data.name}}
         </option>
       </select>
-    </div>
+    </div> -->
 
-    <div class="mb-3 action-item">
+    <!-- <div class="mb-3 action-item">
       <label for="leadSource">Lead source:</label>
       <select
         class="form-control"
@@ -33,7 +33,7 @@
         <option value="Word of mouth">Word of mouth</option>
         <option value="Other">Other</option>
       </select>
-    </div>
+    </div> -->
 
     <div class="mb-3 action-item">
       <button class="btn btn-primary" ng-click="$ctrl.create()">
@@ -81,8 +81,19 @@
           {{data.address}}
         </td>
 
-        <td data-title="'Lead source'">{{data.leadSource}}</td>
-
+        <td
+          data-title="'Lead source'"
+          filter="{leadSource: 'select'}"
+          filter-data="[{'title': 'Existing Customer', 'id': 'Existing Customer'},
+                        {'title': 'Partner', 'id': 'Partner'},
+                        {'title': 'Conference', 'id': 'Conference'},
+                        {'title': 'Website', 'id': 'Website'},
+                        {'title': 'Word of mouth', 'id': 'Word of mouth'},
+                        {'title': 'Other', 'id': 'Other'},]"
+          sortable="'leadSource'"
+        >
+          {{data.leadSource}}
+        </td>
         <td
           data-title="'Assigned to'"
           filter="{assignedTo: 'select'}"
@@ -90,8 +101,6 @@
           sortable="'assignedTo'"
         >
           {{data.assignedTo}}
-          <!-- filter-data="$ctrl.names" it work -->
-          <!-- {{$ctrl.ngTableAssignedTos}} -->
         </td>
 
         <td data-title="'Creator'" sortable="'creator'">{{data.creator}}</td>
