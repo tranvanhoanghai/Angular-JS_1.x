@@ -50,7 +50,7 @@
         </div>
 
         <div class="col-8 detail-item">
-          <p>{{$ctrl.total}}</p>
+          <p>{{$ctrl.total | number:0}}</p>
         </div>
 
         <div class="col-4 detail-item">
@@ -91,7 +91,7 @@
       >
         <td data-title="'#'">{{$index+1}}</td>
         <td data-title="'Subject'">{{data.subject}}</td>
-        <td data-title="'Total'">{{data.total}}</td>
+        <td data-title="'Total'">{{data.total | number:0}}</td>
         <td data-title="'Created at'">
           {{data.createdAt | date:'dd-MM-yyyy HH:mm:ss'}}
         </td>

@@ -8,14 +8,7 @@ angular.module("dashboard").component("dashboardNewContact", {
     "cssInjector",
     "$location",
     "DashboardService",
-    "Notification",
-    function (
-      NgTableParams,
-      cssInjector,
-      $location,
-      DashboardService,
-      Notification
-    ) {
+    function (NgTableParams, cssInjector, $location, DashboardService) {
       cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
       vm.loading = true;

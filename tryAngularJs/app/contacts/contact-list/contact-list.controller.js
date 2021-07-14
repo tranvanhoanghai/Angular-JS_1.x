@@ -103,14 +103,6 @@ angular.module("contact").component("contactList", {
           });
       }
 
-      // It work
-      // vm.datas = [
-      //   { title: "Created", id: "Created" },
-      //   { title: "Approved", id: "Approved" },
-      //   { title: "Delivered", id: "Delivered" },
-      //   { title: "Cancelled", id: "Cancelled" },
-      // ];
-
       function ngTable(data) {
         var paramLeadSource = $location.search().leadSource;
         var paramAssignedTo = $location.search().assignedTo;

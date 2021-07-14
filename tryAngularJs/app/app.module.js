@@ -15,8 +15,8 @@ angular.module("myApp", [
   "ngResource",
   "ui-notification",
   "ngTable",
-  "ngCookies",
   "ngStorage",
   "ui.bootstrap",
   "ui.router",
+  "uiRouterTitle",
 ]);

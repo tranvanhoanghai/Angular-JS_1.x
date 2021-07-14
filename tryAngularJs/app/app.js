@@ -2,7 +2,6 @@
 
 angular.module("myApp").config([
   "$locationProvider",
-  "$routeProvider",
   "$httpProvider",
   "$stateProvider",
   "$urlRouterProvider",
@@ -11,7 +10,6 @@ angular.module("myApp").config([
   "$qProvider",
   function (
     $locationProvider,
-    $routeProvider,
     $httpProvider,
     $stateProvider,
     $urlRouterProvider,
@@ -28,52 +26,85 @@ angular.module("myApp").config([
         url: "/dashboard",
         template: "<dashboard></dashboard>",
         data: {
-          pageTitle: "Settings picture",
+          pageTitle: "Dashboard",
         },
       })
       .state("contact", {
         url: "/contact",
         template: "<contact></contact>",
+        data: {
+          pageTitle: "Contact",
+        },
       })
       .state("create", {
         url: "/contact/create",
         template: "<create-contact></create-contact>",
+        data: {
+          pageTitle: "Create contact",
+        },
       })
       .state("edit", {
         url: "/contact/edit/:id",
         template: "<edit-contact></edit-contact>",
+        data: {
+          pageTitle: "Edit contact",
+        },
       })
       .state("sales-order", {
         url: "/sales-order",
         template: "<sales-order></sales-order>",
+        data: {
+          pageTitle: "Sales order",
+        },
       })
       .state("sales-orderCreate", {
         url: "/sales-order/create",
         template: "<create-sales-order></create-sales-order>",
+        data: {
+          pageTitle: "Create sales order",
+        },
       })
       .state("sales-orderEdit", {
         url: "/sales-order/edit/:id",
         template: "<edit-sales-order></edit-sales-order>",
+        data: {
+          pageTitle: "Edit sales order",
+        },
       })
       .state("user", {
         url: "/user",
         template: "<user></user>",
+        data: {
+          pageTitle: "User management",
+        },
       })
       .state("createUser", {
         url: "/user/create",
         template: "<create-user></create-user>",
+        data: {
+          pageTitle: "Create user",
+        },
       })
       .state("editUser", {
         url: "/user/edit/:id",
         template: "<edit-user></edit-user>",
+        data: {
+          pageTitle: "Edit user",
+        },
       })
       .state("403", {
         url: "/403",
         template: "<error></error>",
+        data: {
+          pageTitle: "Error",
+        },
       })
       .state("login", {
         url: "/login",
         template: "<login></login>",
+        data: {
+          pageTitle: "Login",
+        },
         // views: {
         //   layout: {
         //     template: "<login></login>",
@@ -83,6 +114,9 @@ angular.module("myApp").config([
       .state("changePassword", {
         url: "/changePassword",
         template: "<change-password></change-password>",
+        data: {
+          pageTitle: "Change password",
+        },
       });
     NotificationProvider.setOptions({
       delay: 2000,

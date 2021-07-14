@@ -60,7 +60,6 @@ angular.module("user").component("editUser", {
       function detailUser() {
         UserService.detailUser(currentId)
           .then((res) => {
-            console.log(res.data.isActive);
             vm.name = res.data.name;
             vm.username = res.data.username;
             vm.email = res.data.email;

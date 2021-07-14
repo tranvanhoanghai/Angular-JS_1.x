@@ -77,7 +77,7 @@ angular.module("contact").component("editContact", {
               });
             vm.name = res.data.name;
             vm.salutation = res.data.salutation;
-            vm.phone = res.data.phone;
+            vm.phone = Number(res.data.phone);
             vm.email = res.data.email;
             vm.organization = res.data.organization;
             vm.dateOfBirth = new Date(res.data.dateOfBirth);

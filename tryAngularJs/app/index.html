@@ -4,171 +4,154 @@
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en" ng-app="myApp" class="no-js">
-  <!--<![endif]-->
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>CRM AngularJS App</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--<![endif]-->
 
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link
-      rel="stylesheet"
-      href="lib/angular-ui-notification/dist/angular-ui-notification.min.css"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title page-title> page-title </title>
+  <link rel="icon" href="./assets/images/icon_crm.png" type="image/icon type">
 
-    <link rel="stylesheet" href="app.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css"
-    />
-  </head>
-  <body>
-    <div class="wrapper">
-      <!-- Sidebar Holder -->
-      <nav id="sidebar">
-        <div class="sidebar-header">
-          <!-- <h3>Bootstrap Sidebar</h3> -->
-          <img
-            style="width: 100%; height: 50px"
-            src="./assets/logo.PNG"
-            alt=""
-          />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="lib/angular-ui-notification/dist/angular-ui-notification.min.css" />
+
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <!-- <h3>Bootstrap Sidebar</h3> -->
+        <img style="width: 100%; height: 50px" src="./assets/images/logo.PNG" alt="" />
+      </div>
+
+      <ul class="list-unstyled components">
+        <li>
+          <a ui-sref="dashboard">
+            <i class="fa fa-th-large"></i>
+            <span>DashBoard</span>
+          </a>
+        </li>
+        <li>
+          <a ui-sref="contact">
+            <i class="fa fa-address-book"></i> <span> Contact</span></a>
+        </li>
+        <li>
+          <a ui-sref="sales-order"">
+              <i class=" fa fa-cart-plus"></i> <span> Sales order </span>
+          </a>
+        </li>
+        <li>
+          <a ui-sref="user">
+            <i class="fa fa-users"></i>
+            <span>User management</span></a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Page Content Holder -->
+    <div id="content">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="">
+          <button type="button" id="sidebarCollapse" class="navbar-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-
-        <ul class="list-unstyled components">
-          <li>
-            <a ui-sref="dashboard">
-              <i class="fa fa-th-large"></i>
-              <span>DashBoard</span>
-            </a>
-          </li>
-          <li>
-            <a ui-sref="contact">
-              <i class="fa fa-address-book"></i> <span> Contact</span></a
-            >
-          </li>
-          <li>
-            <a ui-sref="sales-order"">
-              <i class="fa fa-cart-plus"></i> <span> Sales order </span>
-            </a>
-          </li>
-          <li>
-            <a ui-sref="user">
-              <i class="fa fa-users"></i>
-              <span>User management</span></a
-            >
-          </li>
-        </ul>
+        <auth />
       </nav>
-      <!-- Page Content Holder -->
-      <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="">
-            <button type="button" id="sidebarCollapse" class="navbar-btn">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </div>
-          <auth />
-        </nav>
-        <div class="body-content">
-          <!-- <div ng-view></div> -->
-          <div ui-view></div>
-        </div>
+      <div class="body-content">
+        <!-- <div ng-view></div> -->
+        <div ui-view></div>
       </div>
     </div>
+  </div>
 
-    <div ui-view="layout"></div>
+  <div ui-view="layout"></div>
 
-    <script
-      defer
-      src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
-      integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      defer
-      src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
-      integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
-      crossorigin="anonymous"
-    ></script>
-    <script src="lib/jquery/dist/jquery.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+  <script src="lib/jquery/dist/jquery.js"></script>
 
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
-    <script src="lib/angular-css-injector/angular-css-injector.js"></script>
-    <script src="lib/angular-resource/angular-resource.js"></script>
-    <script src="lib/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
-    <script src="lib/angular-loader/angular-loader.min.js"></script>
-    <script src="lib/angular-cookies/angular-cookies.min.js"></script>
-    <script src="lib/ngstorage/ngStorage.min.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="lib/ng-table/bundles/ng-table.js"></script>
-    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="lib/angular-css-injector/angular-css-injector.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="lib/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+  <script src="lib/ngstorage/ngStorage.min.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="lib/ng-table/bundles/ng-table.js"></script>
+  <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="lib/angular-messages/angular-messages.min.js"></script>
+  <script src="lib/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <script src="lib/ui-router-page-title/page-title.js"></script>
 
-    <script src="lib/angular-messages/angular-messages.min.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app.js"></script>
 
-    <script src="lib/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <script src="dashboard/dashboard.module.js"></script>
+  <script src="dashboard/dashboard.service.js"></script>
+  <script src="dashboard/dashboard.controller.js"></script>
+  <script src="dashboard/dashboard-contact/dashboard-contact.controller.js"></script>
+  <script src="dashboard/dashboard-sales-order/dashboard-sales-order.controller.js"></script>
+  <script src="dashboard/dashboard-new-contact/dashboard-new-contact.controller.js"></script>
+  <script src="dashboard/dashboard-new-sales-order/dashboard-new-sales-order.controller.js"></script>
 
-    <script src="app.module.js"></script>
-    <script src="app.js"></script>
+  <script src="contacts/contact.module.js"></script>
+  <script src="contacts/contact.controller.js"></script>
+  <script src="contacts/contact.service.js"></script>
+  <script src="contacts/contact-list/contact-list.controller.js"></script>
+  <script src="contacts/create-contact/create-contact.controller.js"></script>
+  <script src="contacts/edit-contact/edit-contact.controller.js"></script>
 
-    <script src="dashboard/dashboard.module.js"></script>
-    <script src="dashboard/dashboard.service.js"></script>
-    <script src="dashboard/dashboard.controller.js"></script>
-    <script src="dashboard/dashboard-contact/dashboard-contact.controller.js"></script>
-    <script src="dashboard/dashboard-sales-order/dashboard-sales-order.controller.js"></script>
-    <script src="dashboard/dashboard-new-contact/dashboard-new-contact.controller.js"></script>
-    <script src="dashboard/dashboard-new-sales-order/dashboard-new-sales-order.controller.js"></script>
+  <script src="users/user.module.js"></script>
+  <script src="users/user.conusertroller.js"></script>
+  <script src="users/user.service.js"></script>
+  <script src="users/list-user/list-user.controller.js"></script>
+  <script src="users/create-user/create-user.controller.js"></script>
+  <script src="users/edit-user/edit-user.controller.js"></script>
 
-    <script src="contacts/contact.module.js"></script>
-    <script src="contacts/contact.controller.js"></script>
-    <script src="contacts/contact.service.js"></script>
-    <script src="contacts/contact-list/contact-list.controller.js"></script>
-    <script src="contacts/create-contact/create-contact.controller.js"></script>
-    <script src="contacts/edit-contact/edit-contact.controller.js"></script>
+  <script src="sales-order/sales-order.module.js"></script>
+  <script src="sales-order/sales-order.controller.js"></script>
+  <script src="sales-order/sales-order.service.js"></script>
+  <script src="sales-order/create-sales-order/create-sales-order.controller.js"></script>
+  <script src="sales-order/list-sales-order/list-sales-order.controller.js"></script>
+  <script src="sales-order/edit-sales-order/edit-sales-order.controller.js"></script>
 
-    <script src="users/user.module.js"></script>
-    <script src="users/user.conusertroller.js"></script>
-    <script src="users/user.service.js"></script>
-    <script src="users/list-user/list-user.controller.js"></script>
-    <script src="users/create-user/create-user.controller.js"></script>
-    <script src="users/edit-user/edit-user.controller.js"></script>
+  <script src="auth/auth.module.js"></script>
+  <script src="auth/auth.controller.js"></script>
+  <script src="auth/auth.service.js"></script>
+  <script src="auth/login/login.controller.js"></script>
+  <script src="auth/logout/logout.controller.js"></script>
+  <script src="auth/change-password/change-password.controller.js"></script>
 
-    <script src="sales-order/sales-order.module.js"></script>
-    <script src="sales-order/sales-order.controller.js"></script>
-    <script src="sales-order/sales-order.service.js"></script>
-    <script src="sales-order/create-sales-order/create-sales-order.controller.js"></script>
-    <script src="sales-order/list-sales-order/list-sales-order.controller.js"></script>
-    <script src="sales-order/edit-sales-order/edit-sales-order.controller.js"></script>
+  <script src="shared/shared.module.js"></script>
+  <script src="shared/shared.service.js"></script>
 
-    <script src="auth/auth.module.js"></script>
-    <script src="auth/auth.controller.js"></script>
-    <script src="auth/auth.service.js"></script>
-    <script src="auth/login/login.controller.js"></script>
-    <script src="auth/logout/logout.controller.js"></script>
-    <script src="auth/change-password/change-password.controller.js"></script>
+  <script src="error/error.module.js"></script>
+  <script src="error/403/403.controller.js"></script>
 
-    <script src="shared/shared.module.js"></script>
-    <script src="shared/session.service.js"></script>
-    <script src="shared/shared.service.js"></script>
-
-    <script src="error/error.module.js"></script>
-    <script src="error/403/403.controller.js"></script>
-
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $(document).on("focus", ":input", function () {
-          $(this).attr("autocomplete", "new-password");
-        });
-        $("#sidebarCollapse").on("click", function () {
-          $("#sidebar").toggleClass("active");
-          $(this).toggleClass("active");
-        });
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(document).on("focus", ":input", function () {
+        $(this).attr("autocomplete", "new-password");
       });
-    </script>
-  </body>
+      $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+        $(this).toggleClass("active");
+      });
+    });
+  </script>
+</body>
+
 </html>

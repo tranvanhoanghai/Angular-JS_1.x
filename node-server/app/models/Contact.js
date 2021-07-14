@@ -6,7 +6,7 @@ const Contact = new Schema(
   {
     name: { type: String, maxLength: 255, required: true },
     salutation: { type: String, maxLength: 255, required: false },
-    phone: { type: Number, maxLength: 255, required: true },
+    phone: { type: String, maxLength: 255, required: true },
 
     email: { type: String, maxLength: 255, required: true },
     organization: { type: String, required: false },
@@ -15,7 +15,7 @@ const Contact = new Schema(
     address: { type: String, maxLength: 255, required: false },
     leadSource: { type: String, maxLength: 255, required: true },
     creator: { type: String, maxLength: 255, required: false },
-    
+
     assignedTo: { type: String, maxLength: 255, required: true },
     description: { type: String, maxLength: 255, required: false },
   },

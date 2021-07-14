@@ -7,7 +7,6 @@ angular.module("user").component("listUser", {
     "$uibModal",
     "UserService",
     "cssInjector",
-    "$location",
     "$state",
     "Notification",
     function (
@@ -15,7 +14,6 @@ angular.module("user").component("listUser", {
       $uibModal,
       UserService,
       cssInjector,
-      $location,
       $state,
       Notification
     ) {

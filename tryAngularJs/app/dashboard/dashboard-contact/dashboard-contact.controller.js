@@ -3,18 +3,10 @@
 angular.module("dashboard").component("dashboardContact", {
   templateUrl: "dashboard/dashboard-contact/dashboard-contact.template.html",
   controller: [
-    "NgTableParams",
     "cssInjector",
     "$location",
     "DashboardService",
-    "Notification",
-    function (
-      NgTableParams,
-      cssInjector,
-      $location,
-      DashboardService,
-      Notification
-    ) {
+    function (cssInjector, $location, DashboardService) {
       cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
       vm.loading = true;

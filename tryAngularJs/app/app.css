@@ -122,8 +122,6 @@ p:focus {
 
 #sidebar ul li {
   margin-left: 10px;
-  /* display: flex;
-  align-items: center; */
 }
 
 #sidebar ul li a {
@@ -203,6 +201,7 @@ a.article:hover {
 /* ---------------------------------------------------
   CONTENT STYLE
 ----------------------------------------------------- */
+
 #content {
   width: 100%;
   /* padding: 20px; */
@@ -266,7 +265,9 @@ a.article:hover {
   border-radius: 4px;
 }
 
-/*   Css loading */
+/* ---------------------------------------------------
+  LOADING STYLE
+----------------------------------------------------- */
 
 .loader {
   border: 5px solid #f3f3f3;
@@ -277,6 +278,14 @@ a.article:hover {
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
   margin: 0 auto;
+}
+
+/* ---------------------------------------------------
+  flex header data table STYLE
+----------------------------------------------------- */
+
+.sort-indicator {
+  display: flex;
 }
 
 /* Safari */

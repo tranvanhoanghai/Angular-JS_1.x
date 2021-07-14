@@ -29,7 +29,6 @@ angular.module("dashboard").component("dashboardNewSalesOrder", {
       vm.hideDetail = hideDetail;
 
       function hideDetail() {
-        console.log("â");
         vm.showDetail = false;
       }
 

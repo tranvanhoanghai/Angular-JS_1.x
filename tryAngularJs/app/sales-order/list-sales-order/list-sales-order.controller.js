@@ -8,6 +8,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     "$location",
     "$state",
     "SalesOrderService",
+    "UserService",
     "Notification",
     function (
       NgTableParams,
@@ -15,6 +16,7 @@ angular.module("salesOrder").component("listSalesOrder", {
       $location,
       $state,
       SalesOrderService,
+      UserService,
       Notification
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
@@ -27,6 +29,7 @@ angular.module("salesOrder").component("listSalesOrder", {
       vm.edit = editSalesOrder;
       vm.delete = deleteSalesOrder;
       vm.ngTable = ngTable;
+      vm.getListAssignedTos = getListAssignedTos;
       vm.open = openModal;
       vm.data = "Do you want to delete it?";
 
@@ -64,6 +67,7 @@ angular.module("salesOrder").component("listSalesOrder", {
       function getListSalesOrder() {
         SalesOrderService.listSalesOrder()
           .then((response) => {
+            vm.getListAssignedTos();
             vm.salesOrders = response.data;
             vm.ngTable(vm.salesOrders);
             $location.search({});
@@ -78,6 +82,26 @@ angular.module("salesOrder").component("listSalesOrder", {
       }
 
       vm.getListSalesOrder();
+
+      function getListAssignedTos() {
+        UserService.listUsers()
+          .then((response) => {
+            vm.nullData = { name: "" };
+            vm.assignedTos = response.data;
+            vm.assignedTos.unshift(vm.nullData);
+
+            vm.ngTableAssignedTos = [];
+            vm.assignedTos.forEach((element) => {
+              vm.ngTableAssignedTos.push({
+                id: element.name,
+                title: element.name,
+              });
+            });
+          })
+          .catch((error) => {
+            console.log("Error", error);
+          });
+      }
 
       function ngTable(data) {
         vm.tableParams = new NgTableParams(

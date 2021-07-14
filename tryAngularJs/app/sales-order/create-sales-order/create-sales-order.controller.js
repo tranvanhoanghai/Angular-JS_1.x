@@ -5,7 +5,6 @@ angular.module("contact").component("createSalesOrder", {
     "sales-order/create-sales-order/create-sales-order.template.html",
   controller: [
     "$state",
-    "$location",
     "cssInjector",
     "SalesOrderService",
     "UserService",
@@ -13,7 +12,6 @@ angular.module("contact").component("createSalesOrder", {
     "Notification",
     function (
       $state,
-      $location,
       cssInjector,
       SalesOrderService,
       UserService,

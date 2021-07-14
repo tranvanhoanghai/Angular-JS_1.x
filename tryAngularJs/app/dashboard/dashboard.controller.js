@@ -4,8 +4,7 @@ angular.module("dashboard").component("dashboard", {
   templateUrl: "dashboard/dashboard.template.html",
   controller: [
     "cssInjector",
-    "Notification",
-    function (cssInjector, Notification) {
+    function (cssInjector) {
       cssInjector.add("dashboard/dashboard.template.css");
     },
   ],
