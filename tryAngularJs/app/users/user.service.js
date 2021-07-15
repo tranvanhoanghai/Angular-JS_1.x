@@ -1,11 +1,15 @@
 "use strict";
 
-angular.module("user").service("UserService", function ($http, BaseUrlService) {
+angular.module("user").service("UserService", function ($http, SharedService) {
   var user = "/user";
-  var baseUrl = BaseUrlService.getBaseUrl() + user;
+  var baseUrl = SharedService.getBaseUrl() + user;
 
   this.listUsers = function () {
     return $http.get(baseUrl);
+  };
+
+  this.listExceptUsers = function (id) {
+    return $http.get(baseUrl + "/except/" + id);
   };
 
   this.detailUser = function (id) {

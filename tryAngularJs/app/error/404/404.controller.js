@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module("error").component("forbidden", {
-  templateUrl: "error/403/403.template.html",
+angular.module("error").component("notFound", {
+  templateUrl: "error/404/404.template.html",
   controller: [
     "cssInjector",
     function (cssInjector) {

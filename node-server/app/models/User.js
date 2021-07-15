@@ -8,7 +8,7 @@ const User = new Schema(
     username: { type: String, maxLength: 255, required: true, unique: true },
     password: { type: String, maxLength: 255, required: true },
     email: { type: String, maxLength: 255, required: true, unique: true },
-    phone: { type: Number, maxLength: 11, required: true },
+    phone: { type: String, maxLength: 10, required: true },
     roles: {
       type: [
         {
@@ -34,4 +34,5 @@ User.set("toJSON", {
     delete ret._id;
   },
 });
+
 module.exports = mongoose.model("User", User);

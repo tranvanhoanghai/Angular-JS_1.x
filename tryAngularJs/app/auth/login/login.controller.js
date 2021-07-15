@@ -25,6 +25,8 @@ angular.module("auth").component("login", {
         $state.go("dashboard");
       }
 
+      $rootScope.hideSideBar = $state.current.hideSideBar;
+
       function login() {
         var formData = {
           username: vm.username,
@@ -35,8 +37,9 @@ angular.module("auth").component("login", {
           .then((res) => {
             $localStorage.token = res.data.token;
             $localStorage.data = res.data.user;
-            $state.go("dashboard");
+            $rootScope.hideSideBar = false;
 
+            $state.go("dashboard");
             Notification.success({
               message: res.data.message,
             });

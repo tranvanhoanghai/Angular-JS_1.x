@@ -2,9 +2,9 @@
 
 angular
   .module("contact")
-  .service("ContactService", function ($http, BaseUrlService) {
+  .service("ContactService", function ($http, SharedService) {
     var contact = "/contact";
-    var baseUrl = BaseUrlService.getBaseUrl() + contact;
+    var baseUrl = SharedService.getBaseUrl() + contact;
 
     this.listContact = function () {
       return $http.get(baseUrl);

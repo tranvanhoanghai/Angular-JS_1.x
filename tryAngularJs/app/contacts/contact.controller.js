@@ -7,7 +7,7 @@ angular.module("contact").component("contact", {
     "cssInjector",
     "$window",
     "ContactService",
-    "BaseUrlService",
+    "SharedService",
     "Notification",
     function ($scope, cssInjector, $window, ContactService, Notification) {
       cssInjector.add("contacts/contact.template.css");

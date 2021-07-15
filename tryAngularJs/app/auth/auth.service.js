@@ -4,8 +4,8 @@ angular
   .module("auth")
   .service(
     "AuthService",
-    function (BaseUrlService, $http, $localStorage, $state) {
-      var baseUrl = BaseUrlService.getBaseUrl();
+    function (SharedService, $http, $localStorage, $state) {
+      var baseUrl = SharedService.getBaseUrl();
       var login = "/auth/login";
       var changePassword = "/auth/changePassword";
 

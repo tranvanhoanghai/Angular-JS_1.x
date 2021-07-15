@@ -123,11 +123,11 @@ angular.module("contact").component("contactList", {
       }
 
       function createContact() {
-        $state.go("create");
+        $state.go("createContact");
       }
 
       function editContact(id) {
-        $state.go("edit", { id: id });
+        $state.go("editContact", { id: id });
       }
 
       function deleteContact(id) {

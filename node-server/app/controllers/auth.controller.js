@@ -5,17 +5,28 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 exports.login = function (req, res, next) {
-  User.findOne({ username: req.body.username, password: req.body.password })
+  User.findOne({ username: req.body.username })
     .then((user) => {
       if (user.isActive == "true") {
-        res.json({
-          type: true,
-          user: user,
-          message: "Login Successfully",
-          token: jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: 60 * 60 * 24 * 7, // 1 week
-          }),
-        });
+        const validPassword = bcrypt.compareSync(
+          req.body.password,
+          user.password
+        );
+
+        if (validPassword) {
+          res.json({
+            type: true,
+            user: user,
+            message: "Login Successfully",
+            token: jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, {
+              expiresIn: 60 * 60 * 24, // 1 week
+            }),
+          });
+        } else {
+          res.status(400).send({
+            message: "Incorrect username or password",
+          });
+        }
       } else {
         res.status(500).send({
           message: "You are not active",
@@ -24,30 +35,42 @@ exports.login = function (req, res, next) {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Incorrect username or password",
+        message: "Error",
       });
     });
 };
 
 exports.changePassword = function (req, res, next) {
   const id = req.body.id;
-
-  User.findOne({ _id: id, password: req.body.oldPass }).then((user) => {
+  // , password: req.body.oldPass
+  User.findOne({ _id: id }).then((user) => {
     if (user) {
-      const updatePass = { password: req.body.newPass };
-      User.findByIdAndUpdate(id, updatePass)
-        .then((data) => {
-          if (!data) {
+      const validPassword = bcrypt.compareSync(req.body.oldPass, user.password);
+      if (validPassword) {
+        const salt = bcrypt.genSaltSync(10);
+
+        const updatePass = {
+          password: bcrypt.hashSync(req.body.newPass, salt),
+        };
+
+        User.findByIdAndUpdate(id, updatePass)
+          .then((data) => {
+            if (!data) {
+              res.status(500).send({
+                message: `Cannot change password`,
+              });
+            } else {
+              res.json({
+                message: "Change password successfully.",
+              });
+            }
+          })
+          .catch((err) => {
             res.status(500).send({
-              message: `Cannot change password`,
+              message: err,
             });
-          } else {
-            res.json({
-              message: "Change password successfully.",
-            });
-          }
-        })
-        .catch((err) => res.send(err));
+          });
+      }
     } else {
       res.status(500).send({
         message: "Incorrect old password",

@@ -63,7 +63,7 @@ angular.module("user").component("editUser", {
             vm.name = res.data.name;
             vm.username = res.data.username;
             vm.email = res.data.email;
-            vm.phone = res.data.phone;
+            vm.phone = Number(res.data.phone);
             vm.isActive = res.data.isActive;
           })
           .catch((error) => {

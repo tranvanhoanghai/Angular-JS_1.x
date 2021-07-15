@@ -8,6 +8,8 @@ angular.module("user").component("listUser", {
     "UserService",
     "cssInjector",
     "$state",
+    "$localStorage",
+    "SharedService",
     "Notification",
     function (
       NgTableParams,
@@ -15,6 +17,8 @@ angular.module("user").component("listUser", {
       UserService,
       cssInjector,
       $state,
+      $localStorage,
+      SharedService,
       Notification
     ) {
       cssInjector.add("users/user.template.css");
@@ -61,7 +65,8 @@ angular.module("user").component("listUser", {
       }
 
       function getListUsers() {
-        UserService.listUsers()
+        var id = SharedService.getData().id;
+        UserService.listExceptUsers(id)
           .then((response) => {
             vm.users = response.data;
             vm.tableParams = new NgTableParams(

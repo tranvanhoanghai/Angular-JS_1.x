@@ -7,13 +7,22 @@ angular.module("contact").component("createContact", {
     "cssInjector",
     "ContactService",
     "UserService",
+    "SharedService",
     "Notification",
-    function ($state, cssInjector, ContactService, UserService, Notification) {
+    function (
+      $state,
+      cssInjector,
+      ContactService,
+      UserService,
+      SharedService,
+      Notification
+    ) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
       vm.loading = true;
 
       vm.create = createContact;
+      vm.creator = SharedService.getData().name;
 
       UserService.listUsers()
         .then((response) => {
@@ -34,7 +43,7 @@ angular.module("contact").component("createContact", {
           address: vm.address,
           leadSource: vm.leadSource,
           assignedTo: vm.assignedTo,
-          creator: "Hai",
+          creator: vm.creator,
           description: vm.description,
         };
 

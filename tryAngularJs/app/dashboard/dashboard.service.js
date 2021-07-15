@@ -2,9 +2,9 @@
 
 angular
   .module("dashboard")
-  .service("DashboardService", function ($http, BaseUrlService) {
+  .service("DashboardService", function ($http, SharedService) {
     var dashboard = "/dashboard";
-    var baseUrl = BaseUrlService.getBaseUrl() + dashboard;
+    var baseUrl = SharedService.getBaseUrl() + dashboard;
 
     this.listDashBoard = function () {
       return $http.get(baseUrl);

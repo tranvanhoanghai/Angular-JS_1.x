@@ -9,6 +9,7 @@ angular.module("contact").component("createSalesOrder", {
     "SalesOrderService",
     "UserService",
     "ContactService",
+    "SharedService",
     "Notification",
     function (
       $state,
@@ -16,6 +17,7 @@ angular.module("contact").component("createSalesOrder", {
       SalesOrderService,
       UserService,
       ContactService,
+      SharedService,
       Notification
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
@@ -23,6 +25,7 @@ angular.module("contact").component("createSalesOrder", {
       vm.loading = true;
 
       vm.create = createSalesOrder;
+      vm.creator = SharedService.getData().name;
 
       UserService.listUsers()
         .then((response) => {
@@ -55,7 +58,7 @@ angular.module("contact").component("createSalesOrder", {
           assignedTo: vm.assignedTo,
           status: vm.status,
           total: vm.total,
-          creator: "Admin",
+          creator: vm.creator,
           description: vm.description,
         };
 

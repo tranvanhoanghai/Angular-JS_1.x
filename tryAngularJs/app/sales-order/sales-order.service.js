@@ -2,9 +2,9 @@
 
 angular
   .module("salesOrder")
-  .service("SalesOrderService", function ($http, BaseUrlService) {
+  .service("SalesOrderService", function ($http, SharedService) {
     var salesOrder = "/sales-order";
-    var baseUrl = BaseUrlService.getBaseUrl() + salesOrder;
+    var baseUrl = SharedService.getBaseUrl() + salesOrder;
 
     this.listSalesOrder = function () {
       return $http.get(baseUrl);

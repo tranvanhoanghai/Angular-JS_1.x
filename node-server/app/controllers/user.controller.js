@@ -1,7 +1,15 @@
 const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 exports.getListUsers = function (req, res, next) {
   User.find({})
+    .then((data) => res.json(data))
+    .catch(next);
+};
+
+exports.getListExceptUsers = function (req, res, next) {
+  const id = req.params.id;
+  User.find({ _id: { $ne: id } })
     .then((data) => res.json(data))
     .catch(next);
 };
@@ -22,6 +30,9 @@ exports.createUser = function (req, res, next) {
       return false;
     } else {
       const user = new User(req.body);
+      const salt = bcrypt.genSaltSync(10);
+      user.password = bcrypt.hashSync(user.password, salt);
+
       user
         .save()
         .then((data) => res.send(data))

@@ -7,11 +7,13 @@ angular.module("user").component("createUser", {
     "cssInjector",
     "UserService",
     "Notification",
-    function ($state, cssInjector, UserService, Notification) {
+    "SharedService",
+    function ($state, cssInjector, UserService, Notification, SharedService) {
       cssInjector.add("users/user.template.css");
 
       var vm = this;
       vm.create = createUser;
+      vm.creator = SharedService.getData().name;
 
       function createUser() {
         var user = {
@@ -20,7 +22,7 @@ angular.module("user").component("createUser", {
           password: 123456,
           email: vm.email,
           phone: vm.phone,
-          creator: "Admin",
+          creator: vm.creator,
         };
 
         UserService.createUser(user)

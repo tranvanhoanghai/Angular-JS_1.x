@@ -3,12 +3,12 @@
 angular.module("auth").component("auth", {
   templateUrl: "auth/auth.template.html",
   controller: [
-    "$localStorage",
     "$state",
     "cssInjector",
     "AuthService",
+    "SharedService",
     "Notification",
-    function ($localStorage, $state, cssInjector, AuthService, Notification) {
+    function ($state, cssInjector, AuthService, SharedService, Notification) {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
       vm.check = check;
@@ -16,11 +16,11 @@ angular.module("auth").component("auth", {
 
       function check() {
         setInterval(() => {
-          vm.token = $localStorage.data;
-          if ($localStorage.data) {
-            vm.name = $localStorage.data.name;
+          vm.data = SharedService.getData();
+          if (vm.data) {
+            vm.name = vm.data.name;
           }
-        }, 100);
+        }, 500);
       }
       vm.check();
 

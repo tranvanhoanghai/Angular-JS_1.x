@@ -21,7 +21,7 @@
             id="name"
             placeholder="Name"
             ng-model="$ctrl.name"
-            autocomplete="off"
+            autocomplete="new-password"
             required
           />
         </div>
@@ -34,7 +34,7 @@
             id="username"
             placeholder="Username"
             ng-model="$ctrl.username"
-            autocomplete="off"
+            autocomplete="new-password"
             required
           />
         </div>
@@ -44,9 +44,8 @@
           <input
             type="email"
             class="form-control"
-            id="email"
             ng-model="$ctrl.email"
-            autocomplete="off"
+            autocomplete="new-password"
             placeholder="Email"
             required
           />
@@ -55,12 +54,13 @@
         <div class="form-group col-md-6">
           <label for="name" class="form-label">Phone</label>
           <input
-            type="number"
+            type="tel"
             class="form-control"
             id="phone"
             ng-model="$ctrl.phone"
-            autocomplete="off"
+            autocomplete="new-password"
             placeholder="Phone"
+            pattern="^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$"
             required
           />
         </div>
