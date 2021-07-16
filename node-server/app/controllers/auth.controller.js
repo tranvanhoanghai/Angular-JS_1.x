@@ -61,7 +61,7 @@ exports.login = function (req, res, next) {
             user: user,
             message: "Login Successfully",
             token: jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, {
-              expiresIn: 10, // 1 week
+              expiresIn: 100000000, // 1 week
             }),
 
             refreshToken: refreshToken,

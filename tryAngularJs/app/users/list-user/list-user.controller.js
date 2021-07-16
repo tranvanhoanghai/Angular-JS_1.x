@@ -66,28 +66,30 @@ angular.module("user").component("listUser", {
 
       function getListUsers() {
         var id = SharedService.getData().id;
-        UserService.listExceptUsers(id)
-          .then((response) => {
-            vm.users = response.data;
-            vm.tableParams = new NgTableParams(
-              { count: 2 },
-              {
-                // page size buttons (right set of buttons in demo)
-                counts: [],
-                // determines the pager buttons (left set of buttons in demo)
-                paginationMaxBlocks: 13,
-                paginationMinBlocks: 2,
-                dataset: vm.users,
-              }
-            );
-            vm.loading = false;
-          })
-          .catch((error) => {
-            console.log("Error", error);
-            setTimeout(function () {
-              vm.getListUsers();
-            }, 5000);
-          });
+        if (id) {
+          UserService.listExceptUsers(id)
+            .then((response) => {
+              vm.users = response.data;
+              vm.tableParams = new NgTableParams(
+                { count: 5 },
+                {
+                  // page size buttons (right set of buttons in demo)
+                  counts: [],
+                  // determines the pager buttons (left set of buttons in demo)
+                  paginationMaxBlocks: 13,
+                  paginationMinBlocks: 2,
+                  dataset: vm.users,
+                }
+              );
+              vm.loading = false;
+            })
+            .catch((error) => {
+              console.log("Error", error);
+              setTimeout(function () {
+                vm.getListUsers();
+              }, 5000);
+            });
+        }
       }
 
       vm.getListUsers();

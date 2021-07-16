@@ -37,11 +37,25 @@
         <td data-title="'Phone'" filter="{ phone: 'number'}">{{data.phone}}</td>
 
         <td
-          data-title="'creator'"
+          data-title="'Creator'"
           filter="{ creator: 'text'}"
           sortable="'creator'"
         >
           {{data.creator}}
+        </td>
+        <td
+          data-title="'Active'"
+          sortable="'isActive'"
+          filter="{isActive: 'select'}"
+          filter-data="[{'title': 'Yes', 'id': 'true'},
+                        {'title': 'No', 'id': 'false'},]"
+        >
+          <div ng-if="data.isActive=='true'">
+            <i class="fa fa-check"></i>
+          </div>
+          <div ng-if="data.isActive=='false'">
+            <i class="fa fa-times"></i>
+          </div>
         </td>
 
         <td data-title="'Action'" class="d-flex">
