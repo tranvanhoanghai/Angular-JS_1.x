@@ -15,7 +15,6 @@ angular
     };
 
     this.createContact = function (data) {
-      console.log(data);
       return $http.post(baseUrl, data);
     };
 
@@ -30,5 +29,4 @@ angular
     this.searchContact = function (key) {
       return $http.get(baseUrl, key);
     };
-    
   });

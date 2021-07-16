@@ -1,0 +1,102 @@
+/* app css stylesheet */
+body {
+  font-size: 16px;
+  background-color: #eeeeee;
+}
+
+p {
+  margin: 0;
+}
+.fade.in {
+  opacity: 1;
+}
+
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
+}
+
+/* ---------------------------------------------------
+  LOADING STYLE
+----------------------------------------------------- */
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------
+  flex header data table STYLE
+----------------------------------------------------- */
+
+.sort-indicator {
+  display: flex;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Css list action */
+.list-action .action-item {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.list-action .action-item label {
+  margin-bottom: 0px;
+  width: 100%;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.text-muted {
+  color: red !important;
+}

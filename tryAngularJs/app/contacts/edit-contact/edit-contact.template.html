@@ -23,6 +23,12 @@
             autocomplete="off"
             required
           />
+          <div
+            style="color: red"
+            ng-show="form.name.$dirty && form.name.$invalid"
+          >
+            <p ng-show="form.name.$error.required">The name is required.</p>
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="name" class="form-label">Salutation</label>
@@ -50,9 +56,16 @@
             ng-model="$ctrl.phone"
             autocomplete="off"
             placeholder="Phone"
-            pattern="^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$"
+            pattern=""
             required
           />
+          <div
+            style="color: red"
+            ng-show="form.phone.$dirty && form.phone.$invalid"
+          >
+            <p ng-show="form.phone.$error.required">The phone is required.</p>
+            <p ng-show="form.phone.$error.pattern">The phone is invalid</p>
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="name" class="form-label">Email</label>
@@ -65,6 +78,13 @@
             placeholder="Email"
             required
           />
+          <div
+            style="color: red"
+            ng-show="form.email.$dirty && form.email.$invalid"
+          >
+            <p ng-show="form.email.$error.required">The email is required.</p>
+            <p ng-show="form.email.$error.pattern">The email is invalid</p>
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="name" class="form-label">Organization</label>

@@ -4,6 +4,27 @@ const bcrypt = require("bcrypt");
 
 require("dotenv").config();
 
+let refreshTokens = [];
+
+exports.refreshToken = function (req, res, next) {
+  const refreshToken = req.body.token;
+  if (!refreshToken) res.sendStatus(401);
+  if (!refreshTokens.includes(refreshToken)) res.sendStatus(403);
+
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
+    console.log(err, data);
+    if (err) res.sendStatus(403);
+    const accessToken = jwt.sign(
+      { username: data.username },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: 60,
+      }
+    );
+    res.json({ accessToken });
+  });
+};
+
 exports.login = function (req, res, next) {
   User.findOne({ username: req.body.username })
     .then((user) => {
@@ -14,13 +35,36 @@ exports.login = function (req, res, next) {
         );
 
         if (validPassword) {
+          let refreshToken = jwt.sign(
+            user.toJSON(),
+            process.env.REFRESH_TOKEN_SECRET
+          );
+
+          if (!user.refreshToken) {
+            // Nếu user này chưa có refresh token thì lưu refresh token đó vào database
+            const id = user._id;
+            const updateRefreshToken = {
+              refreshToken: refreshToken,
+            };
+
+            User.findByIdAndUpdate(id, updateRefreshToken).then(
+              console.log(user.refreshToken)
+            );
+          } else {
+            // Nếu user này đã có refresh token thì lấy refresh token đó từ database
+            refreshToken = user.refreshToken;
+            // console.log("ok");
+          }
+
           res.json({
             type: true,
             user: user,
             message: "Login Successfully",
             token: jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, {
-              expiresIn: 60 * 60 * 24, // 1 week
+              expiresIn: 10, // 1 week
             }),
+
+            refreshToken: refreshToken,
           });
         } else {
           res.status(400).send({
@@ -35,7 +79,7 @@ exports.login = function (req, res, next) {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error",
+        message: err,
       });
     });
 };
@@ -67,9 +111,13 @@ exports.changePassword = function (req, res, next) {
           })
           .catch((err) => {
             res.status(500).send({
-              message: err,
+              message: "Incorrect old password",
             });
           });
+      } else {
+        res.status(500).send({
+          message: "Incorrect old password",
+        });
       }
     } else {
       res.status(500).send({
@@ -80,13 +128,16 @@ exports.changePassword = function (req, res, next) {
 };
 
 exports.verifyToken = function (req, res, next) {
-  var bearerToken;
-  var bearerHeader = req.headers["authorization"];
+  const bearerHeader = req.headers["authorization"];
+  // console.log("bearerHeader", bearerHeader);
   if (typeof bearerHeader !== "undefined") {
-    var bearer = bearerHeader.split(" ");
-    bearerToken = bearer[1];
-    req.token = bearerToken;
-    next();
+    const token = bearerHeader.split(" ")[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
+      if (err) {
+        res.sendStatus(401);
+      }
+      next();
+    });
   } else {
     res.sendStatus(403);
   }

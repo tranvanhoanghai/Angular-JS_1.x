@@ -8,6 +8,7 @@ angular.module("user").component("editUser", {
     "$stateParams",
     "cssInjector",
     "UserService",
+    "SharedService",
     "Notification",
     function (
       $state,
@@ -15,6 +16,7 @@ angular.module("user").component("editUser", {
       $stateParams,
       cssInjector,
       UserService,
+      SharedService,
       Notification
     ) {
       cssInjector.add("users/user.template.css");
@@ -25,6 +27,8 @@ angular.module("user").component("editUser", {
       vm.update = updateUser;
       vm.open = openModal;
       vm.data = "Do you want to update it?";
+      vm.regexEmail = SharedService.regexEmail();
+      vm.regexPhone = SharedService.regexPhone();
 
       function openModal(size) {
         var modalInstance = $uibModal.open({

@@ -4,21 +4,21 @@ angular.module("contact").component("editContact", {
   templateUrl: "contacts/edit-contact/edit-contact.template.html",
   controller: [
     "$state",
-    "$location",
+    "$stateParams",
     "$uibModal",
     "cssInjector",
     "ContactService",
-    "$stateParams",
     "UserService",
+    "SharedService",
     "Notification",
     function (
       $state,
-      $location,
+      $stateParams,
       $uibModal,
       cssInjector,
       ContactService,
-      $stateParams,
       UserService,
+      SharedService,
       Notification
     ) {
       cssInjector.add("contacts/contact.template.css");
@@ -29,6 +29,8 @@ angular.module("contact").component("editContact", {
       vm.loading = true;
       vm.open = openModal;
       vm.data = "Do you want to update it?";
+      vm.regexEmail = SharedService.regexEmail();
+      vm.regexPhone = SharedService.regexPhone();
 
       function openModal(size) {
         var modalInstance = $uibModal.open({

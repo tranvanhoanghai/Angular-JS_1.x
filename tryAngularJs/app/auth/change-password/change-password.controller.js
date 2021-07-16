@@ -6,13 +6,22 @@ angular.module("auth").component("changePassword", {
     "$state",
     "$localStorage",
     "cssInjector",
+    "SharedService",
     "AuthService",
     "Notification",
-    function ($state, $localStorage, cssInjector, AuthService, Notification) {
+    function (
+      $state,
+      $localStorage,
+      cssInjector,
+      SharedService,
+      AuthService,
+      Notification
+    ) {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
       vm.change = change;
-      console.log();
+      vm.regexPassword = SharedService.regexPassword();
+      console.log(vm.regexPassword);
 
       function change() {
         if (vm.newPass !== vm.confirmPass) {

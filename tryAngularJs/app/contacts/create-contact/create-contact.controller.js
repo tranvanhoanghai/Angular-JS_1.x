@@ -23,6 +23,8 @@ angular.module("contact").component("createContact", {
 
       vm.create = createContact;
       vm.creator = SharedService.getData().name;
+      vm.regexEmail = SharedService.regexEmail();
+      vm.regexPhone = SharedService.regexPhone();
 
       UserService.listUsers()
         .then((response) => {
@@ -31,6 +33,8 @@ angular.module("contact").component("createContact", {
         .catch((error) => {
           console.log("Error", error);
         });
+
+      console.log();
 
       function createContact() {
         var contact = {

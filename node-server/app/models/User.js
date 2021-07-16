@@ -9,19 +9,20 @@ const User = new Schema(
     password: { type: String, maxLength: 255, required: true },
     email: { type: String, maxLength: 255, required: true, unique: true },
     phone: { type: String, maxLength: 10, required: true },
-    roles: {
-      type: [
-        {
-          type: String,
-          enum: ["user", "admin"],
-        },
-      ],
-      default: ["user"],
-      required: "Please provide at least one role",
-    },
+    // roles: {
+    //   type: [
+    //     {
+    //       type: String,
+    //       enum: ["user", "admin"],
+    //     },
+    //   ],
+    //   default: ["user"],
+    //   required: "Please provide at least one role",
+    // },
     isAdmin: { type: String, required: true, default: "false" },
     isActive: { type: String, required: true, default: "true" },
     creator: { type: String, maxLength: 255, required: true, default: "" },
+    refreshToken: { type: String, maxLength: 255 },
   },
   { timestamps: true }
 );

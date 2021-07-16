@@ -26,6 +26,14 @@
             autocomplete="off"
             required
           />
+          <div
+            style="color: red"
+            ng-show="form.subject.$dirty && form.subject.$invalid"
+          >
+            <p ng-show="form.subject.$error.required">
+              The subject is required.
+            </p>
+          </div>
         </div>
 
         <div class="form-group col-md-6">
@@ -71,6 +79,12 @@
             placeholder="Total"
             required
           />
+          <div
+            style="color: red"
+            ng-show="form.total.$dirty && form.total.$invalid"
+          >
+            <p ng-show="form.total.$error.required">The total is required.</p>
+          </div>
         </div>
 
         <div class="form-group col-md-6">

@@ -14,6 +14,8 @@ angular.module("user").component("createUser", {
       var vm = this;
       vm.create = createUser;
       vm.creator = SharedService.getData().name;
+      vm.regexEmail = SharedService.regexEmail();
+      vm.regexPhone = SharedService.regexPhone();
 
       function createUser() {
         var user = {

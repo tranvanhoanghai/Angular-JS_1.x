@@ -33,15 +33,6 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-p {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999;
-}
-
-
 /* ---------------------------------------------------
   LOADING STYLE
 ----------------------------------------------------- */
@@ -98,3 +89,6 @@ p {
   margin-right: 10px;
 }
 
+.text-muted {
+  color: red !important;
+}

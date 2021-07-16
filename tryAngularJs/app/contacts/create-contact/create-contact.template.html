@@ -10,7 +10,7 @@
       <h1>create Contact</h1>
     </div>
 
-    <form ng-submit="$ctrl.create()" name="form" role="form">
+    <form ng-submit="$ctrl.create()" name="form" role="form" novalidate>
       <div class="row">
         <div class="form-group col-md-6">
           <label for="name" class="form-label">Name</label>
@@ -18,11 +18,18 @@
             type="text"
             class="form-control"
             id="name"
+            name="name"
             placeholder="Name"
             ng-model="$ctrl.name"
             autocomplete="off"
             required
           />
+          <div
+            style="color: red"
+            ng-show="form.name.$dirty && form.name.$invalid"
+          >
+            <p ng-show="form.name.$error.required">The name is required.</p>
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="salutation" class="form-label">Salutation</label>
@@ -42,29 +49,46 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="name" class="form-label">Phone</label>
+          <label for="phone" class="form-label">Phone</label>
           <input
             type="tel"
             class="form-control"
             id="phone"
+            name="phone"
             ng-model="$ctrl.phone"
             autocomplete="off"
             placeholder="Phone"
-            pattern="^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$"
+            ng-pattern="$ctrl.regexPhone"
             required
           />
+          <div
+            style="color: red"
+            ng-show="form.phone.$dirty && form.phone.$invalid"
+          >
+            <p ng-show="form.phone.$error.required">The phone is required.</p>
+            <p ng-show="form.phone.$error.pattern">The phone is invalid</p>
+          </div>
         </div>
         <div class="form-group col-md-6">
-          <label for="name" class="form-label">Email</label>
+          <label for="email" class="form-label">Email</label>
           <input
             type="email"
             class="form-control"
             id="email"
+            name="email"
             ng-model="$ctrl.email"
             autocomplete="off"
             placeholder="Email"
             required
+            ng-pattern="$ctrl.regexEmail"
           />
+          <div
+            style="color: red"
+            ng-show="form.email.$dirty && form.email.$invalid"
+          >
+            <p ng-show="form.email.$error.required">The email is required.</p>
+            <p ng-show="form.email.$error.pattern">The email is invalid</p>
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="name" class="form-label">Organization</label>
@@ -143,7 +167,13 @@
         </div>
 
         <div class="form-group col-md-12 d-flex justify-content-end">
-          <button type="submit" class="btn btn-primary">Add</button>
+          <button
+            ng-disabled="form.$invalid "
+            type="submit"
+            class="btn btn-primary"
+          >
+            Add
+          </button>
         </div>
       </div>
     </form>

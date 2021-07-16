@@ -20,4 +20,5 @@ angular.module("myApp", [
   "ui.bootstrap",
   "ui.router",
   "uiRouterTitle",
+  "ngMessages",
 ]);
