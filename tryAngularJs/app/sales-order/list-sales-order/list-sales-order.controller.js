@@ -10,6 +10,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     "SalesOrderService",
     "UserService",
     "Notification",
+    "$uibModal",
     function (
       NgTableParams,
       cssInjector,
@@ -17,7 +18,8 @@ angular.module("salesOrder").component("listSalesOrder", {
       $state,
       SalesOrderService,
       UserService,
-      Notification
+      Notification,
+      $uibModal
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
       var vm = this;

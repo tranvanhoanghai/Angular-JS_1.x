@@ -30,7 +30,7 @@ angular.module("salesOrder").component("editSalesOrder", {
       function detailSalesOrder() {
         SalesOrderService.detailSalesOrder(currentId)
           .then((res) => {
-            UserService.listUsers()
+            UserService.listUsersActive()
               .then((response) => {
                 vm.assignedTos = response.data;
               })

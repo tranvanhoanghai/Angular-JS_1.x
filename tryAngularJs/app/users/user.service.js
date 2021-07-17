@@ -8,6 +8,10 @@ angular.module("user").service("UserService", function ($http, SharedService) {
     return $http.get(baseUrl);
   };
 
+  this.listUsersActive = function () {
+    return $http.get(baseUrl + "/active");
+  };
+
   this.listExceptUsers = function (id) {
     return $http.get(baseUrl + "/except/" + id);
   };

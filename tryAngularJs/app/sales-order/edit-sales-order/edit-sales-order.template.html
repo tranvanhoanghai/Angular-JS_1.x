@@ -1,7 +1,7 @@
 <div>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#!/sales-order">Sales order</a></li>
+      <li class="breadcrumb-item"><a ui-sref="sales-order">Sales order</a></li>
       <li class="breadcrumb-item active" aria-current="page">
         Edit sales order
       </li>
@@ -116,15 +116,13 @@
         </div>
 
         <div class="form-group col-md-12">
-          <label for="name" class="form-label">Description</label>
-          <input
-            type="text"
+          <label for="description" class="form-label">Description</label>
+          <textarea
             class="form-control"
             id="description"
             ng-model="$ctrl.description"
-            autocomplete="off"
-            placeholder="Description"
-          />
+            rows="3"
+          ></textarea>
         </div>
 
         <div class="form-group col-md-12 d-flex justify-content-end">

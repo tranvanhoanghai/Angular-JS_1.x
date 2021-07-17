@@ -7,6 +7,11 @@ body {
 p {
   margin: 0;
 }
+
+label {
+  font-weight: bold;
+}
+
 .fade.in {
   opacity: 1;
 }

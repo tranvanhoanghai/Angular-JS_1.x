@@ -18,11 +18,17 @@ angular.module("myApp").config([
     $qProvider
   ) {
     $locationProvider.hashPrefix("!");
-    // $locationProvider.html5Mode(true);
     cssInjectorProvider.setSinglePageMode(false);
     $qProvider.errorOnUnhandledRejections(false);
     $urlRouterProvider.otherwise("/404");
+
     $stateProvider
+      .state("root", {
+        url: "/",
+        controller: function ($state) {
+          $state.go("dashboard");
+        },
+      })
       .state("dashboard", {
         url: "/dashboard",
         template: "<dashboard></dashboard>",

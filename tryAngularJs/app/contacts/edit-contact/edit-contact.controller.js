@@ -66,7 +66,7 @@ angular.module("contact").component("editContact", {
       function detailContact() {
         ContactService.detailContact($stateParams.id)
           .then((res) => {
-            UserService.listUsers()
+            UserService.listUsersActive()
               .then((response) => {
                 vm.assignedTos = response.data;
               })

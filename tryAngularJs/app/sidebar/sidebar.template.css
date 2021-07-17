@@ -3,14 +3,14 @@ a:hover,
 a:focus {
     color: inherit;
     text-decoration: none;
-    transition: all 0.3s;
+    /* transition: all 0.3s; */
 }
 
 p:hover,
 p:focus {
     color: inherit;
     text-decoration: none;
-    transition: all 0.3s;
+    /* transition: all 0.3s; */
 }
 
 .navbar {
@@ -53,7 +53,8 @@ p:focus {
     background: #7386d5;
     color: #fff;
     transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
-    transform-origin: bottom left;
+    overflow: hidden;
+    border-right: 10px solid white;
 }
 
 #sidebar.active {
@@ -83,11 +84,12 @@ p:focus {
 
 #sidebar ul li a {
     margin-left: 10px;
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 1.1em;
     display: block;
     /* width: 100%; */
     font-size: 20px;
+    position: relative;
 }
 
 #sidebar ul li a span {
@@ -97,16 +99,36 @@ p:focus {
 #sidebar ul li a.active {
     color: #7386d5;
     background: #fff;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
-#sidebar ul li a:hover {
-    color: #7386d5;
-    background: #fff;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+#sidebar ul li a.active::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    box-shadow: 15px 15px 0 #fff;
 }
+
+#sidebar ul li a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    box-shadow: 15px -15px 0 #fff;
+}
+
+/* #sidebar ul li a:hover {
+    color: #fff;
+    background: #6d7fcc;
+} */
 
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {

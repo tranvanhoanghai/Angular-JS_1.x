@@ -1,7 +1,7 @@
 <div>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#!/contact">Contact</a></li>
+      <li class="breadcrumb-item"><a ui-sref="contact">Contact</a></li>
       <li class="breadcrumb-item active" aria-current="page">Edit Contact</li>
     </ol>
   </nav>
@@ -53,10 +53,11 @@
             type="tel"
             class="form-control"
             id="phone"
+            name="phone"
             ng-model="$ctrl.phone"
             autocomplete="off"
             placeholder="Phone"
-            pattern=""
+            ng-pattern="$ctrl.regexPhone"
             required
           />
           <div
@@ -73,9 +74,11 @@
             type="email"
             class="form-control"
             id="email"
+            name="email"
             ng-model="$ctrl.email"
             autocomplete="off"
             placeholder="Email"
+            ng-pattern="$ctrl.regexEmail"
             required
           />
           <div
@@ -164,15 +167,13 @@
         </div>
 
         <div class="form-group col-md-12">
-          <label for="name" class="form-label">Description</label>
-          <input
-            type="text"
+          <label for="description" class="form-label">Description</label>
+          <textarea
             class="form-control"
             id="description"
             ng-model="$ctrl.description"
-            autocomplete="off"
-            placeholder="Description"
-          />
+            rows="3"
+          ></textarea>
         </div>
 
         <div class="form-group col-md-12 d-flex justify-content-end">

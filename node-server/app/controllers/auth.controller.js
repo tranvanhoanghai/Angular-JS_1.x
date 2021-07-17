@@ -4,26 +4,24 @@ const bcrypt = require("bcrypt");
 
 require("dotenv").config();
 
-let refreshTokens = [];
+// exports.refreshToken = function (req, res, next) {
+//   const refreshToken = req.body.token;
+//   if (!refreshToken) res.sendStatus(401);
+//   if (!refreshTokens.includes(refreshToken)) res.sendStatus(403);
 
-exports.refreshToken = function (req, res, next) {
-  const refreshToken = req.body.token;
-  if (!refreshToken) res.sendStatus(401);
-  if (!refreshTokens.includes(refreshToken)) res.sendStatus(403);
-
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
-    console.log(err, data);
-    if (err) res.sendStatus(403);
-    const accessToken = jwt.sign(
-      { username: data.username },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: 60,
-      }
-    );
-    res.json({ accessToken });
-  });
-};
+//   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
+//     console.log(err, data);
+//     if (err) res.sendStatus(403);
+//     const accessToken = jwt.sign(
+//       { username: data.username },
+//       process.env.ACCESS_TOKEN_SECRET,
+//       {
+//         expiresIn: 60,
+//       }
+//     );
+//     res.json({ accessToken });
+//   });
+// };
 
 exports.login = function (req, res, next) {
   User.findOne({ username: req.body.username })

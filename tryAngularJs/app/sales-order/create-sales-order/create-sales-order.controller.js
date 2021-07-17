@@ -27,7 +27,7 @@ angular.module("contact").component("createSalesOrder", {
       vm.create = createSalesOrder;
       vm.creator = SharedService.getData().name;
 
-      UserService.listUsers()
+      UserService.listUsersActive()
         .then((response) => {
           vm.assignedTos = response.data;
         })

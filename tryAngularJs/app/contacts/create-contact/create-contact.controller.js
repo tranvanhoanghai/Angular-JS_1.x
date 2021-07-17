@@ -26,7 +26,7 @@ angular.module("contact").component("createContact", {
       vm.regexEmail = SharedService.regexEmail();
       vm.regexPhone = SharedService.regexPhone();
 
-      UserService.listUsers()
+      UserService.listUsersActive()
         .then((response) => {
           vm.assignedTos = response.data;
         })

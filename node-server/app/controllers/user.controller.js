@@ -7,6 +7,12 @@ exports.getListUsers = function (req, res, next) {
     .catch(next);
 };
 
+exports.getListUsersActive = function (req, res, next) {
+  User.find({ isActive: { $ne: "false" } })
+    .then((data) => res.json(data))
+    .catch(next);
+};
+
 exports.getListExceptUsers = function (req, res, next) {
   const id = req.params.id;
   User.find({ _id: { $ne: id } })

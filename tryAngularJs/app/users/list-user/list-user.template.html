@@ -44,6 +44,7 @@
           {{data.creator}}
         </td>
         <td
+          class="text-center"
           data-title="'Active'"
           sortable="'isActive'"
           filter="{isActive: 'select'}"
@@ -58,7 +59,7 @@
           </div>
         </td>
 
-        <td data-title="'Action'" class="d-flex">
+        <td data-title="'Action'" class="d-flex justify-content-center">
           <button
             type="button"
             ng-click="$ctrl.edit(data.id)"
