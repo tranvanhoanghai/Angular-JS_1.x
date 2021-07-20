@@ -108,6 +108,7 @@
         <td data-title="'Description'">{{data.description}}</td>
 
         <td data-title="'Action'" class="d-flex">
+          
           <button
             type="button"
             ng-click="$ctrl.edit(data.id)"
@@ -115,6 +116,7 @@
           >
             <i class="fas fa-edit"></i>
           </button>
+
           <button
             ng-click="$ctrl.open(data.id)"
             type="button"
@@ -122,6 +124,7 @@
           >
             <i class="fas fa-trash"></i>
           </button>
+
         </td>
       </tr>
       <tr>

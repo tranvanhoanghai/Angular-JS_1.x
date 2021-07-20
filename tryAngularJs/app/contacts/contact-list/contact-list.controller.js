@@ -6,6 +6,7 @@ angular.module("contact").component("contactList", {
     "UserService",
     "NgTableParams",
     "$state",
+    "$stateParams",
     "$location",
     "$uibModal",
     "ContactService",
@@ -14,6 +15,7 @@ angular.module("contact").component("contactList", {
       UserService,
       NgTableParams,
       $state,
+      $stateParams,
       $location,
       $uibModal,
       ContactService,
@@ -69,7 +71,7 @@ angular.module("contact").component("contactList", {
             vm.getListAssignedTos();
             vm.contacts = response.data;
             vm.ngTable(vm.contacts);
-            $location.search({});
+            // $location.search({});
 
             vm.loading = false;
           })
@@ -123,11 +125,11 @@ angular.module("contact").component("contactList", {
       }
 
       function createContact() {
-        $state.go("createContact");
+        $state.go("main.createContact");
       }
 
       function editContact(id) {
-        $state.go("editContact", { id: id });
+        $state.go("main.editContact", { id: id });
       }
 
       function deleteContact(id) {

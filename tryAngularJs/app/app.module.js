@@ -9,7 +9,6 @@ angular.module("myApp", [
   "auth",
   "share",
   "error",
-  "sidebar",
 
   "angular.css.injector",
   "ngRoute",
@@ -20,5 +19,4 @@ angular.module("myApp", [
   "ui.bootstrap",
   "ui.router",
   "uiRouterTitle",
-  "ngMessages",
 ]);

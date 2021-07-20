@@ -6,6 +6,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     "NgTableParams",
     "cssInjector",
     "$location",
+    "$stateParams",
     "$state",
     "SalesOrderService",
     "UserService",
@@ -15,6 +16,7 @@ angular.module("salesOrder").component("listSalesOrder", {
       NgTableParams,
       cssInjector,
       $location,
+      $stateParams,
       $state,
       SalesOrderService,
       UserService,
@@ -23,7 +25,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
       var vm = this;
-      var paramFilterStatus = $location.search().filter;
+      var paramFilterStatus = $location.search().status;
       vm.loading = true;
 
       vm.getListSalesOrder = getListSalesOrder;
@@ -72,7 +74,7 @@ angular.module("salesOrder").component("listSalesOrder", {
             vm.getListAssignedTos();
             vm.salesOrders = response.data;
             vm.ngTable(vm.salesOrders);
-            $location.search({});
+            // $location.search({});
             vm.loading = false;
           })
           .catch((error) => {
@@ -122,11 +124,11 @@ angular.module("salesOrder").component("listSalesOrder", {
       }
 
       function createSalesOrder() {
-        $state.go("sales-orderCreate");
+        $state.go("main.sales-orderCreate");
       }
 
       function editSalesOrder(id) {
-        $state.go("sales-orderEdit", { id: id });
+        $state.go("main.sales-orderEdit", { id: id });
       }
 
       function deleteSalesOrder(id) {

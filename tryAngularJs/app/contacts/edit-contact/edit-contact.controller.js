@@ -118,7 +118,7 @@ angular.module("contact").component("editContact", {
             Notification.success({
               message: "Data update Successfully",
             });
-            $state.go("contact");
+            $state.go("main.contact");
           })
           .catch((error) => {
             console.log(error);

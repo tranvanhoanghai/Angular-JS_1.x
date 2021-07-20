@@ -11,7 +11,7 @@ angular.module("user").component("user", {
       cssInjector.add("users/user.template.css");
       if ($localStorage.data) {
         if ($localStorage.data.isAdmin == "false") {
-          $state.go("403");
+          $state.go("main.403");
         }
       }
     },

@@ -29,6 +29,7 @@ angular.module("user").component("editUser", {
       vm.data = "Do you want to update it?";
       vm.regexEmail = SharedService.regexEmail();
       vm.regexPhone = SharedService.regexPhone();
+      vm.detailUser();
 
       function openModal(size) {
         var modalInstance = $uibModal.open({
@@ -78,8 +79,6 @@ angular.module("user").component("editUser", {
           });
       }
 
-      vm.detailUser();
-
       function updateUser() {
         var user = {
           name: vm.name,
@@ -94,7 +93,7 @@ angular.module("user").component("editUser", {
             Notification.success({
               message: res.data.message,
             });
-            $state.go("user");
+            $state.go("main.user");
           })
           .catch((error) => {
             console.log(error);

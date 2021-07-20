@@ -69,7 +69,7 @@ angular.module("contact").component("createSalesOrder", {
               replaceMessage: true,
             });
             // $location.url("/sales-order/");
-            $state.go("sales-order");
+            $state.go("main.sales-order");
           })
           .catch((error) => {
             console.log("Error", error);

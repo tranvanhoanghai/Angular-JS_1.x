@@ -22,5 +22,6 @@ angular
         delete $localStorage.token;
         $state.go("login");
       };
+      
     }
   );

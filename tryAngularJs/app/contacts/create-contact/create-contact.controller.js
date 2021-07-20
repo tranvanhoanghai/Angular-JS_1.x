@@ -34,7 +34,6 @@ angular.module("contact").component("createContact", {
           console.log("Error", error);
         });
 
-      console.log();
 
       function createContact() {
         var contact = {
@@ -53,11 +52,11 @@ angular.module("contact").component("createContact", {
 
         ContactService.createContact(contact)
           .then((response) => {
+            $state.go("main.contact");
             Notification.success({
               message: "Add data Successfully",
               replaceMessage: true,
             });
-            $state.go("contact");
           })
           .catch((error) => {
             console.log("Error", error);

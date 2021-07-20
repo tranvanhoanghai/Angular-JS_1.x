@@ -95,11 +95,11 @@ angular.module("user").component("listUser", {
       vm.getListUsers();
 
       function createUser() {
-        $state.go("createUser");
+        $state.go("main.createUser");
       }
 
       function editUser(id) {
-        $state.go("editUser", { id: id });
+        $state.go("main.editUser", { id: id });
       }
 
       function deleteUser(id) {

@@ -3,6 +3,7 @@
 angular
   .module("contact")
   .service("ContactService", function ($http, SharedService) {
+    
     var contact = "/contact";
     var baseUrl = SharedService.getBaseUrl() + contact;
 
@@ -26,7 +27,5 @@ angular
       return $http.delete(`${baseUrl}/${id}`);
     };
 
-    this.searchContact = function (key) {
-      return $http.get(baseUrl, key);
-    };
+
   });

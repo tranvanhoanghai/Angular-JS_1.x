@@ -23,97 +23,121 @@ angular.module("myApp").config([
     $urlRouterProvider.otherwise("/404");
 
     $stateProvider
-      .state("root", {
+      .state("main", {
         url: "/",
-        controller: function ($state) {
-          $state.go("dashboard");
+        templateUrl: "shared/main.template.html",
+        controller: function (SharedService) {
+          this.isAdmin = SharedService.getData().isAdmin;
         },
+        controllerAs: "vm",
+        redirectTo: "main.dashboard",
       })
-      .state("dashboard", {
-        url: "/dashboard",
+      .state("main.dashboard", {
+        url: "dashboard",
         template: "<dashboard></dashboard>",
         data: {
           pageTitle: "Dashboard",
         },
       })
-      .state("contact", {
-        url: "/contact",
+      .state("main.contact", {
+        url: "contact",
         template: "<contact></contact>",
         data: {
           pageTitle: "Contact",
         },
       })
-      .state("createContact", {
-        url: "/contact/create",
+      .state("main.createContact", {
+        url: "contact/create",
         template: "<create-contact></create-contact>",
         data: {
           pageTitle: "Create contact",
         },
       })
-      .state("editContact", {
-        url: "/contact/edit/:id",
+      .state("main.editContact", {
+        url: "contact/edit/:id",
         template: "<edit-contact></edit-contact>",
         data: {
           pageTitle: "Edit contact",
         },
       })
-      .state("sales-order", {
-        url: "/sales-order",
+      .state("main.filterContactLeadSource", {
+        url: "contact?leadSource",
+        template: "<contact></contact>",
+        data: {
+          pageTitle: "Contact",
+        },
+      })
+      .state("main.filterContactAssignedTo", {
+        url: "contact?assignedTo",
+        template: "<contact></contact>",
+        data: {
+          pageTitle: "Contact",
+        },
+      })
+      .state("main.sales-order", {
+        url: "sales-order",
         template: "<sales-order></sales-order>",
         data: {
           pageTitle: "Sales order",
         },
       })
-      .state("sales-orderCreate", {
-        url: "/sales-order/create",
+      .state("main.sales-orderCreate", {
+        url: "sales-order/create",
         template: "<create-sales-order></create-sales-order>",
         data: {
           pageTitle: "Create sales order",
         },
       })
-      .state("sales-orderEdit", {
-        url: "/sales-order/edit/:id",
+      .state("main.sales-orderEdit", {
+        url: "sales-order/edit/:id",
         template: "<edit-sales-order></edit-sales-order>",
         data: {
           pageTitle: "Edit sales order",
         },
       })
-      .state("user", {
-        url: "/user",
+      .state("main.filterStatus", {
+        url: "sales-order?status",
+        template: "<sales-order></sales-order>",
+        data: {
+          pageTitle: "Sales order",
+        },
+      })
+      .state("main.user", {
+        url: "user",
         template: "<user></user>",
         data: {
           pageTitle: "User management",
         },
       })
-      .state("createUser", {
-        url: "/user/create",
+      .state("main.createUser", {
+        url: "user/create",
         template: "<create-user></create-user>",
         data: {
           pageTitle: "Create user",
         },
       })
-      .state("editUser", {
-        url: "/user/edit/:id",
+      .state("main.editUser", {
+        url: "user/edit/:id",
         template: "<edit-user></edit-user>",
         data: {
           pageTitle: "Edit user",
         },
       })
-      .state("403", {
-        url: "/403",
+      .state("main.403", {
+        url: "403",
         template: "<forbidden></forbidden>",
         data: {
           pageTitle: "Error",
         },
       })
-      .state("404", {
+      .state("main.404", {
         url: "/404",
         template: "<not-found></not-found>",
         data: {
           pageTitle: "Error",
         },
       })
-      .state("changePassword", {
+      .state("main.changePassword", {
         url: "/changePassword",
         template: "<change-password></change-password>",
         data: {
@@ -122,27 +146,17 @@ angular.module("myApp").config([
       })
       .state("login", {
         url: "/login",
-        views: {
-          layout: {
-            template: "<login></login>",
-          },
-        },
+        template: "<login></login>",
         data: {
           pageTitle: "Login",
         },
-        hideSideBar: true,
       })
       .state("loginError", {
         url: "/login/:error",
-        views: {
-          layout: {
-            template: "<login></login>",
-          },
-        },
+        template: "<login></login>",
         data: {
           pageTitle: "Login",
         },
-        hideSideBar: true,
       });
 
     NotificationProvider.setOptions({

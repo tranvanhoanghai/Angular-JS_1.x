@@ -5,10 +5,11 @@ angular.module("dashboard").component("dashboardSalesOrder", {
     "dashboard/dashboard-sales-order/dashboard-sales-order.template.html",
   controller: [
     "cssInjector",
+    "$state",
     "$location",
     "DashboardService",
     "Notification",
-    function (cssInjector, $location, DashboardService, Notification) {
+    function (cssInjector, $state, $location, DashboardService, Notification) {
       cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
       vm.loading = true;
@@ -19,8 +20,10 @@ angular.module("dashboard").component("dashboardSalesOrder", {
       function redirect(filter) {
         $location.url("sales-order?filter=" + filter);
       }
+      vm.getCountSalesOrder();
 
       function getCountSalesOrder() {
+        vm.labels = ["Created", "Approved", "Delivered", "Cancelled"];
         DashboardService.listDashBoard()
           .then((response) => {
             response.data[1].forEach((element) => {
@@ -51,9 +54,29 @@ angular.module("dashboard").component("dashboardSalesOrder", {
               }, 5000);
             }
           });
-      }
 
-      vm.getCountSalesOrder();
+        vm.onClick = function (points, evt) {
+          var dataFilter = points[0]._view.label;
+          if (dataFilter) {
+            $state.go("main.filterStatus", {
+              status: dataFilter,
+            });
+          }
+        };
+
+        vm.options = {
+          legend: {
+            display: true,
+            position: "bottom",
+          },
+          tooltipEvents: [],
+          showTooltips: true,
+          tooltipCaretSize: 0,
+          onAnimationComplete: function () {
+            this.showTooltip(this.segments, true);
+          },
+        };
+      }
     },
   ],
 });

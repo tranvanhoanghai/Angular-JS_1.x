@@ -6,7 +6,19 @@
   <div class="loader" ng-show="$ctrl.loading"></div>
 
   <div class="row" ng-hide="$ctrl.loading">
-    <div class="col-md-3 col-sm-6">
+    <div class="col-lg-12">
+      <canvas
+        id="pie"
+        class="chart chart-pie"
+        chart-data="[$ctrl.countCreated,$ctrl.countApproved,$ctrl.countDelivered, $ctrl.countCancelled]"
+        chart-labels="$ctrl.labels"
+        chart-options="$ctrl.options"
+        chart-click="$ctrl.onClick"
+      >
+      </canvas>
+    </div>
+
+    <!-- <div class="col-md-3 col-sm-6">
       <div class="sales-order-item">
         <label class="sales-order-icon bg-info">
           <i class="fas fa-plus-square"></i>
@@ -64,6 +76,6 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

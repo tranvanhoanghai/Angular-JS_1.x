@@ -19,7 +19,7 @@ const User = new Schema(
     //   default: ["user"],
     //   required: "Please provide at least one role",
     // },
-    isAdmin: { type: String, required: true, default: "false" },
+    isAdmin: { type: Boolean, required: true, default: "false" },
     isActive: { type: String, required: true, default: "true" },
     creator: { type: String, maxLength: 255, required: true, default: "" },
     refreshToken: { type: String, maxLength: 255 },

@@ -34,7 +34,7 @@ angular.module("user").component("createUser", {
               replaceMessage: true,
             });
 
-            $state.go("user");
+            $state.go("main.user");
           })
           .catch((error) => {
             console.log("Error", error.data.message);

@@ -26,6 +26,7 @@ angular.module("salesOrder").component("editSalesOrder", {
       vm.detailSalesOrder = detailSalesOrder;
       vm.update = updateSalesOrder;
       vm.loading = true;
+      vm.detailSalesOrder();
 
       function detailSalesOrder() {
         SalesOrderService.detailSalesOrder(currentId)
@@ -86,7 +87,7 @@ angular.module("salesOrder").component("editSalesOrder", {
             Notification.success({
               message: "Data update Successfully",
             });
-            $state.go("sales-order");
+            $state.go("main.sales-order");
           })
           .catch((error) => {
             console.log(error);
@@ -95,7 +96,6 @@ angular.module("salesOrder").component("editSalesOrder", {
             });
           });
       }
-      vm.detailSalesOrder();
     },
   ],
 });

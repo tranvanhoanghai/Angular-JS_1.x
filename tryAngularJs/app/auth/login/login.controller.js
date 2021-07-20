@@ -9,6 +9,7 @@ angular.module("auth").component("login", {
     "$rootScope",
     "cssInjector",
     "AuthService",
+    "SharedService",
     "Notification",
     function (
       $state,
@@ -17,24 +18,20 @@ angular.module("auth").component("login", {
       $rootScope,
       cssInjector,
       AuthService,
+      SharedService,
       Notification
     ) {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
       vm.login = login;
 
-      console.log($stateParams);
       if ($stateParams.error == 401) {
         AuthService.logout();
       } else {
         if ($localStorage.data) {
-          $state.go("dashboard");
-        } else {
-          $rootScope.hideSideBar = $state.current.hideSideBar;
+          $state.go("main.dashboard");
         }
       }
-
-      //
 
       function login() {
         var formData = {
@@ -47,9 +44,8 @@ angular.module("auth").component("login", {
             $localStorage.token = res.data.token;
             $localStorage.data = res.data.user;
             // $localStorage.refreshToken = res.data.refreshToken;
-            $rootScope.hideSideBar = false;
 
-            $state.go("dashboard");
+            $state.go("main.dashboard");
             Notification.success({
               message: res.data.message,
             });
