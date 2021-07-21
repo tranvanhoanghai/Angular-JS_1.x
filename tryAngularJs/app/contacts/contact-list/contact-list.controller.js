@@ -4,18 +4,20 @@ angular.module("contact").component("contactList", {
   templateUrl: "contacts/contact-list/contact-list.template.html",
   controller: [
     "UserService",
+    "$rootScope",
     "NgTableParams",
     "$state",
-    "$stateParams",
+    "$scope",
     "$location",
     "$uibModal",
     "ContactService",
     "Notification",
     function (
       UserService,
+      $rootScope,
       NgTableParams,
       $state,
-      $stateParams,
+      $scope,
       $location,
       $uibModal,
       ContactService,
@@ -31,6 +33,7 @@ angular.module("contact").component("contactList", {
       vm.edit = editContact;
       vm.delete = deleteContact;
       vm.open = openModal;
+      vm.deleteCheckBox = deleteCheckBox;
 
       vm.data = "Do you want to delete it?";
 
@@ -64,6 +67,20 @@ angular.module("contact").component("contactList", {
           // alert("now I'll close the modal");
         });
       }
+
+      vm.change = function (a) {
+        // console.log(a);
+        var values = Object.keys(a).filter((key) => a[key]);
+        console.log(values);
+      };
+
+      vm.all = function () {
+        console.log("all");
+      };
+
+      // $scope.$watch("checkboxes.checked", function (value) {
+      //   console.log("âsdád");
+      // });
 
       function getListContacts() {
         ContactService.listContact()
@@ -112,6 +129,8 @@ angular.module("contact").component("contactList", {
           { page: 1, count: 5 },
           {
             // page size buttons (right set of buttons in demo)
+            total: data.length,
+
             counts: [],
             // determines the pager buttons (left set of buttons in demo)
             paginationMaxBlocks: 13,
@@ -147,6 +166,8 @@ angular.module("contact").component("contactList", {
             });
           });
       }
+
+      function deleteCheckBox() {}
     },
   ],
 });

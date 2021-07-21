@@ -25,7 +25,7 @@ angular.module("contact").component("editContact", {
       var vm = this;
       var currentId = $stateParams.id;
       vm.detailContact = detailContact;
-      vm.update = updateContact;
+      vm.submit = updateContact;
       vm.loading = true;
       vm.open = openModal;
       vm.data = "Do you want to update it?";
@@ -109,7 +109,6 @@ angular.module("contact").component("editContact", {
           address: vm.address,
           leadSource: vm.leadSource,
           assignedTo: vm.assignedTo,
-          creator: vm.creator,
           description: vm.description,
         };
 

@@ -45,6 +45,7 @@ angular.module("myApp").config([
         data: {
           pageTitle: "Contact",
         },
+        reloadOnSearch: false,
       })
       .state("main.createContact", {
         url: "contact/create",
@@ -142,6 +143,13 @@ angular.module("myApp").config([
         template: "<change-password></change-password>",
         data: {
           pageTitle: "Change password",
+        },
+      })
+      .state("main.test", {
+        url: "test",
+        template: "<test></test>",
+        data: {
+          pageTitle: "Test",
         },
       })
       .state("login", {

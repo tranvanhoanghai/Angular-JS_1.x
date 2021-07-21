@@ -9,6 +9,7 @@ angular.module("myApp", [
   "auth",
   "share",
   "error",
+  "test",
 
   "angular.css.injector",
   "ngRoute",

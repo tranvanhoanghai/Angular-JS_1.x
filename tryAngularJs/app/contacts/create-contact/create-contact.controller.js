@@ -21,7 +21,8 @@ angular.module("contact").component("createContact", {
       var vm = this;
       vm.loading = true;
 
-      vm.create = createContact;
+      // vm.submit = createContact;
+      vm.open = createContact;
       vm.creator = SharedService.getData().name;
       vm.regexEmail = SharedService.regexEmail();
       vm.regexPhone = SharedService.regexPhone();
@@ -33,7 +34,6 @@ angular.module("contact").component("createContact", {
         .catch((error) => {
           console.log("Error", error);
         });
-
 
       function createContact() {
         var contact = {

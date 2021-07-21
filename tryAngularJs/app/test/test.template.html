@@ -1,0 +1,19 @@
+<!-- <div ng-controller="movieController">
+    {{movie}}
+    <input type="text" ng-model="movie" />
+
+    <movie-directive></movie-directive>
+</div> -->
+
+<div ng-controller="movieController">
+  <div ng-controller="movieController">
+    <h2>Movie Name : {{movie}}</h2>
+    <h3>Rating : {{rating}}</h3>
+    <input type="text" ng-model="movie" />
+
+    <hr />
+
+    <movie-directive movie="movie" rating="{{rating}}" display="display(movie)">
+    </movie-directive>
+  </div>
+</div>

@@ -25,7 +25,7 @@ angular.module("auth").component("auth", {
       vm.check();
 
       function changePassword() {
-        $state.go("changePassword");
+        $state.go("main.changePassword");
       }
     },
   ],
