@@ -14,6 +14,15 @@ angular.module("test").component("test", {
       var vm = this;
       vm.loading = true;
       // $scope.movie = "Ice Age";
+
+      // vm.movie = "Ice Age";
+      // vm.rating = 5;
+      vm.display = function (movie) {
+        alert("Movie : " + movie);
+      };
+      vm.add = function () {
+        console.log(vm.movie, vm.rating);
+      };
     },
   ],
 });

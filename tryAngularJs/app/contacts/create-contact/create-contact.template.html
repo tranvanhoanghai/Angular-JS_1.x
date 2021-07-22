@@ -10,6 +10,20 @@
       <h1>create Contact</h1>
     </div>
 
-    <contact-form />
+    <contact-form
+      open="$ctrl.open()"
+      contact="$ctrl.contact"
+      title-btn="{{$ctrl.titleBtn}}"
+    ></contact-form>
   </div>
 </div>
+
+<!-- salutation="$ctrl.salutation"
+phone="$ctrl.phone"
+email="$ctrl.email"
+organization="$ctrl.organization"
+date-of-birth="$ctrl.dateOfBirth"
+address="$ctrl.address"
+lead-source="$ctrl.leadSource"
+assigned-to="$ctrl.assignedTo"
+description="$ctrl.description" -->

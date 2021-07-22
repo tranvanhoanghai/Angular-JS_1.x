@@ -1,4 +1,4 @@
-<form ng-submit="$ctrl.submit()" name="form" role="form">
+<form ng-submit="submit()" name="form" role="form">
   <div class="row">
     <div class="form-group col-md-6">
       <label for="name" class="form-label">
@@ -9,8 +9,9 @@
         type="text"
         class="form-control"
         id="name"
+        name="name"
         placeholder="Name"
-        ng-model="$ctrl.name"
+        ng-model="contact.name"
         autocomplete="off"
         required
       />
@@ -24,7 +25,7 @@
         class="form-control"
         id="salutation"
         name="salutation"
-        ng-model="$ctrl.salutation"
+        ng-model="contact.salutation"
       >
         <option value="None" ng-selected="None">None</option>
 
@@ -45,10 +46,10 @@
         class="form-control"
         id="phone"
         name="phone"
-        ng-model="$ctrl.phone"
+        ng-model="contact.phone"
         autocomplete="off"
         placeholder="Phone"
-        ng-pattern="$ctrl.regexPhone"
+        ng-pattern="regexPhone"
         required
       />
       <div
@@ -70,10 +71,10 @@
         class="form-control"
         id="email"
         name="email"
-        ng-model="$ctrl.email"
+        ng-model="contact.email"
         autocomplete="off"
         placeholder="Email"
-        ng-pattern="$ctrl.regexEmail"
+        ng-pattern="regexEmail"
         required
       />
       <div
@@ -91,7 +92,7 @@
         type="text"
         class="form-control"
         id="organization"
-        ng-model="$ctrl.organization"
+        ng-model="contact.organization"
         autocomplete="off"
         placeholder="Organization"
       />
@@ -103,7 +104,7 @@
         type="date"
         class="form-control"
         id="dob"
-        ng-model="$ctrl.dateOfBirth"
+        ng-model="contact.dateOfBirth"
         autocomplete="off"
       />
     </div>
@@ -114,7 +115,7 @@
         type="text"
         class="form-control"
         id="address"
-        ng-model="$ctrl.address"
+        ng-model="contact.address"
         autocomplete="new-password"
         placeholder="Address"
       />
@@ -125,11 +126,12 @@
         >Lead source
         <span class="text-danger">*</span>
       </label>
+
       <select
         class="form-control"
         id="leadSource"
         name="leadSource"
-        ng-model="$ctrl.leadSource"
+        ng-model="contact.leadSource"
         required
       >
         <option value="Existing Customer">Existing Customer</option>
@@ -150,32 +152,33 @@
         class="form-control"
         id="assignedTo"
         name="assignedTo"
-        ng-model="$ctrl.assignedTo"
+        ng-model="contact.assignedTo"
+        required
       >
-        <option ng-repeat="data in $ctrl.assignedTos" value="{{data.name}}">
+        <option ng-repeat="data in assignedTos" value="{{data.name}}">
           {{data.name}}
         </option>
       </select>
     </div>
 
     <div class="form-group col-md-6">
-      <label for="description" class="form-label">Description </label>
+      <label for="description" class="form-label">Description</label>
       <textarea
         class="form-control"
         id="description"
-        ng-model="$ctrl.description"
+        ng-model="data.description"
         rows="1"
       ></textarea>
     </div>
 
     <div class="form-group col-md-12 d-flex justify-content-end">
       <button
-        ng-click="$ctrl.open()"
+        ng-click="open()"
         type="button"
         class="btn btn-primary"
         ng-disabled="form.$invalid"
       >
-        Update
+        {{titleBtn}}
       </button>
     </div>
   </div>

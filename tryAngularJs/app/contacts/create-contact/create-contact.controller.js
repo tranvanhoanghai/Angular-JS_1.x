@@ -23,34 +23,17 @@ angular.module("contact").component("createContact", {
 
       // vm.submit = createContact;
       vm.open = createContact;
+      vm.test = test;
       vm.creator = SharedService.getData().name;
       vm.regexEmail = SharedService.regexEmail();
       vm.regexPhone = SharedService.regexPhone();
-
-      UserService.listUsersActive()
-        .then((response) => {
-          vm.assignedTos = response.data;
-        })
-        .catch((error) => {
-          console.log("Error", error);
-        });
+      vm.titleBtn = "Create";
+      vm.contact = {
+        creator: vm.creator,
+      };
 
       function createContact() {
-        var contact = {
-          name: vm.name,
-          salutation: vm.salutation,
-          phone: vm.phone,
-          email: vm.email,
-          organization: vm.organization,
-          dateOfBirth: vm.dateOfBirth,
-          address: vm.address,
-          leadSource: vm.leadSource,
-          assignedTo: vm.assignedTo,
-          creator: vm.creator,
-          description: vm.description,
-        };
-
-        ContactService.createContact(contact)
+        ContactService.createContact(vm.contact)
           .then((response) => {
             $state.go("main.contact");
             Notification.success({
