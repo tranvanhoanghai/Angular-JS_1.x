@@ -8,7 +8,7 @@ angular
       return {
         restrict: "E",
         scope: {
-          open: "&",
+          submit: "&",
           titleBtn: "@",
           contact: "=",
         },
@@ -16,18 +16,22 @@ angular
         link: function (scope, element, attrs) {
           scope.regexEmail = SharedService.regexEmail();
           scope.regexPhone = SharedService.regexPhone();
+          scope.getListUser = getListUser;
+          scope.getListUser();
 
-          UserService.listUsersActive()
-            .then((response) => {
-              scope.assignedTos = response.data;
-            })
-            .catch((error) => {
-              console.log("Error", error);
-              Notification.error({
-                message: "Can't get data assignedTos",
-                replaceMessage: true,
+          function getListUser() {
+            UserService.listUsersActive()
+              .then((response) => {
+                scope.assignedTos = response.data;
+              })
+              .catch((error) => {
+                console.log("Error", error);
+                Notification.error({
+                  message: "Can't get data assignedTos",
+                  replaceMessage: true,
+                });
               });
-            });
+          }
         },
       };
     }

@@ -8,8 +8,6 @@ angular.module("contact").component("editContact", {
     "$uibModal",
     "cssInjector",
     "ContactService",
-    "UserService",
-    "SharedService",
     "Notification",
     function (
       $state,
@@ -17,8 +15,6 @@ angular.module("contact").component("editContact", {
       $uibModal,
       cssInjector,
       ContactService,
-      UserService,
-      SharedService,
       Notification
     ) {
       cssInjector.add("contacts/contact.template.css");
@@ -27,9 +23,9 @@ angular.module("contact").component("editContact", {
       vm.detailContact = detailContact;
       vm.submit = updateContact;
       vm.loading = true;
-      vm.open = openModal;
+      vm.submit = openModal;
       vm.dataModal = "Do you want to update it?";
-   
+
       vm.titleBtn = "Update";
       vm.detailContact();
 
@@ -71,7 +67,7 @@ angular.module("contact").component("editContact", {
           .then((res) => {
             vm.contact.name = res.data.name;
             vm.contact.salutation = res.data.salutation;
-            vm.contact.phone = Number(res.data.phone);
+            vm.contact.phone = res.data.phone;
             vm.contact.email = res.data.email;
             vm.contact.organization = res.data.organization;
             vm.contact.dateOfBirth = new Date(res.data.dateOfBirth);

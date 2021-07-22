@@ -21,12 +21,8 @@ angular.module("contact").component("createContact", {
       var vm = this;
       vm.loading = true;
 
-      // vm.submit = createContact;
-      vm.open = createContact;
-      vm.test = test;
+      vm.submit = createContact;
       vm.creator = SharedService.getData().name;
-      vm.regexEmail = SharedService.regexEmail();
-      vm.regexPhone = SharedService.regexPhone();
       vm.titleBtn = "Create";
       vm.contact = {
         creator: vm.creator,
