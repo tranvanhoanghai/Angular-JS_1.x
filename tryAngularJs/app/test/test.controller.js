@@ -5,18 +5,22 @@ angular.module("test").component("test", {
   controller: [
     "$scope",
     "cssInjector",
-    "$window",
-    "ContactService",
-    "SharedService",
-    "Notification",
-    function ($scope, cssInjector, $window, ContactService, Notification) {
+    "TestService",
+    "TestProvider",
+    "TestFactory",
+    function ($scope, cssInjector, TestService, TestProvider, TestFactory) {
       cssInjector.add("test/test.template.css");
       var vm = this;
       vm.loading = true;
       // $scope.movie = "Ice Age";
 
-      // vm.movie = "Ice Age";
-      // vm.rating = 5;
+      console.log(TestService.sayHello());
+      console.log(TestProvider.sayHello());
+      console.log(TestFactory.sayHello());
+
+      vm.movie = "Ice Age";
+      vm.rating = 5;
+
       vm.display = function (movie) {
         alert("Movie : " + movie);
       };

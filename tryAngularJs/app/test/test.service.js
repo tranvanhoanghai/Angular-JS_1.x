@@ -1,28 +1,38 @@
 "use strict";
 
-angular
-  .module("test")
-  .service("ContactService", function ($http, SharedService) {
-    var contact = "/contact";
-    var baseUrl = SharedService.getBaseUrl() + contact;
+var app = angular.module("test");
 
-    this.listContact = function () {
-      return $http.get(baseUrl);
-    };
+app.service("TestService", function () {
+  var test = "TestService";
+  this.sayHello = function () {
+    return test;
+  };
+});
 
-    this.detailContact = function (id) {
-      return $http.get(`${baseUrl}/${id}`);
-    };
+app.provider("TestProvider", function () {
+  this.name = "Default";
 
-    this.createContact = function (data) {
-      return $http.post(baseUrl, data);
+  this.$get = function () {
+    var name = this.name;
+    return {
+      sayHello: function () {
+        return "Hello, " + name + "!";
+      },
+      sayBye: function () {
+        return "Bye, " + name + "!";
+      },
     };
+  };
 
-    this.updateContact = function (id, data) {
-      return $http.put(`${baseUrl}/${id}`, data);
-    };
+  this.setName = function (newName) {
+    this.name = newName;
+  };
+});
 
-    this.deleteContact = function (id) {
-      return $http.delete(`${baseUrl}/${id}`);
-    };
-  });
+app.factory("TestFactory", function () {
+  return {
+    sayHello: function () {
+      return "Hello, World!";
+    },
+  };
+});

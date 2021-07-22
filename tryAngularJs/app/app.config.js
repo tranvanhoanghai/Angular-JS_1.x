@@ -1,6 +1,7 @@
 "use strict";
 
 angular.module("myApp").config([
+  "TestProviderProvider",
   "$locationProvider",
   "$httpProvider",
   "$stateProvider",
@@ -9,6 +10,7 @@ angular.module("myApp").config([
   "NotificationProvider",
   "$qProvider",
   function (
+    TestProviderProvider,
     $locationProvider,
     $httpProvider,
     $stateProvider,
@@ -21,6 +23,7 @@ angular.module("myApp").config([
     cssInjectorProvider.setSinglePageMode(false);
     $qProvider.errorOnUnhandledRejections(false);
     $urlRouterProvider.otherwise("/404");
+    TestProviderProvider.setName("abcdègh");
 
     $stateProvider
       .state("main", {
