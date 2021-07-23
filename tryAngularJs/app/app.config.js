@@ -23,7 +23,10 @@ angular.module("myApp").config([
     cssInjectorProvider.setSinglePageMode(false);
     $qProvider.errorOnUnhandledRejections(false);
     $urlRouterProvider.otherwise("/404");
-    TestProviderProvider.setName("abcdègh");
+    
+    TestProviderProvider.setName("Provider config");
+    TestProviderProvider.name = "set name";
+    TestProviderProvider.thingFromConfig = "‘This was set in config’";
 
     $stateProvider
       .state("main", {

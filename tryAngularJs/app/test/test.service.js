@@ -11,9 +11,11 @@ app.service("TestService", function () {
 
 app.provider("TestProvider", function () {
   this.name = "Default";
+  this.thingFromConfig = "";
 
   this.$get = function () {
     var name = this.name;
+    var thingFromConfig = this.thingFromConfig;
     return {
       sayHello: function () {
         return "Hello, " + name + "!";
@@ -21,6 +23,7 @@ app.provider("TestProvider", function () {
       sayBye: function () {
         return "Bye, " + name + "!";
       },
+      thingOnConfig: thingFromConfig,
     };
   };
 
@@ -29,10 +32,37 @@ app.provider("TestProvider", function () {
   };
 });
 
-app.factory("TestFactory", function () {
-  return {
-    sayHello: function () {
-      return "Hello, World!";
-    },
+app.factory("TestFactory", () => {
+  // var service = {};
+
+  // var _artist = "Shakira by Fatory";
+  // var hello = "Hello Factory";
+
+  // service.sayHello = () => {
+  //   return hello;
+  // };
+
+  // service.getArtist = () => {
+  //   return _artist;
+  // };
+
+  // return service;
+
+  var factory = {
+    sayHello,
+    sayBye,
   };
+
+  var hello = "Hello Factory";
+  var bye = "Hello Factory";
+
+  function sayHello() {
+    return hello;
+  }
+
+  function sayBye() {
+    return bye;
+  }
+
+  return factory;
 });

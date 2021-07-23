@@ -16,6 +16,9 @@ angular.module("test").component("test", {
 
       console.log(TestService.sayHello());
       console.log(TestProvider.sayHello());
+      console.log(TestProvider.sayBye());
+      console.log(TestProvider.thingOnConfig);
+
       console.log(TestFactory.sayHello());
 
       vm.movie = "Ice Age";
