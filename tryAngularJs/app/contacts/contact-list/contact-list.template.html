@@ -47,10 +47,12 @@
   </div>
 
   <div class="content-table">
-    <div class="loader" ng-show="$ctrl.loading"></div>
+    <!-- <div class="loader" ng-show="$ctrl.loading"></div> -->
+
+    <loading loading="$ctrl.isLoading"></loading>
 
     <table
-      ng-hide="$ctrl.loading"
+      ng-hide="$ctrl.isLoading"
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
     >
@@ -70,7 +72,7 @@
           {{data.name}}
         </td>
 
-        <td data-title="'salutation'">{{data.salutation}}</td>
+        <td data-title="'Salutation'">{{data.salutation}}</td>
 
         <td data-title="'Phone'">{{data.phone}}</td>
 

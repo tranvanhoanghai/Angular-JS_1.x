@@ -24,7 +24,7 @@ angular.module("salesOrder").component("editSalesOrder", {
       var currentId = $stateParams.id;
 
       vm.detailSalesOrder = detailSalesOrder;
-      vm.update = updateSalesOrder;
+      vm.submit = updateSalesOrder;
       vm.loading = true;
       vm.detailSalesOrder();
 

@@ -17,7 +17,7 @@ const Contact = new Schema(
     creator: { type: String, maxLength: 255, required: false },
 
     assignedTo: { type: String, maxLength: 255, required: true },
-    description: { type: String, maxLength: 255, required: false },
+    description: { type: String, maxLength: 255, required: true },
   },
   { timestamps: true }
 );

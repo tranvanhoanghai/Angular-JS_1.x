@@ -21,7 +21,7 @@ angular.module("auth").component("changePassword", {
       var vm = this;
       vm.change = change;
       vm.regexPassword = SharedService.regexPassword();
-      console.log(vm.regexPassword);
+      // console.log(vm.regexPassword);
 
       function change() {
         if (vm.newPass !== vm.confirmPass) {
@@ -35,6 +35,7 @@ angular.module("auth").component("changePassword", {
           oldPass: vm.oldPass,
           newPass: vm.newPass,
         };
+        
         AuthService.changePassword(data)
           .then((res) => {
             AuthService.logout();

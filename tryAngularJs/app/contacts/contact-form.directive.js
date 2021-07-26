@@ -12,7 +12,8 @@ angular
           titleBtn: "@",
           contact: "=",
         },
-        templateUrl: "contacts/contact-form.template.html",
+        templateUrl: "contacts/contact-form.directive.html",
+
         link: function (scope, element, attrs) {
           scope.regexEmail = SharedService.regexEmail();
           scope.regexPhone = SharedService.regexPhone();

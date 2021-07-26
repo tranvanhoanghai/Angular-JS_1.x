@@ -19,6 +19,7 @@ angular.module("contact").component("editContact", {
     ) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
+
       var currentId = $stateParams.id;
       vm.detailContact = detailContact;
       vm.submit = updateContact;
@@ -30,6 +31,7 @@ angular.module("contact").component("editContact", {
       vm.detailContact();
 
       vm.contact = {};
+      console.log(vm.contact);
 
       function openModal(size) {
         var modalInstance = $uibModal.open({

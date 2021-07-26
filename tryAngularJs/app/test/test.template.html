@@ -1,28 +1,33 @@
 <!-- <div ng-controller="movieController">
-    {{movie}}
-    <input type="text" ng-model="movie" />
-
-    <movie-directive></movie-directive>
+  {{movie}}
+  <input type="text" ng-model="movie" />
 </div> -->
 
-<div>
-  <h2>Movie Name : {{$ctrl.movie}}</h2>
-  <h3>Rating : {{$ctrl.rating}}</h3>
-  <input type="text" ng-model="$ctrl.movie" />
+<!-- <div>
+  <h2>Movie Name : {{ movie}}</h2>
+  <h3>Rating : {{rating}}</h3>
+  <input type="text" ng-model="movie" />
 
-  <hr />
+  <hr /> -->
 
-  <!-- <movie-directive movie="movie" rating="{{rating}}" display="display(movie)">
+<!-- <movie-directive movie="movie" rating="{{rating}}" display="display(movie)">
       <div>dcdcdcd</div>
     </movie-directive> -->
-
+<!-- 
   <div
     movie-directive
     movie="$ctrl.movie"
-    rating="$ctrl.rating"
+    rating="{{$ctrl.rating}}"
     display="$ctrl.display($ctrl.movie)"
     add="$ctrl.add()"
   >
     <div>dcdcdcd</div>
   </div>
+</div> -->
+<!-- </div> -->
+<!-- <div movie-directive></div> -->
+<input-directive></input-directive>
+
+<table-directive data="$ctrl.data"/>
+
 </div>

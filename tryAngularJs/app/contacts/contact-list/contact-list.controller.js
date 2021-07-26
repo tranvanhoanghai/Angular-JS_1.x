@@ -24,7 +24,7 @@ angular.module("contact").component("contactList", {
       Notification
     ) {
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
 
       vm.getListContacts = getListContacts;
       vm.getListAssignedTos = getListAssignedTos;
@@ -90,7 +90,7 @@ angular.module("contact").component("contactList", {
             vm.ngTable(vm.contacts);
             // $location.search({});
 
-            vm.loading = false;
+            vm.isLoading = false;
           })
           .catch((error) => {
             console.log("Error", error);

@@ -24,7 +24,7 @@ angular.module("contact").component("createSalesOrder", {
       var vm = this;
       vm.loading = true;
 
-      vm.create = createSalesOrder;
+      vm.submit = createSalesOrder;
       vm.creator = SharedService.getData().name;
 
       UserService.listUsersActive()

@@ -23,9 +23,9 @@ angular.module("myApp").config([
     cssInjectorProvider.setSinglePageMode(false);
     $qProvider.errorOnUnhandledRejections(false);
     $urlRouterProvider.otherwise("/404");
-    
+
     TestProviderProvider.setName("Provider config");
-    TestProviderProvider.name = "set name";
+    TestProviderProvider.name = "Set name";
     TestProviderProvider.thingFromConfig = "‘This was set in config’";
 
     $stateProvider
@@ -145,7 +145,7 @@ angular.module("myApp").config([
         },
       })
       .state("main.changePassword", {
-        url: "/changePassword",
+        url: "changePassword",
         template: "<change-password></change-password>",
         data: {
           pageTitle: "Change password",
