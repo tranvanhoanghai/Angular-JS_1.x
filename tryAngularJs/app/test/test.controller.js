@@ -35,53 +35,43 @@ angular.module("test").component("test", {
 
       ContactService.listContact()
         .then((response) => {
-          // vm.data = { response };
-          // console.log(response.data[0]);
+          vm.headers = [
+            "Name",
+            "Salutation",
+            "Phone",
+            "Email",
+            "Organization",
+            "Date of birth",
+            "Address",
+            "Lead source",
+            "Assigned to",
+            "Creator",
+            "Action",
+          ];
           vm.key = [];
-          Object.keys(response.data[0]).forEach(function (key) {
-            vm.key.push(key);
+          vm.headers.forEach((data) => {
+            vm.key.push(this.camelize(data));
           });
-          // console.log(vm.key);
-          // key null if data empty by node js response
+
+          // console.log(response.data);
 
           vm.data = {
-            headList: [
-              { name: "Name" },
-              { name: "Salutation" },
-              { name: "Phone" },
-              { name: "Email" },
-              { name: "Organization" },
-              { name: "Date of birth" },
-              { name: "Address" },
-              { name: "Lead source" },
-              { name: "Assigned to" },
-              { name: "Creator" },
-
-              { name: "Action" },
-            ],
+            headList: vm.headers,
             rowList: response.data,
             key: vm.key,
+            isEdit: true,
+            isDelete: true,
           };
         })
         .catch();
 
-      // vm.data = {
-      //   headList: [
-      //     { name: "Company" },
-      //     { name: "Address" },
-      //     { name: "City" },
-      //     { name: "Action" },
-      //   ],
-      //   rowList: [
-      //     {
-      //       name: "Huy",
-      //       surname: "Hải",
-      //       propertyName: "Ân",
-      //       isEdit: true,
-      //       isDelete: false,
-      //     },
-      //   ],
-      // };
+      this.camelize = function (str) {
+        return str
+          .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+            return index === 0 ? word.toLowerCase() : word.toUpperCase();
+          })
+          .replace(/\s+/g, "");
+      };
 
       vm.display = function (movie) {
         alert("Movie : " + movie);

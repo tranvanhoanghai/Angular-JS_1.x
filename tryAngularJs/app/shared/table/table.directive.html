@@ -1,6 +1,6 @@
 <table style="width: 100%" class="table">
   <tr>
-    <th ng-repeat="item in data.headList">{{ item.name }}</th>
+    <th ng-repeat="item in data.headList">{{ item }}</th>
   </tr>
   <tr ng-repeat="item in data.rowList">
     <!-- <td ng-repeat="cell in data.key">{{cell}}</td> -->
@@ -8,7 +8,7 @@
 
     <td>
       <button
-        ng-if="item.isEdit"
+        ng-if="data.isEdit"
         type="button"
         ng-click="$ctrl.edit(data.id)"
         class="btn btn-success"
@@ -17,7 +17,7 @@
       </button>
 
       <button
-        ng-if="item.isDelete"
+        ng-if="data.isDelete"
         ng-click="$ctrl.open(data.id)"
         type="button"
         class="btn btn-danger ml-1"

@@ -5,19 +5,19 @@ const Schema = mongoose.Schema;
 const Contact = new Schema(
   {
     name: { type: String, maxLength: 255, required: true },
-    salutation: { type: String, maxLength: 255, required: false },
+    salutation: { type: String, maxLength: 255, required: false, default: "" },
     phone: { type: String, maxLength: 255, required: true },
 
     email: { type: String, maxLength: 255, required: true },
     organization: { type: String, required: false },
-    dateOfBirth: { type: Date, maxLength: 255, required: false },
+    dateOfBirth: { type: Date, maxLength: 255, required: false, default: "" },
 
-    address: { type: String, maxLength: 255, required: false },
+    address: { type: String, maxLength: 255, required: false, default: "" },
     leadSource: { type: String, maxLength: 255, required: true },
-    creator: { type: String, maxLength: 255, required: false },
+    creator: { type: String, maxLength: 255, required: true },
 
     assignedTo: { type: String, maxLength: 255, required: true },
-    description: { type: String, maxLength: 255, required: true },
+    description: { type: String, maxLength: 255, required: false, default: "" },
   },
   { timestamps: true }
 );
