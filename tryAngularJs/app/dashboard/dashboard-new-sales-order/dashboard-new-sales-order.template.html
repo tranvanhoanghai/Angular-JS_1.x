@@ -2,7 +2,7 @@
   <div class="col-lg-12 text-uppercase title-header">
     <h5>new Sales order in the last 7 days</h5>
   </div>
-  <div class="row">
+  <div class="row" ng-if="$root.isAdmin">
     <loading loading="$ctrl.isLoading"></loading>
 
     <div ng-show="$ctrl.showDetail" class="showDetail container-fluid">
@@ -80,7 +80,6 @@
     </div>
 
     <table
-      ng-if="isAdmin"
       ng-hide="$ctrl.isLoading || $ctrl.showDetail"
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"

@@ -9,6 +9,7 @@ angular.module("myApp").config([
   "cssInjectorProvider",
   "NotificationProvider",
   "$qProvider",
+  "$translateProvider",
   function (
     TestProviderProvider,
     $locationProvider,
@@ -17,9 +18,11 @@ angular.module("myApp").config([
     $urlRouterProvider,
     cssInjectorProvider,
     NotificationProvider,
-    $qProvider
+    $qProvider,
+    $translateProvider
   ) {
     $locationProvider.hashPrefix("!");
+
     cssInjectorProvider.setSinglePageMode(false);
     $qProvider.errorOnUnhandledRejections(false);
     $urlRouterProvider.otherwise("/404");
@@ -28,15 +31,18 @@ angular.module("myApp").config([
     TestProviderProvider.name = "Set name";
     TestProviderProvider.thingFromConfig = "‘This was set in config’";
 
+    $translateProvider.useStaticFilesLoader({
+      prefix: "shared/i18n/translation/translation_",
+      suffix: ".json",
+    });
+    $translateProvider.preferredLanguage("en");
+    // $translateProvider.useLocalStorage();
+
     $stateProvider
       .state("main", {
         url: "/",
         templateUrl: "shared/main.template.html",
-        controller: function (SharedService, $rootScope) {
-          $rootScope.isAdmin = SharedService.getData().isAdmin;
-          $rootScope.name = SharedService.getData().name;
-        },
-        controllerAs: "vm",
+
         redirectTo: "main.dashboard",
       })
       .state("main.dashboard", {
@@ -139,7 +145,7 @@ angular.module("myApp").config([
         },
       })
       .state("main.404", {
-        url: "/404",
+        url: "404",
         template: "<not-found></not-found>",
         data: {
           pageTitle: "Error",

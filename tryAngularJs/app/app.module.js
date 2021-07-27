@@ -10,6 +10,7 @@ angular.module("myApp", [
   "share",
   "error",
   "test",
+  // "i18n",
 
   "angular.css.injector",
   "ngRoute",
@@ -20,4 +21,5 @@ angular.module("myApp", [
   "ui.bootstrap",
   "ui.router",
   "uiRouterTitle",
+  "pascalprecht.translate",
 ]);

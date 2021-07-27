@@ -4,6 +4,7 @@ angular.module("dashboard").component("dashboardNewSalesOrder", {
   templateUrl:
     "dashboard/dashboard-new-sales-order/dashboard-new-sales-order.template.html",
   controller: [
+    "$rootScope",
     "cssInjector",
     "NgTableParams",
     "$location",
@@ -11,6 +12,7 @@ angular.module("dashboard").component("dashboardNewSalesOrder", {
     "SalesOrderService",
     "Notification",
     function (
+      $rootScope,
       cssInjector,
       NgTableParams,
       $location,
@@ -27,6 +29,7 @@ angular.module("dashboard").component("dashboardNewSalesOrder", {
       vm.redirect = redirect;
       vm.show = showDetail;
       vm.hideDetail = hideDetail;
+      // $rootScope.isAdmin;
 
       function hideDetail() {
         vm.showDetail = false;

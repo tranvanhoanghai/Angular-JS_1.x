@@ -1,3 +1,3 @@
 "use strict";
 
-angular.module("share", []);
+angular.module("share", ["i18n"]);

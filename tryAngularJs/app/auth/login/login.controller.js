@@ -30,6 +30,8 @@ angular.module("auth").component("login", {
       } else {
         if ($localStorage.data) {
           $state.go("main.dashboard");
+        } else {
+          AuthService.logout();
         }
       }
 

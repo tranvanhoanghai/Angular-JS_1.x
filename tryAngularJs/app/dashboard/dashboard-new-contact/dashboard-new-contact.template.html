@@ -1,8 +1,8 @@
 <div class="dash-content dash-contact container-fluid">
   <div class="das-title text-uppercase">
-    <h5>new contacts in the last 7 days</h5>
+    <h5>new contacts in the last 7 days {{isAdmin}}</h5>
   </div>
-  <div ng-if="isAdmin" class="row">
+  <div class="row" ng-if="$root.isAdmin">
     <loading loading="$ctrl.isLoading"></loading>
     <table
       ng-hide="$ctrl.isLoading"

@@ -1,0 +1,32 @@
+{
+  "MENU": {
+    "DASHBOARD": "Bảng điều khiển",
+    "CONTACT": "Khách hàng",
+    "SALES_ORDER": "Đơn hàng",
+    "USER_MANAGEMENT": "Nhân viên"
+  },
+  "CONTACT": {
+    "NAME": "Tên",
+    "SALUTATION": "Danh xưng",
+    "ORGANIZATION": "Công ty",
+    "DATE_OF_BIRTH": "Ngày sinh",
+    "ADDRESS": "Địa chỉ"
+  },
+  "SALES_ORDER": {
+    "CONTACT": "Tên",
+    "STATUS": "Danh xưng",
+    "TOTAL": "Tổng"
+  },
+  "USER_MANAGEMENT": {
+    "USER_NAME": "Tên đăng nhập",
+    "IS ACTIVE": "Hoạt động"
+  },
+  "PHONE": "Điện thoại",
+  "EMAIL": "Email",
+  "LEAD_SOURCE": "Nguồn",
+  "ASSIGNED_TO": "Phụ trách",
+  "DESCRIPTION": "Ghi chú",
+  "CREATOR": "Tạo bởi",
+  "ACTION": "Thay đổi"
+
+}

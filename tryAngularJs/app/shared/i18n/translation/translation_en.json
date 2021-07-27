@@ -1,0 +1,33 @@
+{
+  "MENU": {
+    "DASHBOARD": "Dashboard",
+    "CONTACT": "Contact",
+    "SALES_ORDER": "Sales order",
+    "USER_MANAGEMENT": "User management"
+  },
+  "CONTACT": {
+    "NAME": "Name",
+    "SALUTATION": "Salutation",
+    "ORGANIZATION": "Organization",
+    "DATE_OF_BIRTH": "Date of birth",
+    "ADDRESS": "Address"
+  },
+  "SALES_ORDER": {
+    "CONTACT": "Contact",
+    "STATUS": "Status",
+    "TOTAL": "Total"
+  },
+  "USER_MANAGEMENT": {
+    "USER_NAME": "User name",
+    "IS ACTIVE": "Is Active"
+  },
+  "PHONE": "Phone",
+  "EMAIL": "Email",
+  "LEAD_SOURCE": "Lead source",
+  "ASSIGNED_TO": "Assigned to",
+  "DESCRIPTION": "Description",
+  "CREATOR": "Creator",
+  "ACTION": "Action"
+
+
+}

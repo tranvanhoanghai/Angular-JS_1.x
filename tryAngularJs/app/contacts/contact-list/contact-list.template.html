@@ -68,28 +68,44 @@
 
         <td data-title="'#'">{{$index+1}}</td>
 
-        <td data-title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+        <td
+          data-title="'CONTACT.NAME' | translate"
+          filter="{ name: 'text'}"
+          sortable="'name'"
+        >
           {{data.name}}
         </td>
 
-        <td data-title="'Salutation'">{{data.salutation}}</td>
+        <td data-title="'CONTACT.SALUTATION' | translate">
+          {{data.salutation}}
+        </td>
 
-        <td data-title="'Phone'">{{data.phone}}</td>
+        <td data-title="'PHONE' | translate">{{data.phone}}</td>
 
-        <td data-title="'Email'" filter="{ email: 'text'}" sortable="'email'">
+        <td
+          data-title="'EMAIL' | translate"
+          filter="{ email: 'text'}"
+          sortable="'email'"
+        >
           {{data.email}}
         </td>
 
-        <td data-title="'Organization'" sortable="'organization'">
+        <td
+          data-title="'CONTACT.ORGANIZATION' | translate"
+          sortable="'organization'"
+        >
           {{data.organization}}
         </td>
 
-        <td data-title="'Date of birth'" sortable="'dateOfBirth'">
+        <td
+          data-title="'CONTACT.DATE_OF_BIRTH' | translate"
+          sortable="'dateOfBirth'"
+        >
           {{data.dateOfBirth | date:'dd/MM/yyyy' }}
         </td>
 
         <td
-          data-title="'Address'"
+          data-title="'CONTACT.ADDRESS' | translate"
           filter="{ address: 'text'}"
           sortable="'address'"
         >
@@ -97,7 +113,7 @@
         </td>
 
         <td
-          data-title="'Lead source'"
+          data-title="'LEAD_SOURCE' | translate"
           filter="{leadSource: 'select'}"
           filter-data="[{'title': 'Existing Customer', 'id': 'Existing Customer'},
                         {'title': 'Partner', 'id': 'Partner'},
@@ -110,7 +126,7 @@
           {{data.leadSource}}
         </td>
         <td
-          data-title="'Assigned to'"
+          data-title="'ASSIGNED_TO' | translate"
           filter="{assignedTo: 'select'}"
           filter-data="$ctrl.ngTableAssignedTos"
           sortable="'assignedTo'"
@@ -118,11 +134,13 @@
           {{data.assignedTo}}
         </td>
 
-        <td data-title="'Creator'" sortable="'creator'">{{data.creator}}</td>
+        <td data-title="'CREATOR' | translate" sortable="'creator'">
+          {{data.creator}}
+        </td>
 
-        <td data-title="'Description'">{{data.description}}</td>
+        <td data-title="'DESCRIPTION' | translate">{{data.description}}</td>
 
-        <td data-title="'Action'" class="d-flex">
+        <td data-title="'ACTION' | translate" class="d-flex">
           <button
             type="button"
             ng-click="$ctrl.edit(data.id)"
