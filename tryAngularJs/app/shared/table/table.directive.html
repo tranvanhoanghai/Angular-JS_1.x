@@ -1,29 +1,36 @@
 <table style="width: 100%" class="table">
-  <tr>
-    <th ng-repeat="item in data.headList">{{ item }}</th>
-  </tr>
-  <tr ng-repeat="item in data.rowList">
-    <!-- <td ng-repeat="cell in data.key">{{cell}}</td> -->
-    <td ng-repeat="cell in item">{{cell}}</td>
+  <thead>
+    <tr>
+      <th ng-repeat="item in data.headList">{{ item }}</th>
+    </tr>
+  </thead>
 
-    <td>
-      <button
-        ng-if="data.isEdit"
-        type="button"
-        ng-click="$ctrl.edit(data.id)"
-        class="btn btn-success"
-      >
-        <i class="fas fa-edit"></i>
-      </button>
+  <tbody>
+    <tr ng-repeat="item in data.rowList">
+      <td ng-repeat="key in data.key" class="{{key}}Table">{{item[key]}}</td>
 
-      <button
-        ng-if="data.isDelete"
-        ng-click="$ctrl.open(data.id)"
-        type="button"
-        class="btn btn-danger ml-1"
-      >
-        <i class="fas fa-trash"></i>
-      </button>
-    </td>
-  </tr>
+      <td>
+        <button
+          ng-if="data.isEdit"
+          type="button"
+          ng-click="edit()"
+          class="btn btn-success"
+        >
+          <i class="fas fa-edit"></i>
+        </button>
+
+        <button
+          ng-if="data.isDelete"
+          ng-click="$ctrl.open(item.id)"
+          type="button"
+          class="btn btn-danger ml-1"
+        >
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </table>
+<button type="button" ng-click="editt()" class="btn btn-success">
+  <i class="fas fa-edit"></i>
+</button>

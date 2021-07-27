@@ -14,6 +14,10 @@ angular
       return $http.get(`${baseUrl}/${id}`);
     };
 
+    this.listSalesOrderAssign = function (name) {
+      return $http.get(`${baseUrl}/assign/${name}`);
+    };
+
     this.createSalesOrder = function (data) {
       return $http.post(baseUrl, data);
     };

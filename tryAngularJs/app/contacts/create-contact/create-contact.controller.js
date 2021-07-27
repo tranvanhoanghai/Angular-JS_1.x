@@ -19,7 +19,7 @@ angular.module("contact").component("createContact", {
     ) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
 
       vm.submit = createContact;
       vm.creator = SharedService.getData().name;

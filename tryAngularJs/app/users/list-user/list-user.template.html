@@ -8,14 +8,14 @@
   </div>
 
   <div class="content-table">
-    <div class="loader" ng-if="$ctrl.loading"></div>
+    <loading loading="$ctrl.isLoading"></loading>
 
     <table
       ng-table="$ctrl.tableParams"
-      show-filter="true"
       class="table table-condensed table-bordered table-striped"
+      ng-hide="$ctrl.isLoading"
     >
-      <tr ng-hide="$ctrl.loading" ng-repeat="data in $data track by $index">
+      <tr ng-repeat="data in $data track by $index">
         <td data-title="'#'">{{$index+1}}</td>
 
         <td data-title="'Name'" filter="{ name: 'text'}" sortable="'name'">

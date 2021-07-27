@@ -5,9 +5,8 @@ angular.module("share").directive("tableDirective", function () {
     restrict: "E",
     scope: {
       data: "=",
+      editt: "&",
     },
     templateUrl: "shared/table/table.directive.html",
-
-    link: function (scope, element, attrs) {},
   };
 });

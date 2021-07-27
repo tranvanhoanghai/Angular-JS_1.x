@@ -19,6 +19,11 @@ angular.module("test").component("test", {
     ) {
       cssInjector.add("test/test.template.css");
       var vm = this;
+      vm.getData = getData;
+      vm.camelCase = camelCase;
+      vm.setHeading = setHeading;
+      vm.editt = editt;
+      vm.getData();
 
       // $scope.movie = "Ice Age";
 
@@ -33,45 +38,52 @@ angular.module("test").component("test", {
       $scope.rating = 5;
       $scope.isLoading = true;
 
-      ContactService.listContact()
-        .then((response) => {
-          vm.headers = [
-            "Name",
-            "Salutation",
-            "Phone",
-            "Email",
-            "Organization",
-            "Date of birth",
-            "Address",
-            "Lead source",
-            "Assigned to",
-            "Creator",
-            "Action",
-          ];
-          vm.key = [];
-          vm.headers.forEach((data) => {
-            vm.key.push(this.camelize(data));
-          });
+      function getData() {
+        ContactService.listContact()
+          .then((response) => {
+            vm.key = ["id"];
+            vm.setHeading().forEach((data) => {
+              vm.key.push(vm.camelCase(data));
+            });
 
-          // console.log(response.data);
+            vm.data = {
+              headList: vm.headers,
+              rowList: response.data,
+              key: vm.key,
+              isEdit: true,
+              isDelete: true,
+            };
+          })
+          .catch();
+      }
 
-          vm.data = {
-            headList: vm.headers,
-            rowList: response.data,
-            key: vm.key,
-            isEdit: true,
-            isDelete: true,
-          };
-        })
-        .catch();
+      function setHeading() {
+        return (vm.headers = [
+          "Name",
+          "Salutation",
+          "Phone",
+          "Email",
+          "Organization",
+          "Date of birth",
+          "Address",
+          "Lead source",
+          "Assigned to",
+          "Creator",
+          "Action",
+        ]);
+      }
 
-      this.camelize = function (str) {
+      function camelCase(str) {
         return str
           .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
             return index === 0 ? word.toLowerCase() : word.toUpperCase();
           })
           .replace(/\s+/g, "");
-      };
+      }
+
+      function editt() {
+        console.log("id");
+      }
 
       vm.display = function (movie) {
         alert("Movie : " + movie);
@@ -83,10 +95,10 @@ angular.module("test").component("test", {
   ],
 });
 
-angular.module("test").controller("movieController", function ($scope) {
-  $scope.movie = "Ice Age";
-  $scope.rating = 5;
-  // $scope.display = function (movie) {
-  //   alert("Movie : " + movie);
-  // };
-});
+// angular.module("test").controller("movieController", function ($scope) {
+//   $scope.movie = "Ice Age";
+//   $scope.rating = 5;
+//   // $scope.display = function (movie) {
+//   //   alert("Movie : " + movie);
+//   // };
+// });

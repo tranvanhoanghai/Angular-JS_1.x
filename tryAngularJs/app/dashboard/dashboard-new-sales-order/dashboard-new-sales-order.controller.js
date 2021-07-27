@@ -20,7 +20,7 @@ angular.module("dashboard").component("dashboardNewSalesOrder", {
     ) {
       cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
       vm.showDetail = false;
 
       vm.getNewSalesOrder = getNewSalesOrder;
@@ -71,7 +71,7 @@ angular.module("dashboard").component("dashboardNewSalesOrder", {
                 dataset: vm.newSalesOrders,
               }
             );
-            vm.loading = false;
+            vm.isLoading = false;
           })
           .catch((error) => {
             console.log("Error", error);

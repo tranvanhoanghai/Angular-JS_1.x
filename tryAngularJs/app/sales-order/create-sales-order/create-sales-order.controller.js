@@ -22,7 +22,7 @@ angular.module("contact").component("createSalesOrder", {
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
 
       vm.submit = createSalesOrder;
       vm.creator = SharedService.getData().name;

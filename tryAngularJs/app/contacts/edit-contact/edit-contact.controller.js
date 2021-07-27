@@ -23,7 +23,7 @@ angular.module("contact").component("editContact", {
       var currentId = $stateParams.id;
       vm.detailContact = detailContact;
       vm.submit = updateContact;
-      vm.loading = true;
+      vm.isLoading = true;
       vm.submit = openModal;
       vm.dataModal = "Do you want to update it?";
 

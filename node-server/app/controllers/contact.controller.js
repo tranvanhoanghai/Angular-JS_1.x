@@ -7,6 +7,15 @@ exports.getListContacts = function (req, res, next) {
     .catch(next);
 };
 
+exports.getListContactsAssign = function (req, res, next) {
+  const name = req.params.name;
+
+  Contact.find({ assignedTo: name })
+    .sort({ createdAt: -1 })
+    .then((data) => res.json(data))
+    .catch(next);
+};
+
 exports.detailContact = function (req, res, next) {
   const id = req.params.id;
   Contact.findById(id)

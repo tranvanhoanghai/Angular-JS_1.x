@@ -25,7 +25,7 @@ angular.module("salesOrder").component("editSalesOrder", {
 
       vm.detailSalesOrder = detailSalesOrder;
       vm.submit = updateSalesOrder;
-      vm.loading = true;
+      vm.isLoading = true;
       vm.detailSalesOrder();
 
       function detailSalesOrder() {

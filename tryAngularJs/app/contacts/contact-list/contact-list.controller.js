@@ -6,6 +6,7 @@ angular.module("contact").component("contactList", {
     "UserService",
     "$rootScope",
     "NgTableParams",
+    "$stateParams",
     "$state",
     "$scope",
     "$location",
@@ -16,6 +17,7 @@ angular.module("contact").component("contactList", {
       UserService,
       $rootScope,
       NgTableParams,
+      $stateParams,
       $state,
       $scope,
       $location,
@@ -25,6 +27,8 @@ angular.module("contact").component("contactList", {
     ) {
       var vm = this;
       vm.isLoading = true;
+      vm.paramLeadSource = $stateParams.leadSource;
+      vm.paramAssignedTo = $stateParams.assignedTo;
 
       vm.getListContacts = getListContacts;
       vm.getListAssignedTos = getListAssignedTos;
@@ -83,21 +87,37 @@ angular.module("contact").component("contactList", {
       // });
 
       function getListContacts() {
-        ContactService.listContact()
-          .then((response) => {
-            vm.getListAssignedTos();
-            vm.contacts = response.data;
-            vm.ngTable(vm.contacts);
-            // $location.search({});
+        if ($rootScope.isAdmin) {
+          ContactService.listContact()
+            .then((response) => {
+              vm.getListAssignedTos();
+              vm.contacts = response.data;
+              vm.ngTable(vm.contacts);
+              // $location.search({});
 
-            vm.isLoading = false;
-          })
-          .catch((error) => {
-            console.log("Error", error);
-            setTimeout(function () {
-              vm.getListContacts();
-            }, 5000);
-          });
+              vm.isLoading = false;
+            })
+            .catch((error) => {
+              console.log("Error", error);
+              setTimeout(function () {
+                vm.getListContacts();
+              }, 5000);
+            });
+        } else {
+          ContactService.listContactAssign($rootScope.name)
+            .then((response) => {
+              vm.getListAssignedTos();
+              vm.contacts = response.data;
+              vm.ngTable(vm.contacts);
+              vm.isLoading = false;
+            })
+            .catch((error) => {
+              console.log("Error", error);
+              setTimeout(function () {
+                vm.getListContacts();
+              }, 5000);
+            });
+        }
       }
 
       vm.getListContacts();
@@ -123,8 +143,6 @@ angular.module("contact").component("contactList", {
       }
 
       function ngTable(data) {
-        var paramLeadSource = $location.search().leadSource;
-        var paramAssignedTo = $location.search().assignedTo;
         vm.tableParams = new NgTableParams(
           { page: 1, count: 5 },
           {
@@ -139,8 +157,8 @@ angular.module("contact").component("contactList", {
           }
         );
 
-        vm.tableParams.filter()["assignedTo"] = paramAssignedTo;
-        vm.tableParams.filter()["leadSource"] = paramLeadSource;
+        vm.tableParams.filter()["assignedTo"] = vm.paramAssignedTo;
+        vm.tableParams.filter()["leadSource"] = vm.paramLeadSource;
       }
 
       function createContact() {

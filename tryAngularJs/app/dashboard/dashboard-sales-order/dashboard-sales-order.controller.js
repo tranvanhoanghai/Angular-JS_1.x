@@ -12,7 +12,7 @@ angular.module("dashboard").component("dashboardSalesOrder", {
     function (cssInjector, $state, $location, DashboardService, Notification) {
       cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
 
       vm.getCountSalesOrder = getCountSalesOrder;
       vm.redirect = redirect;
@@ -44,7 +44,7 @@ angular.module("dashboard").component("dashboardSalesOrder", {
                   break;
               }
             });
-            vm.loading = false;
+            vm.isLoading = false;
           })
           .catch((error) => {
             console.log("Error", error);

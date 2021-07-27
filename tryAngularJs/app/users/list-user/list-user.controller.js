@@ -23,15 +23,16 @@ angular.module("user").component("listUser", {
     ) {
       cssInjector.add("users/user.template.css");
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
 
       vm.getListUsers = getListUsers;
       vm.create = createUser;
       vm.edit = editUser;
       vm.delete = deleteUser;
       vm.open = openModal;
-
+      vm.ngTable = ngTable;
       vm.data = "Do you want to delete it?";
+      vm.getListUsers();
 
       function openModal(id) {
         var modalInstance = $uibModal.open({
@@ -70,18 +71,8 @@ angular.module("user").component("listUser", {
           UserService.listExceptUsers(id)
             .then((response) => {
               vm.users = response.data;
-              vm.tableParams = new NgTableParams(
-                { count: 5 },
-                {
-                  // page size buttons (right set of buttons in demo)
-                  counts: [],
-                  // determines the pager buttons (left set of buttons in demo)
-                  paginationMaxBlocks: 13,
-                  paginationMinBlocks: 2,
-                  dataset: vm.users,
-                }
-              );
-              vm.loading = false;
+              vm.ngTable(vm.users);
+              vm.isLoading = false;
             })
             .catch((error) => {
               console.log("Error", error);
@@ -92,14 +83,26 @@ angular.module("user").component("listUser", {
         }
       }
 
-      vm.getListUsers();
-
       function createUser() {
         $state.go("main.createUser");
       }
 
       function editUser(id) {
         $state.go("main.editUser", { id: id });
+      }
+
+      function ngTable(data) {
+        vm.tableParams = new NgTableParams(
+          { count: 5 },
+          {
+            // page size buttons (right set of buttons in demo)
+            counts: [],
+            // determines the pager buttons (left set of buttons in demo)
+            paginationMaxBlocks: 13,
+            paginationMinBlocks: 2,
+            dataset: data,
+          }
+        );
       }
 
       function deleteUser(id) {

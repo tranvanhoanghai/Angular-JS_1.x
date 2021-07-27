@@ -7,6 +7,14 @@ exports.getListSalesOrders = function (req, res, next) {
     .catch(next);
 };
 
+exports.getListSalesOrdersAssign = function (req, res, next) {
+  const name = req.params.name;
+  SalesOrder.find({ assignedTo: name })
+    .sort({ createdAt: -1 })
+    .then((data) => res.json(data))
+    .catch(next);
+};
+
 exports.detailSalesOrder = function (req, res, next) {
   const id = req.params.id;
   SalesOrder.findById(id)

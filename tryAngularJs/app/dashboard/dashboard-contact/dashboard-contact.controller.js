@@ -10,7 +10,7 @@ angular.module("dashboard").component("dashboardContact", {
     function ($state, cssInjector, $location, DashboardService) {
       cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
       vm.redirect = redirect;
       vm.pieChartContact = pieChartContact;
       vm.pieChartContact();
@@ -51,7 +51,7 @@ angular.module("dashboard").component("dashboardContact", {
               }
             });
 
-            vm.loading = false;
+            vm.isLoading = false;
           })
           .catch((error) => {
             console.log("Error", error);

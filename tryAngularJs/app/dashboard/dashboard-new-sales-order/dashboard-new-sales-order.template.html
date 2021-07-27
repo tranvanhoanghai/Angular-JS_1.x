@@ -3,7 +3,7 @@
     <h5>new Sales order in the last 7 days</h5>
   </div>
   <div class="row">
-    <div class="loader" ng-show="$ctrl.loading"></div>
+    <loading loading="$ctrl.isLoading"></loading>
 
     <div ng-show="$ctrl.showDetail" class="showDetail container-fluid">
       <div class="row">
@@ -80,7 +80,8 @@
     </div>
 
     <table
-      ng-hide="$ctrl.loading || $ctrl.showDetail"
+      ng-if="isAdmin"
+      ng-hide="$ctrl.isLoading || $ctrl.showDetail"
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
     >

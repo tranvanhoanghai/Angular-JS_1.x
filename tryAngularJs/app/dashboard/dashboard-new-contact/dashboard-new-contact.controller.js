@@ -11,7 +11,7 @@ angular.module("dashboard").component("dashboardNewContact", {
     function (NgTableParams, cssInjector, $location, DashboardService) {
       cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
 
       vm.getNewContact = getNewContact;
       vm.redirect = redirect;
@@ -35,7 +35,7 @@ angular.module("dashboard").component("dashboardNewContact", {
                 dataset: vm.newContacts,
               }
             );
-            vm.loading = false;
+            vm.isLoading = false;
           })
           .catch((error) => {
             console.log("Error", error);

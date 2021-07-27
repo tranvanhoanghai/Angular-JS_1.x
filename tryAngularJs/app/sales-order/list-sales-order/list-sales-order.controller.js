@@ -6,6 +6,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     "NgTableParams",
     "cssInjector",
     "$location",
+    "$rootScope",
     "$stateParams",
     "$state",
     "SalesOrderService",
@@ -16,6 +17,7 @@ angular.module("salesOrder").component("listSalesOrder", {
       NgTableParams,
       cssInjector,
       $location,
+      $rootScope,
       $stateParams,
       $state,
       SalesOrderService,
@@ -25,8 +27,8 @@ angular.module("salesOrder").component("listSalesOrder", {
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
       var vm = this;
-      var paramFilterStatus = $location.search().status;
-      vm.loading = true;
+      vm.isLoading = true;
+      vm.paramFilterStatus = $stateParams.status;
 
       vm.getListSalesOrder = getListSalesOrder;
       vm.create = createSalesOrder;
@@ -69,20 +71,39 @@ angular.module("salesOrder").component("listSalesOrder", {
       }
 
       function getListSalesOrder() {
-        SalesOrderService.listSalesOrder()
-          .then((response) => {
-            vm.getListAssignedTos();
-            vm.salesOrders = response.data;
-            vm.ngTable(vm.salesOrders);
-            // $location.search({});
-            vm.loading = false;
-          })
-          .catch((error) => {
-            console.log("Error", error);
-            setTimeout(function () {
-              vm.getListSalesOrder();
-            }, 5000);
-          });
+        if ($rootScope.isAdmin) {
+          SalesOrderService.listSalesOrder()
+            .then((response) => {
+              vm.getListAssignedTos();
+              vm.salesOrders = response.data;
+              vm.ngTable(vm.salesOrders);
+              vm.isLoading = false;
+            })
+            .catch((error) => {
+              vm.isLoading = true;
+
+              console.log("Error", error);
+              setTimeout(function () {
+                vm.getListSalesOrder();
+              }, 5000);
+            });
+        } else {
+          SalesOrderService.listSalesOrderAssign($rootScope.name)
+            .then((response) => {
+              vm.getListAssignedTos();
+              vm.salesOrders = response.data;
+              vm.ngTable(vm.salesOrders);
+              vm.isLoading = false;
+            })
+            .catch((error) => {
+              vm.isLoading = true;
+
+              console.log("Error", error);
+              setTimeout(function () {
+                vm.getListSalesOrder();
+              }, 5000);
+            });
+        }
       }
 
       vm.getListSalesOrder();
@@ -120,7 +141,7 @@ angular.module("salesOrder").component("listSalesOrder", {
           }
         );
 
-        vm.tableParams.filter()["status"] = paramFilterStatus;
+        vm.tableParams.filter()["status"] = vm.paramFilterStatus;
       }
 
       function createSalesOrder() {

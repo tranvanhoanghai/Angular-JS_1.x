@@ -2,10 +2,10 @@
   <div class="das-title text-uppercase">
     <h5>new contacts in the last 7 days</h5>
   </div>
-  <div class="row">
-    <div class="loader" ng-show="$ctrl.loading"></div>
+  <div ng-if="isAdmin" class="row">
+    <loading loading="$ctrl.isLoading"></loading>
     <table
-      ng-hide="$ctrl.loading"
+      ng-hide="$ctrl.isLoading"
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
     >

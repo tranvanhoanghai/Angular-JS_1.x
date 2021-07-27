@@ -12,7 +12,7 @@ angular.module("contact").component("contact", {
     function ($scope, cssInjector, $window, ContactService, Notification) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
-      vm.loading = true;
+      vm.isLoading = true;
     },
   ],
 });

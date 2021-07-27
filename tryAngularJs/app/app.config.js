@@ -32,8 +32,9 @@ angular.module("myApp").config([
       .state("main", {
         url: "/",
         templateUrl: "shared/main.template.html",
-        controller: function (SharedService) {
-          this.isAdmin = SharedService.getData().isAdmin;
+        controller: function (SharedService, $rootScope) {
+          $rootScope.isAdmin = SharedService.getData().isAdmin;
+          $rootScope.name = SharedService.getData().name;
         },
         controllerAs: "vm",
         redirectTo: "main.dashboard",
