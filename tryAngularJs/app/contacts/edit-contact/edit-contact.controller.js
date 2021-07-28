@@ -27,7 +27,7 @@ angular.module("contact").component("editContact", {
       vm.submit = openModal;
       vm.dataModal = "Do you want to update it?";
 
-      vm.titleBtn = "Update";
+      vm.titleBtn = "TITLE.UPDATE";
       vm.detailContact();
 
       vm.contact = {};

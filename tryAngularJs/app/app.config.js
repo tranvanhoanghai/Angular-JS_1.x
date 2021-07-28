@@ -36,7 +36,8 @@ angular.module("myApp").config([
       suffix: ".json",
     });
     $translateProvider.preferredLanguage("en");
-    // $translateProvider.useLocalStorage();
+    $translateProvider.useLocalStorage();
+    $translateProvider.useSanitizeValueStrategy(null);
 
     $stateProvider
       .state("main", {

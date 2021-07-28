@@ -38,6 +38,8 @@ angular.module("contact").component("contactList", {
       vm.delete = deleteContact;
       vm.open = openModal;
       vm.deleteCheckBox = deleteCheckBox;
+      vm.showDeleteBtn = false;
+      vm.deleteMultiple = deleteMultiple;
 
       vm.data = "Do you want to delete it?";
 
@@ -71,11 +73,25 @@ angular.module("contact").component("contactList", {
           // alert("now I'll close the modal");
         });
       }
-
-      vm.change = function (a) {
-        // console.log(a);
-        var values = Object.keys(a).filter((key) => a[key]);
-        console.log(values);
+      vm.listId = { id: [] };
+      vm.change = function (value) {
+        Object.keys(value).map((key) => {
+          if (value[key]) {
+            if (!vm.listId.id.includes(key)) {
+              vm.listId.id.push(key);
+            }
+          } else {
+            var index = vm.listId.id.indexOf(key);
+            vm.listId.id.splice(index, 1);
+          }
+        });
+        console.log();
+        var showBtnDelete = vm.listId.id.length;
+        if (showBtnDelete != 0) {
+          vm.showDeleteBtn = true;
+        } else {
+          vm.showDeleteBtn = false;
+        }
       };
 
       vm.all = function () {
@@ -184,7 +200,21 @@ angular.module("contact").component("contactList", {
             });
           });
       }
-
+      function deleteMultiple() {
+        ContactService.deleteMultipleContact(vm.listId)
+          .then((response) => {
+            Notification.success({
+              message: "Delete data Successfully",
+            });
+            vm.getListContacts();
+          })
+          .catch((error) => {
+            console.log("Error", error);
+            Notification.error({
+              message: error,
+            });
+          });
+      }
       function deleteCheckBox() {}
     },
   ],

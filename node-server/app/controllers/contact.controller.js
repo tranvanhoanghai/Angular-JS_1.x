@@ -46,22 +46,45 @@ exports.updateContact = function (req, res, next) {
 
 exports.deleteContact = function (req, res, next) {
   const id = req.params.id;
-  console.log(req);
+
   Contact.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`,
+          message: `Cannot delete with id=${id}. Maybe Tutorial was not found!`,
         });
       } else {
         res.send({
-          message: "Tutorial was deleted successfully!",
+          message: "Deleted successfully!",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Tutorial with id=" + id,
+        message: "Could not delete with id=" + id,
+      });
+    });
+};
+
+exports.deleteMultipleContact = function (req, res, next) {
+  const _ids = req.body.id;
+  console.log(_ids);
+
+  Contact.deleteMany({ _id: { $in: _ids } })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete. Maybe Contact was not found!`,
+        });
+      } else {
+        res.send({
+          message: "Deleted successfully!",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete ",
       });
     });
 };

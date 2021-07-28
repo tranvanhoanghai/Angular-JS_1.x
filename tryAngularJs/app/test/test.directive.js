@@ -2,15 +2,16 @@
 
 angular.module("test").directive("movieDirective", function () {
   return {
-    restrict: "A",
+    restrict: "E",
 
-    // scope: {
-    //   movie: "=",
-    //   rating: "@",
-    //   display: "&",
-    //   add: "&",
-    // },
-    scope: true,
+    scope: {
+      movie: "=",
+      rating: "@",
+      time: "=timeMovie",
+      display: "&",
+      add: "&",
+    },
+    // scope: true,
     // scope: true,
     templateUrl: "test/test.directive.html",
 

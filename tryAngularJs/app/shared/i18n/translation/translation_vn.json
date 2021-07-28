@@ -5,6 +5,13 @@
     "SALES_ORDER": "Đơn hàng",
     "USER_MANAGEMENT": "Nhân viên"
   },
+  "TITLE": {
+    "CONTACT": "Khách hàng",
+    "CREATE_CONTACT": "Tạo mới khách hàng",
+    "EDIT_CONTACT": "Cập nhật khách hàng",
+    "CREATE": "Tạo",
+    "UPDATE": "Cập nhật"
+  },
   "CONTACT": {
     "NAME": "Tên",
     "SALUTATION": "Danh xưng",

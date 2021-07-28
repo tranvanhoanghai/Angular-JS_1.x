@@ -7,6 +7,7 @@ angular
     function (UserService, Notification, SharedService) {
       return {
         restrict: "E",
+        replace: true,
         scope: {
           submit: "&",
           titleBtn: "@",

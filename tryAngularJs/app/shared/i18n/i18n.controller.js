@@ -3,15 +3,13 @@
 angular.module("i18n").component("i18n", {
   templateUrl: "shared/i18n/i18n.template.html",
   controller: [
-    "cssInjector",
-    "$scope",
+    "$window",
     "$translate",
-    function (cssInjector, $scope, $translate) {
-      //   cssInjector.add("sales-order/sales-order.template.css");
+    function ($window, $translate) {
       var vm = this;
 
       vm.change = change;
-      vm.language = "en";
+      vm.language = $window.localStorage["NG_TRANSLATE_LANG_KEY"];
 
       function change() {
         $translate.use(vm.language);

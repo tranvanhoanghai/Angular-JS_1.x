@@ -26,8 +26,32 @@
 </div> -->
 <!-- </div> -->
 <!-- <div movie-directive></div> -->
-<!-- <input-directive></input-directive> -->
 
-<table-directive data="$ctrl.data" editt="$ctrl.editt" />
+<input-directive
+  ng-model="$ctrl.text"
+  ng-change="$ctrl.change()"
+  ng-click="$ctrl.show()"
+></input-directive>
+
+<!-- <input-directive text="$ctrl.text"></input-directive> -->
+<!-- <input type="text" ng-model="$ctrl.movie" /> -->
+
+<button ng-click="$ctrl.show()">click</button>
+
+<table-directive
+  data="$ctrl.data"
+  edit="$ctrl.edit(id, data)"
+></table-directive>
+
+<movie-directive
+  movie="$ctrl.moviee"
+  rating="{{$ctrl.rating}}"
+  time-movie="$ctrl.timeMovie"
+  display="$ctrl.display($ctrl.moviee)"
+  add="$ctrl.showMovie()"
+></movie-directive>
 
 <!-- </div> -->
+<!-- <p>{{ $ctrl.password | passwordFilter}}</p>
+<p>{{ $ctrl.password | base64Filter}}</p>
+<p>{{ $ctrl.password | base64Filter | base64DecodeFilter}}</p> -->

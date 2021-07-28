@@ -5,6 +5,14 @@
     "SALES_ORDER": "Sales order",
     "USER_MANAGEMENT": "User management"
   },
+  "TITLE": {
+    "CONTACT": "Contact",
+    "CREATE_CONTACT": "Create contact",
+    "EDIT_CONTACT": "Edit contact",
+    "CREATE": "Create",
+    "UPDATE": "Update"
+
+  },
   "CONTACT": {
     "NAME": "Name",
     "SALUTATION": "Salutation",

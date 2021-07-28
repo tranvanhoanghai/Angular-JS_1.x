@@ -6,14 +6,12 @@ angular.module("contact").component("createContact", {
     "$state",
     "cssInjector",
     "ContactService",
-    "UserService",
     "SharedService",
     "Notification",
     function (
       $state,
       cssInjector,
       ContactService,
-      UserService,
       SharedService,
       Notification
     ) {
@@ -22,11 +20,16 @@ angular.module("contact").component("createContact", {
       vm.isLoading = true;
 
       vm.submit = createContact;
+      vm.change = change;
       vm.creator = SharedService.getData().name;
-      vm.titleBtn = "Create";
+      vm.titleBtn = "TITLE.CREATE";
       vm.contact = {
         creator: vm.creator,
       };
+
+      function change() {
+        console.log("abc");
+      }
 
       function createContact() {
         ContactService.createContact(vm.contact)

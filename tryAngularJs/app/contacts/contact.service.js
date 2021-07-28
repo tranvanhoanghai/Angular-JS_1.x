@@ -29,4 +29,8 @@ angular
     this.deleteContact = function (id) {
       return $http.delete(`${baseUrl}/${id}`);
     };
+
+    this.deleteMultipleContact = function (listId) {
+      return $http.post(baseUrl + "/delete", listId);
+    };
   });

@@ -22,10 +22,20 @@ angular.module("test").component("test", {
       vm.getData = getData;
       vm.camelCase = camelCase;
       vm.setHeading = setHeading;
-      vm.editt = editt;
+      vm.edit = edit;
       vm.getData();
+      vm.password = "abcdefgh";
+      vm.show = show;
+      vm.change = change;
+      // vm.change = change;
+      // vm.text = "a";
 
-      // $scope.movie = "Ice Age";
+      function show() {
+        console.log(vm.text);
+      }
+      function change() {
+        console.log(vm.text);
+      }
 
       // console.log(TestService.sayHello());
       // console.log(TestProvider.sayHello());
@@ -34,8 +44,9 @@ angular.module("test").component("test", {
 
       // console.log(TestFactory.sayHello());
 
-      $scope.movie = "Ice Age";
-      $scope.rating = 5;
+      vm.moviee = "Ice Age";
+      vm.rating = 5;
+      vm.timeMovie = "60p";
       $scope.isLoading = true;
 
       function getData() {
@@ -81,15 +92,15 @@ angular.module("test").component("test", {
           .replace(/\s+/g, "");
       }
 
-      function editt() {
-        console.log("id");
+      function edit(id, data) {
+        console.log(id, data);
       }
 
       vm.display = function (movie) {
         alert("Movie : " + movie);
       };
-      vm.add = function () {
-        console.log(vm.movie, vm.rating);
+      vm.showMovie = function () {
+        console.log(vm.moviee, vm.rating);
       };
     },
   ],

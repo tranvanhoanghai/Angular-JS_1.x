@@ -1,33 +1,34 @@
-<!-- <div>Movie title : {{ movie}}</div> -->
+<!-- <div>{{abc}}</div>
+ 
 
-<!-- <form>
-  Type a new movie title : <input type="text" ng-model=" movie" />
-  <div>Movie rating : {{rating}}</div>
-
-  Rate the movie : <input type="text" ng-model="rating" />
-  <button type="submit" ng-click="add()">submit</button>
-</form>
-
-<div><button ng-click="display()">View Movie</button></div>
-
-<div>{{abc}}</div> -->
-
-<!-- <div>Movie title : {{$ctrl.movie}}</div> -->
-
-<!-- <form>
-  Type a new movie title : <input type="text" ng-model="movie" />
-  <div>Movie rating : {{rating}}</div>
-
-  Rate the movie : <input type="text" ng-model="rating" />
-  <button type="submit" ng-click="add()">submit</button>
-</form>
-
-<div><button ng-click="display()">View Movie</button></div>
-
-<div>{{abc}}</div> -->
-
-<!-- <div>{{vm.abc}}</div>
+<div>{{vm.abc}}</div>
 <input type="text" ng-model="vm.abc" />
 <button ng-click="vm.c()">click</button> -->
-<div>{{abc}}</div>
-<div>{{abd}}</div>
+<!-- <div>{{abc}}</div>
+<div>{{abd}}</div> -->
+
+<form>
+  <div>Movie title : {{movie}}</div>
+
+  <div>Movie rating : {{rating}}</div>
+
+  <div>Movie time : {{time}}</div>
+
+  <label for="">
+    Type a new movie title :
+    <input type="text" ng-model=" movie" />
+  </label>
+
+  <label for="">
+    Rate the movie :
+    <input type="text" ng-model="time" type="text" ng-model="rating" />
+  </label>
+
+  <label for="">
+    Time the movie :
+    <input type="text" ng-model="time" />
+  </label>
+
+  <button type="submit" ng-click="add()">submit</button>
+</form>
+<button type="submit" ng-click="display()">display</button>

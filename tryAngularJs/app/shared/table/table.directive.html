@@ -13,7 +13,7 @@
         <button
           ng-if="data.isEdit"
           type="button"
-          ng-click="edit()"
+          ng-click="edit({id:item.id, data:'data'})"
           class="btn btn-success"
         >
           <i class="fas fa-edit"></i>
@@ -21,7 +21,7 @@
 
         <button
           ng-if="data.isDelete"
-          ng-click="$ctrl.open(item.id)"
+          ng-click="open(item.id)"
           type="button"
           class="btn btn-danger ml-1"
         >
@@ -31,6 +31,3 @@
     </tr>
   </tbody>
 </table>
-<button type="button" ng-click="editt()" class="btn btn-success">
-  <i class="fas fa-edit"></i>
-</button>

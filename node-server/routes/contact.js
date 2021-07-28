@@ -9,5 +9,6 @@ router.get("/assign/:name", contactController.getListContactsAssign);
 router.post("/", contactController.createdContact);
 router.put("/:id", contactController.updateContact);
 router.delete("/:id", contactController.deleteContact);
+router.post("/delete", contactController.deleteMultipleContact);
 
 module.exports = router;

@@ -6,13 +6,11 @@ angular.module("user").component("user", {
     "$state",
     "$localStorage",
     "cssInjector",
-    "Notification",
-    function ($state, $localStorage, cssInjector, Notification) {
+    "$rootScope",
+    function ($state, $localStorage, cssInjector, $rootScope) {
       cssInjector.add("users/user.template.css");
-      if ($localStorage.data) {
-        if ($localStorage.data.isAdmin == "false") {
-          $state.go("main.403");
-        }
+      if ($rootScope.isAdmin === false) {
+        $state.go("main.403");
       }
     },
   ],

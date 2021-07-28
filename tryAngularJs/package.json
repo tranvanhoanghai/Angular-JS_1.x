@@ -11,7 +11,6 @@
     "angular-cookies": "^1.8.2",
     "angular-css-injector": "^1.0.4",
     "angular-loader": "^1.7.5",
-    "angular-material": "^1.2.2",
     "angular-resource": "^1.8.2",
     "angular-route": "^1.7.5",
     "angular-ui-bootstrap": "^2.5.6",
@@ -19,9 +18,7 @@
     "angular-ui-router": "^1.0.29",
     "angularjs-bootstrap": "^1.1.5",
     "bootstrap": "^4.6.0",
-    "html5-boilerplate": "0.0.1",
     "jquery": "^3.6.0",
-    "ng-i18next": "^1.0.7",
     "ng-table": "^3.0.1",
     "ngstorage": "^0.3.11",
     "ui-router-page-title": "^1.0.13"

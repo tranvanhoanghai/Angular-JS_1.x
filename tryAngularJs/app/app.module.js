@@ -22,4 +22,5 @@ angular.module("myApp", [
   "ui.router",
   "uiRouterTitle",
   "pascalprecht.translate",
+  "ngCookies",
 ]);

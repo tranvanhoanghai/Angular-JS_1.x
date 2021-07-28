@@ -1,13 +1,17 @@
 <div>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a ui-sref="contact">Contact</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Create Contact</li>
+      <li class="breadcrumb-item">
+        <a ui-sref="contact">{{'TITLE.CONTACT' | translate}}</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        {{'TITLE.CREATE_CONTACT' | translate}}
+      </li>
     </ol>
   </nav>
   <div class="content-main">
     <div class="header text-center text-uppercase mb-3">
-      <h1>create Contact</h1>
+      <h1>{{'TITLE.CREATE_CONTACT' | translate}}</h1>
     </div>
 
     <contact-form
