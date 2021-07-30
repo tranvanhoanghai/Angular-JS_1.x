@@ -9,9 +9,8 @@ angular.module("contact").component("contactList", {
     "$stateParams",
     "$state",
     "$scope",
-    "$location",
-    "$uibModal",
     "ContactService",
+    "DialogService",
     "Notification",
     function (
       UserService,
@@ -20,61 +19,31 @@ angular.module("contact").component("contactList", {
       $stateParams,
       $state,
       $scope,
-      $location,
-      $uibModal,
       ContactService,
+      DialogService,
       Notification
     ) {
       var vm = this;
-      vm.isLoading = true;
+
       vm.paramLeadSource = $stateParams.leadSource;
       vm.paramAssignedTo = $stateParams.assignedTo;
-
       vm.getListContacts = getListContacts;
       vm.getListAssignedTos = getListAssignedTos;
       vm.ngTable = ngTable;
       vm.create = createContact;
       vm.edit = editContact;
-      vm.delete = deleteContact;
-      vm.open = openModal;
-      vm.deleteCheckBox = deleteCheckBox;
+      vm.delete = showDialog;
+      vm.deleteMultiple = showDialog;
+
+      vm.checkBox = checkBox;
+
+      vm.isLoading = true;
+      vm.title = "Do you want to delete it?";
       vm.showDeleteBtn = false;
-      vm.deleteMultiple = deleteMultiple;
-
-      vm.data = "Do you want to delete it?";
-
-      function openModal(id) {
-        var modalInstance = $uibModal.open({
-          animation: true,
-          ariaLabelledBy: "modal-title",
-          ariaDescribedBy: "modal-body",
-          templateUrl: "shared/dialog.template.html",
-          controller: function ($uibModalInstance, data, $scope) {
-            $scope.data = data;
-
-            $scope.ok = function () {
-              deleteContact(id);
-              $uibModalInstance.close();
-            };
-
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss("cancel");
-            };
-          },
-          // size: size,
-          resolve: {
-            data: function () {
-              return vm.data;
-            },
-          },
-        });
-
-        modalInstance.result.then(function () {
-          // alert("now I'll close the modal");
-        });
-      }
+      vm.getListContacts();
       vm.listId = { id: [] };
-      vm.change = function (value) {
+
+      function checkBox(value) {
         Object.keys(value).map((key) => {
           if (value[key]) {
             if (!vm.listId.id.includes(key)) {
@@ -85,22 +54,14 @@ angular.module("contact").component("contactList", {
             vm.listId.id.splice(index, 1);
           }
         });
-        console.log();
+
         var showBtnDelete = vm.listId.id.length;
         if (showBtnDelete != 0) {
           vm.showDeleteBtn = true;
         } else {
           vm.showDeleteBtn = false;
         }
-      };
-
-      vm.all = function () {
-        console.log("all");
-      };
-
-      // $scope.$watch("checkboxes.checked", function (value) {
-      //   console.log("âsdád");
-      // });
+      }
 
       function getListContacts() {
         if ($rootScope.isAdmin) {
@@ -109,8 +70,6 @@ angular.module("contact").component("contactList", {
               vm.getListAssignedTos();
               vm.contacts = response.data;
               vm.ngTable(vm.contacts);
-              // $location.search({});
-
               vm.isLoading = false;
             })
             .catch((error) => {
@@ -135,8 +94,6 @@ angular.module("contact").component("contactList", {
             });
         }
       }
-
-      vm.getListContacts();
 
       function getListAssignedTos() {
         UserService.listUsers()
@@ -200,6 +157,13 @@ angular.module("contact").component("contactList", {
             });
           });
       }
+
+      function showDialog(id) {
+        id
+          ? DialogService.showDialog(deleteContact, vm.title, id)
+          : DialogService.showDialog(deleteMultiple, vm.title);
+      }
+
       function deleteMultiple() {
         ContactService.deleteMultipleContact(vm.listId)
           .then((response) => {
@@ -215,7 +179,6 @@ angular.module("contact").component("contactList", {
             });
           });
       }
-      function deleteCheckBox() {}
     },
   ],
 });

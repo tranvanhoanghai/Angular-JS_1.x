@@ -28,42 +28,10 @@ angular.module("user").component("listUser", {
       vm.getListUsers = getListUsers;
       vm.create = createUser;
       vm.edit = editUser;
-      vm.delete = deleteUser;
-      vm.open = openModal;
+      vm.delete = showDialog;
       vm.ngTable = ngTable;
-      vm.data = "Do you want to delete it?";
+      vm.title = "Do you want to delete it?";
       vm.getListUsers();
-
-      function openModal(id) {
-        var modalInstance = $uibModal.open({
-          animation: true,
-          ariaLabelledBy: "modal-title",
-          ariaDescribedBy: "modal-body",
-          templateUrl: "shared/dialog.template.html",
-          controller: function ($uibModalInstance, data, $scope) {
-            $scope.data = data;
-
-            $scope.ok = function () {
-              deleteUser(id);
-              $uibModalInstance.close();
-            };
-
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss("cancel");
-            };
-          },
-          // size: size,
-          resolve: {
-            data: function () {
-              return vm.data;
-            },
-          },
-        });
-
-        modalInstance.result.then(function () {
-          // alert("now I'll close the modal");
-        });
-      }
 
       function getListUsers() {
         var id = SharedService.getData().id;
@@ -103,6 +71,10 @@ angular.module("user").component("listUser", {
             dataset: data,
           }
         );
+      }
+      
+      function showDialog(id) {
+        DialogService.showDialog(deleteUser, vm.title, id);
       }
 
       function deleteUser(id) {

@@ -9,7 +9,7 @@ angular
         restrict: "E",
         replace: true,
         scope: {
-          submit: "&",
+          onSubmit: "&",
           titleBtn: "@",
           contact: "=",
         },

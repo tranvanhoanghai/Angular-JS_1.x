@@ -5,10 +5,10 @@ angular
   .service("SharedService", function ($localStorage, $rootScope) {
     const data = $localStorage.data;
     const token = $localStorage.token;
-    if (data) {
-      $rootScope.isAdmin = data.isAdmin;
-      $rootScope.name = data.name;
-    }
+    // if (data) {
+    //   $rootScope.isAdmin = data.isAdmin;
+    //   $rootScope.name = data.name;
+    // }
 
     const baseUrl = "http://localhost:3000";
 

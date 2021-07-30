@@ -9,6 +9,7 @@ angular.module("user").component("editUser", {
     "cssInjector",
     "UserService",
     "SharedService",
+    "DialogService",
     "Notification",
     function (
       $state,
@@ -17,6 +18,7 @@ angular.module("user").component("editUser", {
       cssInjector,
       UserService,
       SharedService,
+      DialogService,
       Notification
     ) {
       cssInjector.add("users/user.template.css");
@@ -24,43 +26,11 @@ angular.module("user").component("editUser", {
       var currentId = $stateParams.id;
 
       vm.detailUser = detailUser;
-      vm.update = updateUser;
-      vm.open = openModal;
-      vm.data = "Do you want to update it?";
+      vm.open = showDialog;
+      vm.title = "Do you want to update it?";
       vm.regexEmail = SharedService.regexEmail();
       vm.regexPhone = SharedService.regexPhone();
       vm.detailUser();
-
-      function openModal(size) {
-        var modalInstance = $uibModal.open({
-          animation: true,
-          ariaLabelledBy: "modal-title",
-          ariaDescribedBy: "modal-body",
-          templateUrl: "shared/dialog.template.html",
-          controller: function ($uibModalInstance, data, $scope) {
-            $scope.data = data;
-
-            $scope.ok = function () {
-              updateUser();
-              $uibModalInstance.close();
-            };
-
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss("cancel");
-            };
-          },
-          size: size,
-          resolve: {
-            data: function () {
-              return vm.data;
-            },
-          },
-        });
-
-        modalInstance.result.then(function () {
-          // alert("now I'll close the modal");
-        });
-      }
 
       function detailUser() {
         UserService.detailUser(currentId)
@@ -77,6 +47,10 @@ angular.module("user").component("editUser", {
               replaceMessage: true,
             });
           });
+      }
+
+      function showDialog() {
+        DialogService.showDialog(updateUser, vm.title);
       }
 
       function updateUser() {

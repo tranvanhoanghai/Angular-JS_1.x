@@ -8,6 +8,7 @@ angular.module("contact").component("editContact", {
     "$uibModal",
     "cssInjector",
     "ContactService",
+    "DialogService",
     "Notification",
     function (
       $state,
@@ -15,53 +16,72 @@ angular.module("contact").component("editContact", {
       $uibModal,
       cssInjector,
       ContactService,
+      DialogService,
       Notification
     ) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
+      vm.currentId = $stateParams.id;
 
-      var currentId = $stateParams.id;
       vm.detailContact = detailContact;
       vm.submit = updateContact;
       vm.isLoading = true;
-      vm.submit = openModal;
-      vm.dataModal = "Do you want to update it?";
-
+      vm.submit = showDialog;
+      vm.showDataInput = showDataInput;
+      vm.title = "Do you want to update it?";
       vm.titleBtn = "TITLE.UPDATE";
-      vm.detailContact();
+      vm.contact = {
+        id: vm.currentId,
+      };
+      vm.keepData = keepData;
+      vm.$onDestroy = onDestroy;
+      vm.showDataInput();
 
-      vm.contact = {};
-      console.log(vm.contact);
+      function onDestroy() {
+        ContactService.formEdit = vm.contact;
+        console.log(ContactService.formEdit);
+      }
 
-      function openModal(size) {
-        var modalInstance = $uibModal.open({
-          animation: true,
-          ariaLabelledBy: "modal-title",
-          ariaDescribedBy: "modal-body",
-          templateUrl: "shared/dialog.template.html",
-          controller: function ($uibModalInstance, data, $scope) {
-            $scope.data = data;
+      function showDataInput() {
+        Object.size = function (obj) {
+          var size = 0,
+            key;
+          for (key in obj) {
+            if (obj.hasOwnProperty(key)) size++;
+          }
+          return size;
+        };
 
-            $scope.ok = function () {
-              updateContact();
-              $uibModalInstance.close();
-            };
+        var size = Object.size(ContactService.formEdit);
+        console.log(size);
 
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss("cancel");
-            };
-          },
-          size: size,
-          resolve: {
-            data: function () {
-              return vm.dataModal;
-            },
-          },
-        });
+        size != 0 ? vm.keepData() : vm.detailContact();
+      }
 
-        modalInstance.result.then(function () {
-          // alert("now I'll close the modal");
-        });
+      function keepData() {
+        if (ContactService.formEdit) {
+          if (ContactService.formEdit.id == vm.currentId) {
+            vm.contact.name = ContactService.formEdit.name;
+            vm.contact.salutation = ContactService.formEdit.salutation;
+            vm.contact.phone = ContactService.formEdit.phone;
+            vm.contact.email = ContactService.formEdit.email;
+            vm.contact.organization = ContactService.formEdit.organization;
+            vm.contact.dateOfBirth = new Date(
+              ContactService.formEdit.dateOfBirth
+            );
+            vm.contact.address = ContactService.formEdit.address;
+            vm.contact.leadSource = ContactService.formEdit.leadSource;
+            vm.contact.assignedTo = ContactService.formEdit.assignedTo;
+            vm.contact.creator = ContactService.formEdit.creator;
+            vm.contact.description = ContactService.formEdit.description;
+          } else {
+            vm.detailContact();
+          }
+        }
+      }
+
+      function showDialog() {
+        DialogService.showDialog(updateContact, vm.title);
       }
 
       function detailContact() {
@@ -78,6 +98,7 @@ angular.module("contact").component("editContact", {
             vm.contact.assignedTo = res.data.assignedTo;
             vm.contact.creator = res.data.creator;
             vm.contact.description = res.data.description;
+            return vm.contact;
           })
           .catch((error) => {
             Notification.error({
@@ -88,7 +109,8 @@ angular.module("contact").component("editContact", {
       }
 
       function updateContact() {
-        ContactService.updateContact(currentId, vm.contact)
+        console.log("abc");
+        ContactService.updateContact(vm.currentId, vm.contact)
           .then((res) => {
             Notification.success({
               message: "Data update Successfully",

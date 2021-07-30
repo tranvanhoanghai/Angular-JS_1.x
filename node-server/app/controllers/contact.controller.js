@@ -68,7 +68,6 @@ exports.deleteContact = function (req, res, next) {
 
 exports.deleteMultipleContact = function (req, res, next) {
   const _ids = req.body.id;
-  console.log(_ids);
 
   Contact.deleteMany({ _id: { $in: _ids } })
     .then((data) => {
@@ -84,7 +83,7 @@ exports.deleteMultipleContact = function (req, res, next) {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete ",
+        message: "Could not delete",
       });
     });
 };

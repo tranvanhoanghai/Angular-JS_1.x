@@ -5,32 +5,39 @@ angular
   .service("ContactService", function ($http, SharedService) {
     var contact = "/contact";
     var baseUrl = SharedService.getBaseUrl() + contact;
+    var formCreated = {};
+    var formEdit = {};
 
-    this.listContact = function () {
-      return $http.get(baseUrl);
-    };
+    return {
+      formCreated,
+      formEdit,
 
-    this.listContactAssign = function (name) {
-      return $http.get(`${baseUrl}/assign/${name}`);
-    };
+      listContact: function () {
+        return $http.get(baseUrl);
+      },
 
-    this.detailContact = function (id) {
-      return $http.get(`${baseUrl}/${id}`);
-    };
+      listContactAssign: function (name) {
+        return $http.get(`${baseUrl}/assign/${name}`);
+      },
 
-    this.createContact = function (data) {
-      return $http.post(baseUrl, data);
-    };
+      detailContact: function (id) {
+        return $http.get(`${baseUrl}/${id}`);
+      },
 
-    this.updateContact = function (id, data) {
-      return $http.put(`${baseUrl}/${id}`, data);
-    };
+      createContact: function (data) {
+        return $http.post(baseUrl, data);
+      },
 
-    this.deleteContact = function (id) {
-      return $http.delete(`${baseUrl}/${id}`);
-    };
+      updateContact: function (id, data) {
+        return $http.put(`${baseUrl}/${id}`, data);
+      },
 
-    this.deleteMultipleContact = function (listId) {
-      return $http.post(baseUrl + "/delete", listId);
+      deleteContact: function (id) {
+        return $http.delete(`${baseUrl}/${id}`);
+      },
+
+      deleteMultipleContact: function (listId) {
+        return $http.post(baseUrl + "/delete", listId);
+      },
     };
   });

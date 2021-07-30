@@ -12,7 +12,6 @@
         id="name"
         name="name"
         ng-model="contact.name"
-        ng-change="$ctrl.change()"
         autocomplete="off"
         required
       />
@@ -184,7 +183,7 @@
 
     <div class="form-group col-md-12 d-flex justify-content-end">
       <button
-        ng-click="submit()"
+        ng-click="onSubmit()"
         type="button"
         class="btn btn-primary"
         ng-disabled="form.$invalid"
