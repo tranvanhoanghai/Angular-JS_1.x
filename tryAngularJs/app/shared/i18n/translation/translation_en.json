@@ -5,37 +5,50 @@
     "SALES_ORDER": "Sales order",
     "USER_MANAGEMENT": "User management"
   },
-  "TITLE": {
-    "CONTACT": "Contact",
-    "CREATE_CONTACT": "Create contact",
-    "EDIT_CONTACT": "Edit contact",
-    "CREATE": "Create",
-    "UPDATE": "Update"
 
+  "DASHBOARD": {
+    "NEW_CONTACT_7_DAY": "New contacts in the last 7 days",
+    "NEW_SALES_ORDER_7_DAY": "New sales order in the last 7 days"
   },
+  
   "CONTACT": {
     "NAME": "Name",
     "SALUTATION": "Salutation",
     "ORGANIZATION": "Organization",
     "DATE_OF_BIRTH": "Date of birth",
-    "ADDRESS": "Address"
+    "ADDRESS": "Address",
+    "TITLE": {
+      "CREATE_CONTACT": "Create contact",
+      "EDIT_CONTACT": "Edit contact"
+    }
   },
+
   "SALES_ORDER": {
     "CONTACT": "Contact",
     "STATUS": "Status",
-    "TOTAL": "Total"
+    "TOTAL": "Total",
+    "TITLE": {
+      "CREATE_SALES_ORDER": "Create sales order",
+      "EDIT_SALES_ORDER": "Edit sales order"
+    }
   },
+
   "USER_MANAGEMENT": {
     "USER_NAME": "User name",
-    "IS ACTIVE": "Is Active"
+    "IS ACTIVE": "Is Active",
+    "TITLE": {
+      "CREATE_USER": "Tạo mới nhân viên",
+      "EDIT_USER": "Cập nhật nhân viên"
+    }
   },
+
   "PHONE": "Phone",
   "EMAIL": "Email",
   "LEAD_SOURCE": "Lead source",
   "ASSIGNED_TO": "Assigned to",
   "DESCRIPTION": "Description",
   "CREATOR": "Creator",
-  "ACTION": "Action"
-
-
+  "ACTION": "Action",
+  "CREATE": "Create",
+  "UPDATE": "Update"
 }

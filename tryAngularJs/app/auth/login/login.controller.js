@@ -29,7 +29,11 @@ angular.module("auth").component("login", {
         AuthService.logout();
       } else {
         if ($localStorage.data) {
-          $state.go("main.dashboard");
+          $state.go("main.dashboard", {
+            reload: true,
+            inherit: false,
+            notify: true,
+          });
         } else {
           AuthService.logout();
         }
@@ -47,7 +51,11 @@ angular.module("auth").component("login", {
             $localStorage.data = res.data.user;
             // $localStorage.refreshToken = res.data.refreshToken;
 
-            $state.go("main.dashboard");
+            $state.go("main.dashboard", {
+              reload: true,
+              inherit: false,
+              notify: true,
+            });
             Notification.success({
               message: res.data.message,
             });

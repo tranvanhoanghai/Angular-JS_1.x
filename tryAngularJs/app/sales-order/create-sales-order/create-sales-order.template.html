@@ -1,16 +1,18 @@
 <div>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a ui-sref="sales-order">Sales order</a></li>
+      <li class="breadcrumb-item">
+        <a ui-sref="sales-order">{{'MENU.SALES_ORDER' | translate}}</a>
+      </li>
       <li class="breadcrumb-item active" aria-current="page">
-        Create Sales order
+        {{'SALES_ORDER.TITLE.CREATE_SALES_ORDER' | translate}}
       </li>
     </ol>
   </nav>
 
   <div class="content-main">
     <div class="header text-center text-uppercase mb-3">
-      <h1>Create Sales order</h1>
+      <h1>{{'SALES_ORDER.TITLE.CREATE_SALES_ORDER' | translate}}</h1>
     </div>
 
     <sales-order-form></sales-order-form>

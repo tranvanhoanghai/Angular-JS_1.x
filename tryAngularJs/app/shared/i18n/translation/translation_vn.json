@@ -5,35 +5,50 @@
     "SALES_ORDER": "Đơn hàng",
     "USER_MANAGEMENT": "Nhân viên"
   },
-  "TITLE": {
-    "CONTACT": "Khách hàng",
-    "CREATE_CONTACT": "Tạo mới khách hàng",
-    "EDIT_CONTACT": "Cập nhật khách hàng",
-    "CREATE": "Tạo",
-    "UPDATE": "Cập nhật"
+
+  "DASHBOARD": {
+    "NEW_CONTACT_7_DAY": "Khách hàng mới trong 7 ngày qua",
+    "NEW_SALES_ORDER_7_DAY": "Hóa đơn mới trong 7 ngày qua"
   },
+ 
   "CONTACT": {
     "NAME": "Tên",
     "SALUTATION": "Danh xưng",
     "ORGANIZATION": "Công ty",
     "DATE_OF_BIRTH": "Ngày sinh",
-    "ADDRESS": "Địa chỉ"
+    "ADDRESS": "Địa chỉ",
+    "TITLE": {
+      "CREATE_CONTACT": "Tạo mới khách hàng",
+      "EDIT_CONTACT": "Cập nhật khách hàng"
+    }
   },
+
   "SALES_ORDER": {
-    "CONTACT": "Tên",
-    "STATUS": "Danh xưng",
-    "TOTAL": "Tổng"
+    "CONTACT": "Tên liên hệ",
+    "STATUS": "Trạng thái",
+    "TOTAL": "Tổng",
+    "TITLE": {
+      "CREATE_SALES_ORDER": "Tạo mới đơn hàng",
+      "EDIT_SALES_ORDER": "Cập nhật đơn hàng"
+    }
   },
+
   "USER_MANAGEMENT": {
     "USER_NAME": "Tên đăng nhập",
-    "IS ACTIVE": "Hoạt động"
+    "IS ACTIVE": "Hoạt động",
+    "TITLE": {
+      "CREATE_USER": "Tạo mới đơn hàng",
+      "EDIT_USER": "Cập nhật đơn hàng"
+    }
   },
+
   "PHONE": "Điện thoại",
   "EMAIL": "Email",
   "LEAD_SOURCE": "Nguồn",
   "ASSIGNED_TO": "Phụ trách",
   "DESCRIPTION": "Ghi chú",
   "CREATOR": "Tạo bởi",
-  "ACTION": "Thay đổi"
-
+  "ACTION": "Thay đổi",
+  "CREATE": "Tạo",
+  "UPDATE": "Cập nhật"
 }

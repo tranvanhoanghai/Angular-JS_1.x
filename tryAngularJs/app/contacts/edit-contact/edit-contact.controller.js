@@ -29,7 +29,7 @@ angular.module("contact").component("editContact", {
       vm.submit = showDialog;
       vm.showDataInput = showDataInput;
       vm.title = "Do you want to update it?";
-      vm.titleBtn = "TITLE.UPDATE";
+      vm.titleBtn = "UPDATE";
       vm.contact = {
         id: vm.currentId,
       };

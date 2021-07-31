@@ -1,14 +1,18 @@
 <div>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a ui-sref="user">User</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Create user</li>
+      <li class="breadcrumb-item">
+        <a ui-sref="user"> {{'MENU.USER_MANAGEMENT' | translate}}</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        {{'USER_MANAGEMENT.TITLE.CREATE_USER' | translate}}
+      </li>
     </ol>
   </nav>
 
   <div class="content-main">
     <div class="header text-center text-uppercase mb-3">
-      <h1>Create User</h1>
+      <h1>{{'USER_MANAGEMENT.TITLE.CREATE_USER' | translate}}</h1>
     </div>
 
     <form ng-submit="$ctrl.create()" name="form" role="form">

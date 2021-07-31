@@ -1,13 +1,15 @@
 <div>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">Sales order</li>
+      <li class="breadcrumb-item active" aria-current="page">
+        {{ 'MENU.SALES_ORDER' | translate }}
+      </li>
     </ol>
   </nav>
 
   <div class="content-main">
     <div class="header text-center text-uppercase mb-3">
-      <h1>Sales order</h1>
+      <h1>{{ 'MENU.SALES_ORDER' | translate }}</h1>
     </div>
 
     <list-sales-order></list-sales-order>

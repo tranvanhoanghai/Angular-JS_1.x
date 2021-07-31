@@ -1,9 +1,11 @@
 <div class="dash-content dash-contact container-fluid">
   <div class="das-title text-uppercase">
-    <h5>new contacts in the last 7 days {{isAdmin}}</h5>
+    <h5>{{ 'DASHBOARD.NEW_CONTACT_7_DAY' | translate }}</h5>
   </div>
+
+  <loading loading="$ctrl.isLoading"></loading>
+
   <div class="row" ng-if="$root.isAdmin">
-    <loading loading="$ctrl.isLoading"></loading>
     <table
       ng-hide="$ctrl.isLoading"
       ng-table="$ctrl.tableParams"

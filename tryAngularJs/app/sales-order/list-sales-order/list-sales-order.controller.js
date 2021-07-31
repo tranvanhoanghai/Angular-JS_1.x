@@ -5,23 +5,23 @@ angular.module("salesOrder").component("listSalesOrder", {
   controller: [
     "NgTableParams",
     "cssInjector",
-    "$location",
     "$rootScope",
     "$stateParams",
     "$state",
     "SalesOrderService",
     "UserService",
+    "DialogService",
     "Notification",
     "$uibModal",
     function (
       NgTableParams,
       cssInjector,
-      $location,
       $rootScope,
       $stateParams,
       $state,
       SalesOrderService,
       UserService,
+      DialogService,
       Notification,
       $uibModal
     ) {
@@ -33,42 +33,11 @@ angular.module("salesOrder").component("listSalesOrder", {
       vm.getListSalesOrder = getListSalesOrder;
       vm.create = createSalesOrder;
       vm.edit = editSalesOrder;
-      vm.delete = deleteSalesOrder;
+      vm.delete = showDialog;
       vm.ngTable = ngTable;
       vm.getListAssignedTos = getListAssignedTos;
-      vm.open = openModal;
-      vm.data = "Do you want to delete it?";
-
-      function openModal(id) {
-        var modalInstance = $uibModal.open({
-          animation: true,
-          ariaLabelledBy: "modal-title",
-          ariaDescribedBy: "modal-body",
-          templateUrl: "shared/dialog.template.html",
-          controller: function ($uibModalInstance, data, $scope) {
-            $scope.data = data;
-
-            $scope.ok = function () {
-              deleteSalesOrder(id);
-              $uibModalInstance.close();
-            };
-
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss("cancel");
-            };
-          },
-          // size: size,
-          resolve: {
-            data: function () {
-              return vm.data;
-            },
-          },
-        });
-
-        modalInstance.result.then(function () {
-          // alert("now I'll close the modal");
-        });
-      }
+      vm.title = "Do you want to delete it?";
+      vm.getListSalesOrder();
 
       function getListSalesOrder() {
         if ($rootScope.isAdmin) {
@@ -80,8 +49,6 @@ angular.module("salesOrder").component("listSalesOrder", {
               vm.isLoading = false;
             })
             .catch((error) => {
-              vm.isLoading = true;
-
               console.log("Error", error);
               setTimeout(function () {
                 vm.getListSalesOrder();
@@ -105,8 +72,6 @@ angular.module("salesOrder").component("listSalesOrder", {
             });
         }
       }
-
-      vm.getListSalesOrder();
 
       function getListAssignedTos() {
         UserService.listUsers()
@@ -150,6 +115,12 @@ angular.module("salesOrder").component("listSalesOrder", {
 
       function editSalesOrder(id) {
         $state.go("main.sales-orderEdit", { id: id });
+      }
+
+      function showDialog(id) {
+        id
+          ? DialogService.showDialog(deleteSalesOrder, vm.title, id)
+          : DialogService.showDialog(deleteMultiple, vm.title);
       }
 
       function deleteSalesOrder(id) {

@@ -1,4 +1,4 @@
-<section ng-if="$ctrl.ngTableAssignedTos.length">
+<section>
   <div class="d-flex justify-content-end list-action">
     <!-- <div class="mb-3 action-item">
       <label for="assignedTo">Assigned to:</label>
@@ -57,6 +57,7 @@
       ng-hide="$ctrl.isLoading"
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
+      ng-if="$ctrl.ngTableAssignedTos.length"
     >
       <tr ng-repeat="data in $data track by $index">
         <td>

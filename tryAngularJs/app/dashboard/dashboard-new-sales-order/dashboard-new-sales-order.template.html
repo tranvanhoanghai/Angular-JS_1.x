@@ -1,10 +1,11 @@
 <div class="dash-content dash-sales-order container-fluid">
   <div class="col-lg-12 text-uppercase title-header">
-    <h5>new Sales order in the last 7 days</h5>
+    <h5>{{ 'DASHBOARD.NEW_SALES_ORDER_7_DAY' | translate }}</h5>
   </div>
-  <div class="row" ng-if="$root.isAdmin">
-    <loading loading="$ctrl.isLoading"></loading>
 
+  <loading loading="$ctrl.isLoading"></loading>
+
+  <div class="row" ng-if="$root.isAdmin">
     <div ng-show="$ctrl.showDetail" class="showDetail container-fluid">
       <div class="row">
         <div
