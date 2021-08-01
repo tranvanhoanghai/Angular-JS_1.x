@@ -5,13 +5,7 @@ angular
   .service("ContactService", function ($http, SharedService) {
     var contact = "/contact";
     var baseUrl = SharedService.getBaseUrl() + contact;
-    // var formCreated = {};
-    // var formEdit = {};
-
     return {
-      // formCreated,
-      // formEdit,
-
       listContact: function () {
         return $http.get(baseUrl);
       },

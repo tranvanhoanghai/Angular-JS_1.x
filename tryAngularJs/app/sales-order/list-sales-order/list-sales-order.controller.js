@@ -12,7 +12,6 @@ angular.module("salesOrder").component("listSalesOrder", {
     "UserService",
     "DialogService",
     "Notification",
-    "$uibModal",
     function (
       NgTableParams,
       cssInjector,
@@ -22,55 +21,57 @@ angular.module("salesOrder").component("listSalesOrder", {
       SalesOrderService,
       UserService,
       DialogService,
-      Notification,
-      $uibModal
+      Notification
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
       var vm = this;
+
       vm.isLoading = true;
       vm.paramFilterStatus = $stateParams.status;
+      vm.listId = { id: [] };
+      vm.title = "Do you want to delete it?";
 
       vm.getListSalesOrder = getListSalesOrder;
       vm.create = createSalesOrder;
       vm.edit = editSalesOrder;
-      vm.delete = showDialog;
       vm.ngTable = ngTable;
       vm.getListAssignedTos = getListAssignedTos;
-      vm.title = "Do you want to delete it?";
+      vm.checkBox = checkBox;
+      vm.delete = showDialog;
+      vm.deleteMultiple = showDialog;
+
       vm.getListSalesOrder();
 
       function getListSalesOrder() {
-        if ($rootScope.isAdmin) {
-          SalesOrderService.listSalesOrder()
-            .then((response) => {
-              vm.getListAssignedTos();
-              vm.salesOrders = response.data;
-              vm.ngTable(vm.salesOrders);
-              vm.isLoading = false;
-            })
-            .catch((error) => {
-              console.log("Error", error);
-              setTimeout(function () {
-                vm.getListSalesOrder();
-              }, 5000);
-            });
-        } else {
-          SalesOrderService.listSalesOrderAssign($rootScope.name)
-            .then((response) => {
-              vm.getListAssignedTos();
-              vm.salesOrders = response.data;
-              vm.ngTable(vm.salesOrders);
-              vm.isLoading = false;
-            })
-            .catch((error) => {
-              vm.isLoading = true;
+        $rootScope.isAdmin
+          ? SalesOrderService.listSalesOrder()
+              .then((response) => {
+                vm.getListAssignedTos();
+                vm.salesOrders = response.data;
+                vm.ngTable(vm.salesOrders);
+                vm.isLoading = false;
+              })
+              .catch((error) => {
+                console.log("Error", error);
+                setTimeout(function () {
+                  vm.getListSalesOrder();
+                }, 5000);
+              })
+          : SalesOrderService.listSalesOrderAssign($rootScope.name)
+              .then((response) => {
+                vm.getListAssignedTos();
+                vm.salesOrders = response.data;
+                vm.ngTable(vm.salesOrders);
+                vm.isLoading = false;
+              })
+              .catch((error) => {
+                vm.isLoading = true;
 
-              console.log("Error", error);
-              setTimeout(function () {
-                vm.getListSalesOrder();
-              }, 5000);
-            });
-        }
+                console.log("Error", error);
+                setTimeout(function () {
+                  vm.getListSalesOrder();
+                }, 5000);
+              });
       }
 
       function getListAssignedTos() {
@@ -117,6 +118,10 @@ angular.module("salesOrder").component("listSalesOrder", {
         $state.go("main.sales-orderEdit", { id: id });
       }
 
+      function checkBox(value) {
+        vm.listId.id = Object.keys(value).filter((key) => value[key]);
+      }
+
       function showDialog(id) {
         id
           ? DialogService.showDialog(deleteSalesOrder, vm.title, id)
@@ -125,6 +130,22 @@ angular.module("salesOrder").component("listSalesOrder", {
 
       function deleteSalesOrder(id) {
         SalesOrderService.deleteSalesOrder(id)
+          .then((response) => {
+            Notification.success({
+              message: "Delete data Successfully",
+            });
+            vm.getListSalesOrder();
+          })
+          .catch((error) => {
+            console.log("Error", error);
+            Notification.error({
+              message: error,
+            });
+          });
+      }
+
+      function deleteMultiple() {
+        SalesOrderService.deleteMultipleSalesOrders(vm.listId)
           .then((response) => {
             Notification.success({
               message: "Delete data Successfully",

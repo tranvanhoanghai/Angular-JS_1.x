@@ -5,20 +5,22 @@
         <a ui-sref="user"> {{'MENU.USER_MANAGEMENT' | translate}}</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
-        {{'MENU.TITLE.EDIT_USER' | translate}}
+        {{'USER_MANAGEMENT.TITLE.EDIT_USER' | translate}}
       </li>
     </ol>
   </nav>
 
   <div class="content-main">
     <div class="header text-center text-uppercase mb-3">
-      <h1>{{'MENU.TITLE.EDIT_USER' | translate}}</h1>
+      <h1>{{'USER_MANAGEMENT.TITLE.EDIT_USER' | translate}}</h1>
     </div>
 
     <form ng-submit="$ctrl.update()" name="form" role="form">
       <div class="row">
         <div class="form-group col-md-6">
-          <label for="name" class="form-label">Name</label>
+          <label for="name" class="form-label">
+            {{'USER_MANAGEMENT.NAME' | translate}}
+          </label>
           <input
             type="text"
             class="form-control"
@@ -38,7 +40,9 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="username" class="form-label">Username</label>
+          <label for="username" class="form-label">
+            {{'USER_MANAGEMENT.USER_NAME' | translate}}</label
+          >
           <input
             type="text"
             class="form-control"
@@ -58,7 +62,7 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="email" class="form-label">Email</label>
+          <label for="email" class="form-label"> {{'EMAIL' | translate}}</label>
           <input
             type="email"
             class="form-control"
@@ -80,7 +84,7 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="name" class="form-label">Phone</label>
+          <label for="name" class="form-label"> {{'PHONE' | translate}}</label>
           <input
             type="tel"
             class="form-control"
@@ -102,7 +106,9 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="isActive" class="form-label">Is active</label>
+          <label for="isActive" class="form-label">
+            {{'USER_MANAGEMENT.IS_ACTIVE' | translate}}</label
+          >
           <select
             class="form-control"
             id="isActive"

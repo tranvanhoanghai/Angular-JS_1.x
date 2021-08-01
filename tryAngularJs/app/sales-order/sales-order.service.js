@@ -29,4 +29,8 @@ angular
     this.deleteSalesOrder = function (id) {
       return $http.delete(`${baseUrl}/${id}`);
     };
+
+    this.deleteMultipleSalesOrders = function (listId) {
+      return $http.post(baseUrl + "/delete", listId);
+    };
   });

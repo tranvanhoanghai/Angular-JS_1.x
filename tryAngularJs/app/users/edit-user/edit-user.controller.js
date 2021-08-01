@@ -4,7 +4,6 @@ angular.module("user").component("editUser", {
   templateUrl: "users/edit-user/edit-user.template.html",
   controller: [
     "$state",
-    "$uibModal",
     "$stateParams",
     "cssInjector",
     "UserService",
@@ -13,7 +12,6 @@ angular.module("user").component("editUser", {
     "Notification",
     function (
       $state,
-      $uibModal,
       $stateParams,
       cssInjector,
       UserService,

@@ -24,7 +24,8 @@
   },
 
   "SALES_ORDER": {
-    "CONTACT": "Contact",
+    "SUBJECT":"Subject",
+    "CONTACT_NAME": "Contact name",
     "STATUS": "Status",
     "TOTAL": "Total",
     "TITLE": {
@@ -35,10 +36,11 @@
 
   "USER_MANAGEMENT": {
     "USER_NAME": "User name",
-    "IS ACTIVE": "Is Active",
+    "IS_ACTIVE": "Is Active",
+    "NAME": "Name",
     "TITLE": {
-      "CREATE_USER": "Tạo mới nhân viên",
-      "EDIT_USER": "Cập nhật nhân viên"
+      "CREATE_USER": "Create user ",
+      "EDIT_USER": "Edit user"
     }
   },
 

@@ -3,7 +3,6 @@
 angular.module("contact").component("contactList", {
   templateUrl: "contacts/contact-list/contact-list.template.html",
   controller: [
-    "UserService",
     "$rootScope",
     "NgTableParams",
     "$stateParams",
@@ -11,9 +10,9 @@ angular.module("contact").component("contactList", {
     "$scope",
     "ContactService",
     "DialogService",
+    "UserService",
     "Notification",
     function (
-      UserService,
       $rootScope,
       NgTableParams,
       $stateParams,
@@ -21,12 +20,17 @@ angular.module("contact").component("contactList", {
       $scope,
       ContactService,
       DialogService,
+      UserService,
       Notification
     ) {
       var vm = this;
 
       vm.paramLeadSource = $stateParams.leadSource;
       vm.paramAssignedTo = $stateParams.assignedTo;
+      vm.isLoading = true;
+      vm.title = "Do you want to delete it?";
+      vm.listId = { id: [] };
+
       vm.getListContacts = getListContacts;
       vm.getListAssignedTos = getListAssignedTos;
       vm.ngTable = ngTable;
@@ -34,57 +38,42 @@ angular.module("contact").component("contactList", {
       vm.edit = editContact;
       vm.delete = showDialog;
       vm.deleteMultiple = showDialog;
-
       vm.checkBox = checkBox;
 
-      vm.isLoading = true;
-      vm.title = "Do you want to delete it?";
       vm.getListContacts();
-      vm.listId = { id: [] };
 
       function checkBox(value) {
-        Object.keys(value).map((key) => {
-          if (value[key]) {
-            if (!vm.listId.id.includes(key)) {
-              vm.listId.id.push(key);
-            }
-          } else {
-            var index = vm.listId.id.indexOf(key);
-            vm.listId.id.splice(index, 1);
-          }
-        });
+        vm.listId.id = Object.keys(value).filter((key) => value[key]);
       }
 
       function getListContacts() {
-        if ($rootScope.isAdmin) {
-          ContactService.listContact()
-            .then((response) => {
-              vm.getListAssignedTos();
-              vm.contacts = response.data;
-              vm.ngTable(vm.contacts);
-              vm.isLoading = false;
-            })
-            .catch((error) => {
-              console.log("Error", error);
-              setTimeout(function () {
-                vm.getListContacts();
-              }, 5000);
-            });
-        } else {
-          ContactService.listContactAssign($rootScope.name)
-            .then((response) => {
-              vm.getListAssignedTos();
-              vm.contacts = response.data;
-              vm.ngTable(vm.contacts);
-              vm.isLoading = false;
-            })
-            .catch((error) => {
-              console.log("Error", error);
-              setTimeout(function () {
-                vm.getListContacts();
-              }, 5000);
-            });
-        }
+        $rootScope.isAdmin
+          ? ContactService.listContact()
+              .then((response) => {
+                vm.getListAssignedTos();
+                vm.contacts = response.data;
+                vm.ngTable(vm.contacts);
+                vm.isLoading = false;
+              })
+              .catch((error) => {
+                console.log("Error", error);
+                setTimeout(function () {
+                  vm.getListContacts();
+                }, 5000);
+              })
+          : ContactService.listContactAssign($rootScope.name)
+              .then((response) => {
+                vm.getListAssignedTos();
+                vm.contacts = response.data;
+                vm.ngTable(vm.contacts);
+                vm.isLoading = false;
+              })
+              .catch((error) => {
+                console.log("Error", error);
+                setTimeout(function () {
+                  vm.getListContacts();
+                }, 5000);
+              });
       }
 
       function getListAssignedTos() {

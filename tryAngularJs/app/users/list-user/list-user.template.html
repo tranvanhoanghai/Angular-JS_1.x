@@ -18,26 +18,36 @@
       <tr ng-repeat="data in $data track by $index">
         <td data-title="'#'">{{$index+1}}</td>
 
-        <td data-title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+        <td
+          data-title="'USER_MANAGEMENT.NAME' | translate"
+          filter="{ name: 'text'}"
+          sortable="'name'"
+        >
           {{data.name}}
         </td>
 
         <td
-          data-title="'User name'"
+          data-title="'USER_MANAGEMENT.USER_NAME' | translate"
           filter="{ username: 'text'}"
           sortable="'username'"
         >
           {{data.username}}
         </td>
 
-        <td data-title="'Email'" filter="{ email: 'text'}" sortable="'email'">
+        <td
+          data-title="'EMAIL' | translate"
+          filter="{ email: 'text'}"
+          sortable="'email'"
+        >
           {{data.email}}
         </td>
 
-        <td data-title="'Phone'" filter="{ phone: 'number'}">{{data.phone}}</td>
+        <td data-title="'PHONE' | translate" filter="{ phone: 'number'}">
+          {{data.phone}}
+        </td>
 
         <td
-          data-title="'Creator'"
+          data-title="'CREATOR' | translate"
           filter="{ creator: 'text'}"
           sortable="'creator'"
         >
@@ -45,7 +55,7 @@
         </td>
         <td
           class="text-center"
-          data-title="'Active'"
+          data-title="'USER_MANAGEMENT.IS_ACTIVE' | translate"
           sortable="'isActive'"
           filter="{isActive: 'select'}"
           filter-data="[{'title': 'Yes', 'id': 'true'},
@@ -59,7 +69,10 @@
           </div>
         </td>
 
-        <td data-title="'Action'" class="d-flex justify-content-center">
+        <td
+          data-title="'ACTION' | translate"
+          class="d-flex justify-content-center"
+        >
           <button
             type="button"
             ng-click="$ctrl.edit(data.id)"

@@ -24,7 +24,8 @@
   },
 
   "SALES_ORDER": {
-    "CONTACT": "Tên liên hệ",
+    "SUBJECT":"Tiêu đề",
+    "CONTACT_NAME": "Tên liên hệ",
     "STATUS": "Trạng thái",
     "TOTAL": "Tổng",
     "TITLE": {
@@ -35,10 +36,11 @@
 
   "USER_MANAGEMENT": {
     "USER_NAME": "Tên đăng nhập",
-    "IS ACTIVE": "Hoạt động",
+    "NAME": "Tên nhân viên",
+    "IS_ACTIVE": "Hoạt động",
     "TITLE": {
-      "CREATE_USER": "Tạo mới đơn hàng",
-      "EDIT_USER": "Cập nhật đơn hàng"
+      "CREATE_USER": "Tạo mới nhân viên",
+      "EDIT_USER": "Cập nhật nhân viên"
     }
   },
 

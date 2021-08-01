@@ -63,3 +63,24 @@ exports.deleteSalesOrder = function (req, res, next) {
       });
     });
 };
+exports.deleteMultipleSalesOrder = function (req, res, next) {
+  const _ids = req.body.id;
+
+  SalesOrder.deleteMany({ _id: { $in: _ids } })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete. Maybe SalesOrder was not found!`,
+        });
+      } else {
+        res.send({
+          message: "Deleted successfully!",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete",
+      });
+    });
+};
