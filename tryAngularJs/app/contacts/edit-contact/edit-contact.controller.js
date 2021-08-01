@@ -9,6 +9,7 @@ angular.module("contact").component("editContact", {
     "cssInjector",
     "ContactService",
     "DialogService",
+    "SharedService",
     "Notification",
     function (
       $state,
@@ -17,67 +18,57 @@ angular.module("contact").component("editContact", {
       cssInjector,
       ContactService,
       DialogService,
+      SharedService,
       Notification
     ) {
       cssInjector.add("contacts/contact.template.css");
       var vm = this;
       vm.currentId = $stateParams.id;
 
+      vm.isLoading = true;
+      vm.title = "Do you want to update it?";
+      vm.submitBtn = "UPDATE";
+      vm.cancelBtn = "CANCEL";
+      vm.show = false;
+
       vm.detailContact = detailContact;
       vm.submit = updateContact;
-      vm.isLoading = true;
+      vm.keepData = keepData;
+      vm.$onDestroy = onDestroy;
       vm.submit = showDialog;
       vm.showDataInput = showDataInput;
-      vm.title = "Do you want to update it?";
-      vm.titleBtn = "UPDATE";
+      vm.cancel = cancel;
+
       vm.contact = {
         id: vm.currentId,
       };
-      vm.keepData = keepData;
-      vm.$onDestroy = onDestroy;
+
       vm.showDataInput();
 
       function onDestroy() {
         ContactService.formEdit = vm.contact;
-        console.log(ContactService.formEdit);
       }
 
       function showDataInput() {
-        Object.size = function (obj) {
-          var size = 0,
-            key;
-          for (key in obj) {
-            if (obj.hasOwnProperty(key)) size++;
-          }
-          return size;
-        };
-
-        var size = Object.size(ContactService.formEdit);
-        console.log(size);
-
-        size != 0 ? vm.keepData() : vm.detailContact();
+        var size = SharedService.checkSizeObj(ContactService.formEdit);
+        size ? vm.keepData() : vm.detailContact();
       }
 
       function keepData() {
         if (ContactService.formEdit) {
-          if (ContactService.formEdit.id == vm.currentId) {
-            vm.contact.name = ContactService.formEdit.name;
-            vm.contact.salutation = ContactService.formEdit.salutation;
-            vm.contact.phone = ContactService.formEdit.phone;
-            vm.contact.email = ContactService.formEdit.email;
-            vm.contact.organization = ContactService.formEdit.organization;
-            vm.contact.dateOfBirth = new Date(
-              ContactService.formEdit.dateOfBirth
-            );
-            vm.contact.address = ContactService.formEdit.address;
-            vm.contact.leadSource = ContactService.formEdit.leadSource;
-            vm.contact.assignedTo = ContactService.formEdit.assignedTo;
-            vm.contact.creator = ContactService.formEdit.creator;
-            vm.contact.description = ContactService.formEdit.description;
+          if (ContactService.formEdit.id === vm.currentId) {
+            vm.contact = ContactService.formEdit;
+            ContactService.formEdit = null;
+            vm.show = true;
           } else {
             vm.detailContact();
           }
         }
+      }
+
+      function cancel() {
+        vm.detailContact();
+        vm.show = false;
       }
 
       function showDialog() {
@@ -98,7 +89,6 @@ angular.module("contact").component("editContact", {
             vm.contact.assignedTo = res.data.assignedTo;
             vm.contact.creator = res.data.creator;
             vm.contact.description = res.data.description;
-            return vm.contact;
           })
           .catch((error) => {
             Notification.error({
@@ -109,7 +99,6 @@ angular.module("contact").component("editContact", {
       }
 
       function updateContact() {
-        console.log("abc");
         ContactService.updateContact(vm.currentId, vm.contact)
           .then((res) => {
             Notification.success({

@@ -10,8 +10,11 @@ angular
         replace: true,
         scope: {
           onSubmit: "&",
-          titleBtn: "@",
+          onCancel: "&",
+          submitBtn: "@",
+          cancelBtn: "@",
           contact: "=",
+          showBtnCancel: "=",
         },
         templateUrl: "contacts/contact-form.directive.html",
 

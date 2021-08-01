@@ -37,7 +37,7 @@
 
     <div class="mb-3 action-item">
       <button
-        ng-if="$ctrl.showDeleteBtn"
+        ng-if="$ctrl.listId.id.length"
         class="btn btn-danger mr-2"
         ng-click="$ctrl.deleteMultiple()"
       >
@@ -57,9 +57,11 @@
       ng-hide="$ctrl.isLoading"
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
-      ng-if="$ctrl.ngTableAssignedTos.length"
     >
-      <tr ng-repeat="data in $data track by $index">
+      <tr
+        ng-if="$ctrl.ngTableAssignedTos.length"
+        ng-repeat="data in $data track by $index"
+      >
         <td>
           <!-- header="'ng-table/headers/checkbox.html'" -->
           <input

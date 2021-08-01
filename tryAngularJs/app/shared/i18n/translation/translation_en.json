@@ -50,5 +50,6 @@
   "CREATOR": "Creator",
   "ACTION": "Action",
   "CREATE": "Create",
+  "CANCEL": "Cancel",
   "UPDATE": "Update"
 }

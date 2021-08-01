@@ -183,12 +183,21 @@
 
     <div class="form-group col-md-12 d-flex justify-content-end">
       <button
+        ng-show="showBtnCancel"
+        ng-click="onCancel()"
+        type="button"
+        class="btn btn-danger mr-2"
+      >
+        {{cancelBtn | translate}}
+      </button>
+
+      <button
         ng-click="onSubmit()"
         type="button"
         class="btn btn-primary"
         ng-disabled="form.$invalid"
       >
-        {{titleBtn | translate}}
+        {{submitBtn | translate}}
       </button>
     </div>
   </div>

@@ -39,7 +39,6 @@ angular.module("contact").component("contactList", {
 
       vm.isLoading = true;
       vm.title = "Do you want to delete it?";
-      vm.showDeleteBtn = false;
       vm.getListContacts();
       vm.listId = { id: [] };
 
@@ -54,13 +53,6 @@ angular.module("contact").component("contactList", {
             vm.listId.id.splice(index, 1);
           }
         });
-
-        var showBtnDelete = vm.listId.id.length;
-        if (showBtnDelete != 0) {
-          vm.showDeleteBtn = true;
-        } else {
-          vm.showDeleteBtn = false;
-        }
       }
 
       function getListContacts() {

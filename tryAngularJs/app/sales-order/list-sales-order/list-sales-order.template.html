@@ -14,9 +14,11 @@
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
       ng-hide="$ctrl.isLoading"
-      ng-if="$ctrl.ngTableAssignedTos.length"
     >
-      <tr ng-repeat="data in $data track by $index">
+      <tr
+        ng-if="$ctrl.ngTableAssignedTos.length"
+        ng-repeat="data in $data track by $index"
+      >
         <td data-title="'#'">{{$index+1}}</td>
 
         <td

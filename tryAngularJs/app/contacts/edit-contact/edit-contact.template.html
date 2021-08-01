@@ -183,8 +183,11 @@
 
     <contact-form
       on-submit="$ctrl.submit()"
+      on-cancel="$ctrl.cancel()"
       contact="$ctrl.contact"
-      title-btn="{{$ctrl.titleBtn}}"
+      submit-btn="{{$ctrl.submitBtn}}"
+      cancel-btn="{{$ctrl.cancelBtn}}"
+      show-btn-cancel="$ctrl.show"
     />
   </div>
 </div>

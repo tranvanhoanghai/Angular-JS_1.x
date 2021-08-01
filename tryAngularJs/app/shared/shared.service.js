@@ -39,4 +39,13 @@ angular
     this.regexPassword = function () {
       return regexPassword;
     };
+
+    this.checkSizeObj = function (obj) {
+      var size = 0,
+        key;
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+      }
+      return size;
+    };
   });

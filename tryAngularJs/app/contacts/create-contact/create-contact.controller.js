@@ -20,54 +20,41 @@ angular.module("contact").component("createContact", {
       vm.isLoading = true;
 
       vm.submit = createContact;
+      vm.cancel = cancel;
+      vm.show = false;
+      vm.keepData = keepData;
+      vm.$onDestroy = onDestroy;
+
       vm.creator = SharedService.getData().name;
-      vm.titleBtn = "CREATE";
+      vm.submitBtn = "CREATE";
+      vm.cancelBtn = "CANCEL";
       vm.contact = {
         creator: vm.creator,
       };
-      vm.keepData = keepData;
-      vm.$onDestroy = onDestroy;
+
       vm.keepData();
 
       function onDestroy() {
-        vm.form = {
-          name: vm.contact.name,
-          salutation: vm.contact.salutation,
-          phone: vm.contact.phone,
-          email: vm.contact.email,
-          organization: vm.contact.organization,
-          dateOfBirth: vm.contact.dateOfBirth,
-          address: vm.contact.address,
-          leadSource: vm.contact.leadSource,
-          assignedTo: vm.contact.assignedTo,
-          description: vm.contact.description,
-        };
-
-        ContactService.formCreated = vm.form;
+        ContactService.formCreated = vm.contact;
       }
 
       function keepData() {
         if (ContactService.formCreated) {
-          vm.contact.name = ContactService.formCreated.name;
-          vm.contact.salutation = ContactService.formCreated.salutation;
-          vm.contact.phone = ContactService.formCreated.phone;
-          vm.contact.email = ContactService.formCreated.email;
-          vm.contact.organization = ContactService.formCreated.organization;
-          vm.contact.dateOfBirth = new Date(
-            ContactService.formCreated.dateOfBirth
-          );
-          vm.contact.address = ContactService.formCreated.address;
-          vm.contact.leadSource = ContactService.formCreated.leadSource;
-          vm.contact.assignedTo = ContactService.formCreated.assignedTo;
-          vm.contact.creator = ContactService.formCreated.creator;
-          vm.contact.description = ContactService.formCreated.description;
+          vm.contact = ContactService.formCreated;
+          var size = SharedService.checkSizeObj(vm.contact);
+          vm.show = size === 1 ? false : true;
         }
       }
 
+      function cancel() {
+        vm.contact = null;
+        vm.show = false;
+      }
+
       function createContact() {
-        console.log("abc");
         ContactService.createContact(vm.contact)
           .then((response) => {
+            vm.contact = null;
             $state.go("main.contact");
             Notification.success({
               message: "Add data Successfully",
