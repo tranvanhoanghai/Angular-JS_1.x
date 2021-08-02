@@ -44,7 +44,7 @@ exports.createUser = function (req, res, next) {
         .then((data) => res.send(data))
         .catch((err) => {
           res.status(500).send({
-            message: "error",
+            message: "Can't create user  ",
           });
         });
     }

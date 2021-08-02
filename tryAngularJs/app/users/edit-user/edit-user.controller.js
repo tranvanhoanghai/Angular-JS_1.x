@@ -7,7 +7,6 @@ angular.module("user").component("editUser", {
     "$stateParams",
     "cssInjector",
     "UserService",
-    "SharedService",
     "DialogService",
     "Notification",
     function (
@@ -15,7 +14,6 @@ angular.module("user").component("editUser", {
       $stateParams,
       cssInjector,
       UserService,
-      SharedService,
       DialogService,
       Notification
     ) {
@@ -24,20 +22,21 @@ angular.module("user").component("editUser", {
       var currentId = $stateParams.id;
 
       vm.detailUser = detailUser;
-      vm.open = showDialog;
       vm.title = "Do you want to update it?";
-      vm.regexEmail = SharedService.regexEmail();
-      vm.regexPhone = SharedService.regexPhone();
+      vm.submitBtn = "UPDATE";
+      vm.submit = showDialog;
+      vm.user = {};
+
       vm.detailUser();
 
       function detailUser() {
         UserService.detailUser(currentId)
           .then((res) => {
-            vm.name = res.data.name;
-            vm.username = res.data.username;
-            vm.email = res.data.email;
-            vm.phone = Number(res.data.phone);
-            vm.isActive = res.data.isActive;
+            vm.user.name = res.data.name;
+            vm.user.username = res.data.username;
+            vm.user.email = res.data.email;
+            vm.user.phone = res.data.phone;
+            vm.user.isActive = res.data.isActive;
           })
           .catch((error) => {
             Notification.error({
@@ -52,15 +51,7 @@ angular.module("user").component("editUser", {
       }
 
       function updateUser() {
-        var user = {
-          name: vm.name,
-          username: vm.username,
-          email: vm.email,
-          phone: vm.phone,
-          isActive: vm.isActive,
-        };
-
-        UserService.updateUser(currentId, user)
+        UserService.updateUser(currentId, vm.user)
           .then((res) => {
             Notification.success({
               message: res.data.message,

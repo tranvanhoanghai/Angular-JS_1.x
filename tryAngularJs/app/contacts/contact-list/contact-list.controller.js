@@ -46,34 +46,28 @@ angular.module("contact").component("contactList", {
         vm.listId.id = Object.keys(value).filter((key) => value[key]);
       }
 
+      // $scope.all = function (a) {
+
+      // };
+
       function getListContacts() {
-        $rootScope.isAdmin
+        var promise = $rootScope.isAdmin
           ? ContactService.listContact()
-              .then((response) => {
-                vm.getListAssignedTos();
-                vm.contacts = response.data;
-                vm.ngTable(vm.contacts);
-                vm.isLoading = false;
-              })
-              .catch((error) => {
-                console.log("Error", error);
-                setTimeout(function () {
-                  vm.getListContacts();
-                }, 5000);
-              })
-          : ContactService.listContactAssign($rootScope.name)
-              .then((response) => {
-                vm.getListAssignedTos();
-                vm.contacts = response.data;
-                vm.ngTable(vm.contacts);
-                vm.isLoading = false;
-              })
-              .catch((error) => {
-                console.log("Error", error);
-                setTimeout(function () {
-                  vm.getListContacts();
-                }, 5000);
-              });
+          : ContactService.listContactAssign($rootScope.name);
+
+        promise
+          .then((response) => {
+            vm.getListAssignedTos();
+            vm.contacts = response.data;
+            vm.ngTable(vm.contacts);
+            vm.isLoading = false;
+          })
+          .catch((error) => {
+            console.log("Error", error);
+            setTimeout(function () {
+              vm.getListContacts();
+            }, 5000);
+          });
       }
 
       function getListAssignedTos() {

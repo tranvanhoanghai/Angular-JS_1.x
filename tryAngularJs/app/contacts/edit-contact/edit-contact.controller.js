@@ -42,7 +42,7 @@ angular.module("contact").component("editContact", {
       vm.contact = {
         id: vm.currentId,
       };
-
+      vm.contact1 = null;
       vm.showDataInput();
 
       function onDestroy() {
@@ -50,15 +50,17 @@ angular.module("contact").component("editContact", {
       }
 
       function showDataInput() {
-        var size = SharedService.checkSizeObj(ContactService.formEdit);
-        size ? vm.keepData() : vm.detailContact();
+        JSON.stringify(ContactService.init) ===
+        JSON.stringify(ContactService.formEdit)
+          ? vm.detailContact()
+          : vm.keepData();
       }
 
       function keepData() {
         if (ContactService.formEdit) {
           if (ContactService.formEdit.id === vm.currentId) {
             vm.contact = ContactService.formEdit;
-            ContactService.formEdit = null;
+            // ContactService.formEdit = null;
             vm.show = true;
           } else {
             vm.detailContact();
@@ -89,6 +91,7 @@ angular.module("contact").component("editContact", {
             vm.contact.assignedTo = res.data.assignedTo;
             vm.contact.creator = res.data.creator;
             vm.contact.description = res.data.description;
+            ContactService.init = { ...vm.contact };
           })
           .catch((error) => {
             Notification.error({

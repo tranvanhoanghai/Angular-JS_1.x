@@ -12,22 +12,16 @@ angular.module("user").component("createUser", {
       cssInjector.add("users/user.template.css");
 
       var vm = this;
-      vm.create = createUser;
+      vm.submit = createUser;
       vm.creator = SharedService.getData().name;
-      vm.regexEmail = SharedService.regexEmail();
-      vm.regexPhone = SharedService.regexPhone();
+      vm.submitBtn = "CREATE";
+      vm.user = {
+        password: 123456,
+        creator: vm.creator,
+      };
 
       function createUser() {
-        var user = {
-          name: vm.name,
-          username: vm.username,
-          password: 123456,
-          email: vm.email,
-          phone: vm.phone,
-          creator: vm.creator,
-        };
-
-        UserService.createUser(user)
+        UserService.createUser(vm.user)
           .then((response) => {
             Notification.success({
               message: "Add data Successfully",

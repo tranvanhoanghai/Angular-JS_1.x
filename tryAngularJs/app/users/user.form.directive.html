@@ -1,0 +1,102 @@
+<form name="form" role="form">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="name" class="form-label"
+        >{{'USER_MANAGEMENT.NAME' | translate}}</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Name"
+        ng-model="user.name"
+        autocomplete="off"
+        required
+      />
+      <div style="color: red" ng-show="form.name.$dirty && form.name.$invalid">
+        <p ng-show="form.name.$error.required">Name is required.</p>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="username" class="form-label"
+        >{{'USER_MANAGEMENT.USER_NAME' | translate}}</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        placeholder="Username"
+        ng-model="user.username"
+        autocomplete="new-password"
+        required
+      />
+      <div
+        style="color: red"
+        ng-show="form.username.$dirty && form.username.$invalid"
+      >
+        <p ng-show="form.username.$error.required">Username is required.</p>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="email" class="form-label">{{'EMAIL ' | translate}}</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        ng-model="user.email"
+        autocomplete="off"
+        placeholder="Email"
+        required
+        ng-pattern="regexEmail"
+      />
+      <div
+        style="color: red"
+        ng-show="form.email.$dirty && form.email.$invalid"
+      >
+        <p ng-show="form.email.$error.required">Email is required.</p>
+        <p ng-show="form.email.$error.pattern">Email is invalid</p>
+      </div>
+    </div>
+    <div></div>
+
+    <div class="form-group col-md-6">
+      <label for="phone" class="form-label">{{'PHONE' | translate}}</label>
+      <input
+        type="tel"
+        class="form-control"
+        id="phone"
+        name="phone"
+        ng-model="user.phone"
+        autocomplete="off"
+        placeholder="Phone"
+        ng-pattern="regexPhone"
+        required
+      />
+      <div
+        style="color: red"
+        ng-show="form.phone.$dirty && form.phone.$invalid"
+      >
+        <p ng-show="form.phone.$error.required">Phone is required.</p>
+        <p ng-show="form.phone.$error.pattern">Phone is invalid</p>
+      </div>
+    </div>
+
+    <div ng-transclude class="form-group col-md-6"></div>
+
+    <div class="form-group col-md-12 d-flex justify-content-end">
+      <button
+        type="submit"
+        ng-click="onSubmit()"
+        class="btn btn-primary"
+        ng-disabled="form.$invalid"
+      >
+        {{titleBtn | translate}}
+      </button>
+    </div>
+  </div>
+</form>

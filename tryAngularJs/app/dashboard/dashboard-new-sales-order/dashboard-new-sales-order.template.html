@@ -97,6 +97,11 @@
           {{data.createdAt | date:'dd-MM-yyyy HH:mm:ss'}}
         </td>
       </tr>
+      <tr>
+        <td colspan="9" class="text-center" ng-show="$data.length == 0">
+          Oops, no record found!
+        </td>
+      </tr>
     </table>
   </div>
 </div>

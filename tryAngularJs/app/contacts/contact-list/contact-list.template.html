@@ -50,19 +50,16 @@
     </div>
   </div>
 
-  <div class="content-table">
-    <loading loading="$ctrl.isLoading"></loading>
+  <loading loading="$ctrl.isLoading"></loading>
 
+  <div class="content-table" ng-if="$ctrl.ngTableAssignedTos.length">
     <table
       ng-hide="$ctrl.isLoading"
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
     >
-      <tr
-        ng-if="$ctrl.ngTableAssignedTos.length"
-        ng-repeat="data in $data track by $index"
-      >
-        <td>
+      <tr ng-repeat="data in $data track by $index">
+        <td header="'ng-table/headers/checkbox.html'">
           <!-- header="'ng-table/headers/checkbox.html'" -->
           <input
             id="{{data.id}}"
@@ -71,6 +68,7 @@
             ng-change="$ctrl.checkBox($ctrl.isSelected)"
           />
           <label class="checkbox" for="{{data.id}}"></label>
+
         </td>
 
         <td data-title="'#'">{{$index+1}}</td>
@@ -174,6 +172,6 @@
   </div>
 </section>
 <script type="text/ng-template" id="ng-table/headers/checkbox.html">
-  <input type="checkbox" ng-model="checkAll" ng-change="all(checkAll)"id="checkAll"/>
+  <input type="checkbox" ng-model="checkAll" ng-change="all(checkAll)" id="checkAll"/>
   <label class="checkbox" for="checkAll"></label>
 </script>

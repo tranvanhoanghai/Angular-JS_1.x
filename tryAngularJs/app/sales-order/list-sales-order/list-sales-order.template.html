@@ -13,19 +13,15 @@
       </button>
     </div>
   </div>
+  <loading loading="$ctrl.isLoading"></loading>
 
-  <div class="content-table">
-    <loading loading="$ctrl.isLoading"></loading>
-
+  <div class="content-table" ng-if="$ctrl.ngTableAssignedTos.length">
     <table
       ng-table="$ctrl.tableParams"
       class="table table-condensed table-bordered table-striped"
       ng-hide="$ctrl.isLoading"
     >
-      <tr
-        ng-if="$ctrl.ngTableAssignedTos.length"
-        ng-repeat="data in $data track by $index"
-      >
+      <tr ng-repeat="data in $data track by $index">
         <td>
           <!-- header="'ng-table/headers/checkbox.html'" -->
           <input
