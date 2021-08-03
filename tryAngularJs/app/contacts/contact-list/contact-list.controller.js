@@ -30,6 +30,9 @@ angular.module("contact").component("contactList", {
       vm.isLoading = true;
       vm.title = "Do you want to delete it?";
       vm.listId = { id: [] };
+      vm.isSelected = {};
+      $scope.model = {};
+      $scope.model.checkAlls = false;
 
       vm.getListContacts = getListContacts;
       vm.getListAssignedTos = getListAssignedTos;
@@ -39,16 +42,30 @@ angular.module("contact").component("contactList", {
       vm.delete = showDialog;
       vm.deleteMultiple = showDialog;
       vm.checkBox = checkBox;
+      $scope.checkAll = checkAll;
 
       vm.getListContacts();
 
       function checkBox(value) {
         vm.listId.id = Object.keys(value).filter((key) => value[key]);
+        vm.contacts.map(() => {
+          vm.listId.id.length < vm.contacts.length
+            ? ($scope.model.checkAlls = false)
+            : ($scope.model.checkAlls = true);
+        });
       }
 
-      // $scope.all = function (a) {
+      function checkAll(checked) {
+        vm.contacts.forEach(function (contact) {
+          checked
+            ? (vm.isSelected[contact.id] = true)
+            : (vm.isSelected[contact.id] = false);
+        });
 
-      // };
+        vm.listId.id = Object.keys(vm.isSelected).filter(
+          (key) => vm.isSelected[key]
+        );
+      }
 
       function getListContacts() {
         var promise = $rootScope.isAdmin

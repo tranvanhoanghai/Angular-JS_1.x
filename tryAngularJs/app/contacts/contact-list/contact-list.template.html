@@ -68,7 +68,6 @@
             ng-change="$ctrl.checkBox($ctrl.isSelected)"
           />
           <label class="checkbox" for="{{data.id}}"></label>
-
         </td>
 
         <td data-title="'#'">{{$index+1}}</td>
@@ -172,6 +171,6 @@
   </div>
 </section>
 <script type="text/ng-template" id="ng-table/headers/checkbox.html">
-  <input type="checkbox" ng-model="checkAll" ng-change="all(checkAll)" id="checkAll"/>
+  <input type="checkbox" ng-model="model.checkAlls" ng-change="checkAll(model.checkAlls)" id="checkAll"/>
   <label class="checkbox" for="checkAll"></label>
 </script>
