@@ -30,7 +30,7 @@ angular
       $urlRouterProvider.otherwise("/404");
 
       TestProviderProvider.setName("Provider config");
-      TestProviderProvider.name = "Set name";
+      // TestProviderProvider.name = "Set name";
       TestProviderProvider.thingFromConfig = "‘This was set in config’";
 
       $translateProvider.useStaticFilesLoader({
@@ -204,18 +204,18 @@ angular
         "$q",
         "$state",
         "$localStorage",
-        function ($q, $state, $localStorage) {
+        function ($q, $state, localStorage) {
           return {
             request: function (config) {
               config.headers = config.headers || {};
-              if ($localStorage.token) {
-                config.headers.Authorization = "Bearer " + $localStorage.token;
+              if (localStorage.token) {
+                config.headers.Authorization = "Bearer " + localStorage.token;
               }
               return config;
             },
             responseError: function (response) {
               if (response.status === 401 || response.status === 403) {
-                $state.go("loginError", { error: 401 });
+                $state.go("loginError", { error: response.status });
               }
               return $q.reject(response);
             },
@@ -224,8 +224,8 @@ angular
       ]);
     },
   ])
-  .run(function ($localStorage, $rootScope) {
-    const data = $localStorage.data;
+  .run(function (localStorageFactory, $rootScope) {
+    const data = localStorageFactory.data;
     if (data) {
       $rootScope.isAdmin = data.isAdmin;
       $rootScope.name = data.name;

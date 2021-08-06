@@ -1,10 +1,13 @@
-"use strict";
+(function () {
+  "use strict";
 
-angular
-  .module("contact")
-  .service("ContactService", function ($http, SharedService) {
+  angular.module("contact").service("ContactService", serviceFunction);
+  serviceFunction.$inject = ["$http", "SharedConstant"];
+
+  function serviceFunction($http, SharedConstant) {
     var contact = "/contact";
-    var baseUrl = SharedService.getBaseUrl() + contact;
+    var baseUrl = SharedConstant.baseUrl.url + contact;
+
     return {
       listContact: function () {
         return $http.get(baseUrl);
@@ -34,4 +37,5 @@ angular
         return $http.post(baseUrl + "/delete", listId);
       },
     };
-  });
+  }
+})();

@@ -1,10 +1,12 @@
-"use strict";
+(function () {
+  "use strict";
 
-angular
-  .module("dashboard")
-  .service("DashboardService", function ($http, SharedService) {
+  angular.module("dashboard").service("DashboardService", serviceFunction);
+  serviceFunction.$inject = ["$http", "SharedConstant"];
+
+  function serviceFunction($http, SharedConstant) {
     var dashboard = "/dashboard";
-    var baseUrl = SharedService.getBaseUrl() + dashboard;
+    var baseUrl = SharedConstant.baseUrl.url + dashboard;
 
     this.listDashBoard = function () {
       return $http.get(baseUrl);
@@ -25,4 +27,5 @@ angular
     this.deleteSalesOrder = function (id) {
       return $http.delete(`${baseUrl}/${id}`);
     };
-  });
+  }
+})();

@@ -1,3 +1,3 @@
 "use strict";
 
-angular.module("i18n", []);
+angular.module("i18n", ["pascalprecht.translate", "ngCookies"]);

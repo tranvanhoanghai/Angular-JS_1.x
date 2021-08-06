@@ -1,3 +1,5 @@
-"use strict";
+(function () {
+  "use strict";
 
-angular.module("share", ["i18n"]);
+  angular.module("share", ["i18n"]);
+})();

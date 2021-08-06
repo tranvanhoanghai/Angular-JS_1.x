@@ -1,43 +1,43 @@
-"use strict";
+(function () {
+  "use strict";
 
-angular
-  .module("contact")
-  .directive(
-    "contactForm",
-    function (UserService, Notification, SharedService) {
-      return {
-        restrict: "E",
-        replace: true,
-        scope: {
-          onSubmit: "&",
-          onCancel: "&",
-          submitBtn: "@",
-          cancelBtn: "@",
-          contact: "=",
-          showBtnCancel: "=",
-        },
-        templateUrl: "contacts/contact-form.directive.html",
+  angular.module("contact").directive("contactForm", directiveFunction);
+  directiveFunction.$inject = ["UserService", "Notification", "SharedConstant"];
 
-        link: function (scope, element, attrs) {
-          scope.regexEmail = SharedService.regexEmail();
-          scope.regexPhone = SharedService.regexPhone();
-          scope.getListUser = getListUser;
-          scope.getListUser();
+  function directiveFunction(UserService, Notification, SharedConstant) {
+    return {
+      restrict: "E",
+      replace: true,
+      scope: {
+        onSubmit: "&",
+        onCancel: "&",
+        submitBtn: "@",
+        cancelBtn: "@",
+        contact: "=",
+        showBtnCancel: "=",
+      },
+      templateUrl: "contacts/contact-form.directive.html",
 
-          function getListUser() {
-            UserService.listUsersActive()
-              .then((response) => {
-                scope.assignedTos = response.data;
-              })
-              .catch((error) => {
-                console.log("Error", error);
-                Notification.error({
-                  message: "Can't get data assignedTos",
-                  replaceMessage: true,
-                });
+      link: function (scope, element, attrs) {
+        scope.regexEmail = SharedConstant.regex.email;
+        scope.regexPhone = SharedConstant.regex.phone;
+        scope.getListUser = getListUser;
+        scope.getListUser();
+
+        function getListUser() {
+          UserService.listUsersActive()
+            .then((response) => {
+              scope.assignedTos = response.data;
+            })
+            .catch((error) => {
+              console.log("Error", error);
+              Notification.error({
+                message: "Can't get data assignedTos",
+                replaceMessage: true,
               });
-          }
-        },
-      };
-    }
-  );
+            });
+        }
+      },
+    };
+  }
+})();

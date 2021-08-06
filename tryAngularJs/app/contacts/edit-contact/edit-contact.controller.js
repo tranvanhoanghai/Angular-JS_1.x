@@ -71,6 +71,7 @@ angular.module("contact").component("editContact", {
       function cancel() {
         vm.detailContact();
         vm.show = false;
+        $state.go("main.contact");
       }
 
       function showDialog() {

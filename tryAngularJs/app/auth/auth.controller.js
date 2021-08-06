@@ -5,24 +5,20 @@ angular.module("auth").component("auth", {
   controller: [
     "$state",
     "cssInjector",
-    "AuthService",
-    "SharedService",
-    "Notification",
-    function ($state, cssInjector, AuthService, SharedService, Notification) {
+    "localStorageFactory",
+    function ($state, cssInjector, localStorageFactory) {
       cssInjector.add("auth/auth.template.css");
       var vm = this;
-      vm.check = check;
+      vm.displayUser = displayUser;
       vm.changePassword = changePassword;
+      vm.displayUser();
 
-      function check() {
-        setInterval(() => {
-          vm.data = SharedService.getData();
-          if (vm.data) {
-            vm.name = vm.data.name;
-          }
-        }, 500);
+      function displayUser() {
+        vm.data = localStorageFactory.data;
+        if (vm.data) {
+          vm.name = vm.data.name;
+        }
       }
-      vm.check();
 
       function changePassword() {
         $state.go("main.changePassword");

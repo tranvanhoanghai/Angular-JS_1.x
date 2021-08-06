@@ -7,12 +7,14 @@ angular.module("contact").component("createContact", {
     "cssInjector",
     "ContactService",
     "SharedService",
+    "localStorageFactory",
     "Notification",
     function (
       $state,
       cssInjector,
       ContactService,
       SharedService,
+      localStorageFactory,
       Notification
     ) {
       cssInjector.add("contacts/contact.template.css");
@@ -25,7 +27,7 @@ angular.module("contact").component("createContact", {
       vm.keepData = keepData;
       vm.$onDestroy = onDestroy;
 
-      vm.creator = SharedService.getData().name;
+      vm.creator = localStorageFactory.data.name;
       vm.submitBtn = "CREATE";
       vm.cancelBtn = "CANCEL";
       vm.contact = {
@@ -49,6 +51,7 @@ angular.module("contact").component("createContact", {
       function cancel() {
         vm.contact = null;
         vm.show = false;
+        $state.go("main.contact");
       }
 
       function createContact() {

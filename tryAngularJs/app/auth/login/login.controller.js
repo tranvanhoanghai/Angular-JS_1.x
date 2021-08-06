@@ -25,7 +25,7 @@ angular.module("auth").component("login", {
       var vm = this;
       vm.login = login;
 
-      if ($stateParams.error == 401) {
+      if ($stateParams.error == 401 || $stateParams.error == 403) {
         AuthService.logout();
       } else {
         if ($localStorage.data) {

@@ -4,21 +4,17 @@ angular.module("user").component("listUser", {
   templateUrl: "users/list-user/list-user.template.html",
   controller: [
     "NgTableParams",
-    "$uibModal",
     "UserService",
     "cssInjector",
     "$state",
-    "$localStorage",
-    "SharedService",
+    "localStorageFactory",
     "Notification",
     function (
       NgTableParams,
-      $uibModal,
       UserService,
       cssInjector,
       $state,
-      $localStorage,
-      SharedService,
+      localStorageFactory,
       Notification
     ) {
       cssInjector.add("users/user.template.css");
@@ -34,7 +30,7 @@ angular.module("user").component("listUser", {
       vm.getListUsers();
 
       function getListUsers() {
-        var id = SharedService.getData().id;
+        var id = localStorageFactory.data.id;
         if (id) {
           UserService.listExceptUsers(id)
             .then((response) => {
@@ -72,7 +68,7 @@ angular.module("user").component("listUser", {
           }
         );
       }
-      
+
       function showDialog(id) {
         DialogService.showDialog(deleteUser, vm.title, id);
       }

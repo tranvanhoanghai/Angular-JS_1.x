@@ -1,8 +1,8 @@
 "use strict";
 
-angular.module("user").service("UserService", function ($http, SharedService) {
+angular.module("user").service("UserService", function ($http, SharedConstant) {
   var user = "/user";
-  var baseUrl = SharedService.getBaseUrl() + user;
+  var baseUrl = SharedConstant.baseUrl.url + user;
 
   this.listUsers = function () {
     return $http.get(baseUrl);

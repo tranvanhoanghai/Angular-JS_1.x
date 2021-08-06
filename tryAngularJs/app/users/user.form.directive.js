@@ -1,21 +1,26 @@
-"use strict";
+(function () {
+  "use strict";
 
-angular.module("user").directive("userForm", function (SharedService) {
-  return {
-    restrict: "E",
-    transclude: true,
+  angular.module("user").directive("userForm", directiveFunction);
+  directiveFunction.$inject = ["SharedConstant"];
 
-    scope: {
-      titleBtn: "@",
-      onSubmit: "&",
-      user: "=",
-    },
+  function directiveFunction(SharedConstant) {
+    return {
+      restrict: "E",
+      transclude: true,
 
-    templateUrl: "users/user.form.directive.html",
+      scope: {
+        titleBtn: "@",
+        onSubmit: "&",
+        user: "=",
+      },
 
-    link: function (scope, element, attrs) {
-      scope.regexEmail = SharedService.regexEmail();
-      scope.regexPhone = SharedService.regexPhone();
-    },
-  };
-});
+      templateUrl: "users/user.form.directive.html",
+
+      link: function (scope, element, attrs) {
+        scope.regexEmail = SharedConstant.regex.email;
+        scope.regexPhone = SharedConstant.regex.phone;
+      },
+    };
+  }
+})();
