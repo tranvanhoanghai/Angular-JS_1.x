@@ -44,7 +44,7 @@ angular
       $stateProvider
         .state("main", {
           url: "/",
-          templateUrl: "shared/main.template.html",
+          template: "<sidebars></sidebars>",
           redirectTo: "main.dashboard",
         })
         .state("main.dashboard", {

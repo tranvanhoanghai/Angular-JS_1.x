@@ -9,36 +9,11 @@
         alt=""
       />
     </div>
-
     <ul class="list-unstyled components">
-      <li>
-        <a ui-sref="main.dashboard" ui-sref-active="active">
-          <i class="fa fa-th-large"></i>
-          <span>{{ 'MENU.DASHBOARD' | translate }}</span>
-        </a>
-      </li>
-      <li>
-        <a ui-sref="main.contact" ui-sref-active="active">
-          <i class="fa fa-address-book"></i>
-          <span> {{ 'MENU.CONTACT' | translate }} </span></a
-        >
-      </li>
-      <li>
-        <a ui-sref="main.sales-order" ui-sref-active="active">
-          <i class="fa fa-cart-plus"></i>
-          <span>{{ 'MENU.SALES_ORDER' | translate }}</span>
-        </a>
-      </li>
-      <li ng-if="isAdmin">
-        <a ui-sref="main.user" ui-sref-active="active">
-          <i class="fa fa-users"></i>
-          <span>{{ 'MENU.USER_MANAGEMENT' | translate }}</span>
-        </a>
-      </li>
-      <li>
-        <a ui-sref="main.test" ui-sref-active="active">
-          <i class="fa fa-users"></i>
-          <span>Test </span>
+      <li ng-repeat="item in $ctrl.sideBarMenu.menuItems">
+        <a ui-sref="{{item.url}}" ui-sref-active="active">
+          <i class="{{item.icon}}"></i>
+          <span>{{ item.title | translate }}</span>
         </a>
       </li>
     </ul>

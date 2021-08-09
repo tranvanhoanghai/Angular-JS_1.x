@@ -9,7 +9,7 @@ angular.module("contact").component("createSalesOrder", {
     "SalesOrderService",
     "UserService",
     "ContactService",
-    "SharedService",
+    "localStorageFactory",
     "Notification",
     function (
       $state,
@@ -17,7 +17,7 @@ angular.module("contact").component("createSalesOrder", {
       SalesOrderService,
       UserService,
       ContactService,
-      SharedService,
+      localStorageFactory,
       Notification
     ) {
       cssInjector.add("sales-order/sales-order.template.css");
@@ -25,7 +25,7 @@ angular.module("contact").component("createSalesOrder", {
       vm.isLoading = true;
 
       vm.submit = createSalesOrder;
-      vm.creator = SharedService.getData().name;
+      vm.creator = localStorageFactory.data.name;
 
       UserService.listUsersActive()
         .then((response) => {

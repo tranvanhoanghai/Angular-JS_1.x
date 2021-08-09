@@ -37,6 +37,7 @@ angular.module("test").component("test", {
       // vm.text = "a";
 
       example.test(true);
+      console.log(example1.api.getName());
 
       var a = false;
       var defer = $q.defer();

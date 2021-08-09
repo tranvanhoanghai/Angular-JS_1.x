@@ -38,7 +38,7 @@ angular.module("salesOrder").component("editSalesOrder", {
               .catch((error) => {
                 console.log("Don't get user data", error);
                 Notification.error({
-                  message: "Don't get user data",
+                  message: error.data,
                   replaceMessage: true,
                 });
               });

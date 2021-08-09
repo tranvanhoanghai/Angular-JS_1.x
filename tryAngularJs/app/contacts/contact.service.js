@@ -7,7 +7,7 @@
   function serviceFunction($http, SharedConstant) {
     var contact = "/contact";
     var baseUrl = SharedConstant.baseUrl.url + contact;
-
+    
     return {
       listContact: function () {
         return $http.get(baseUrl);

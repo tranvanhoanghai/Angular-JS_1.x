@@ -169,8 +169,8 @@
       </tr>
     </table>
   </div>
+  <script type="text/ng-template" id="ng-table/headers/checkbox.html">
+    <input type="checkbox" ng-model="model.checkAlls" ng-change="checkAll(model.checkAlls)" id="checkAll"/>
+    <label class="checkbox" for="checkAll"></label>
+  </script>
 </section>
-<script type="text/ng-template" id="ng-table/headers/checkbox.html">
-  <input type="checkbox" ng-model="model.checkAlls" ng-change="checkAll(model.checkAlls)" id="checkAll"/>
-  <label class="checkbox" for="checkAll"></label>
-</script>

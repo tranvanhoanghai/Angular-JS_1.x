@@ -3,6 +3,7 @@
 angular.module("salesOrder").component("listSalesOrder", {
   templateUrl: "sales-order/list-sales-order/list-sales-order.template.html",
   controller: [
+    "$scope",
     "NgTableParams",
     "cssInjector",
     "$rootScope",
@@ -13,6 +14,7 @@ angular.module("salesOrder").component("listSalesOrder", {
     "DialogService",
     "Notification",
     function (
+      $scope,
       NgTableParams,
       cssInjector,
       $rootScope,
@@ -29,6 +31,9 @@ angular.module("salesOrder").component("listSalesOrder", {
       vm.isLoading = true;
       vm.paramFilterStatus = $stateParams.status;
       vm.listId = { id: [] };
+      vm.isSelected = {};
+      $scope.model = {};
+      $scope.model.checkAlls = false;
       vm.title = "Do you want to delete it?";
 
       vm.getListSalesOrder = getListSalesOrder;
@@ -39,39 +44,28 @@ angular.module("salesOrder").component("listSalesOrder", {
       vm.checkBox = checkBox;
       vm.delete = showDialog;
       vm.deleteMultiple = showDialog;
+      $scope.checkAll = checkAll;
 
       vm.getListSalesOrder();
 
       function getListSalesOrder() {
-        $rootScope.isAdmin
+        var promise = $rootScope.isAdmin
           ? SalesOrderService.listSalesOrder()
-              .then((response) => {
-                vm.getListAssignedTos();
-                vm.salesOrders = response.data;
-                vm.ngTable(vm.salesOrders);
-                vm.isLoading = false;
-              })
-              .catch((error) => {
-                console.log("Error", error);
-                setTimeout(function () {
-                  vm.getListSalesOrder();
-                }, 5000);
-              })
-          : SalesOrderService.listSalesOrderAssign($rootScope.name)
-              .then((response) => {
-                vm.getListAssignedTos();
-                vm.salesOrders = response.data;
-                vm.ngTable(vm.salesOrders);
-                vm.isLoading = false;
-              })
-              .catch((error) => {
-                vm.isLoading = true;
+          : SalesOrderService.listSalesOrderAssign($rootScope.name);
 
-                console.log("Error", error);
-                setTimeout(function () {
-                  vm.getListSalesOrder();
-                }, 5000);
-              });
+        promise
+          .then((response) => {
+            vm.getListAssignedTos();
+            vm.salesOrders = response.data;
+            vm.ngTable(vm.salesOrders);
+            vm.isLoading = false;
+          })
+          .catch((error) => {
+            console.log("Error", error);
+            setTimeout(function () {
+              vm.getListSalesOrder();
+            }, 5000);
+          });
       }
 
       function getListAssignedTos() {
@@ -120,6 +114,23 @@ angular.module("salesOrder").component("listSalesOrder", {
 
       function checkBox(value) {
         vm.listId.id = Object.keys(value).filter((key) => value[key]);
+        vm.salesOrders.map(() => {
+          vm.listId.id.length < vm.salesOrders.length
+            ? ($scope.model.checkAlls = false)
+            : ($scope.model.checkAlls = true);
+        });
+      }
+
+      function checkAll(checked) {
+        angular.forEach(vm.salesOrders, function (salesOrder) {
+          checked
+            ? (vm.isSelected[salesOrder.id] = true)
+            : (vm.isSelected[salesOrder.id] = false);
+        });
+
+        vm.listId.id = Object.keys(vm.isSelected).filter(
+          (key) => vm.isSelected[key]
+        );
       }
 
       function showDialog(id) {

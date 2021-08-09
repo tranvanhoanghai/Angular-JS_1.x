@@ -59,7 +59,7 @@
         }
 
         function checkAll(checked) {
-          vm.contacts.forEach(function (contact) {
+          angular.forEach(vm.contacts, function (contact) {
             checked
               ? (vm.isSelected[contact.id] = true)
               : (vm.isSelected[contact.id] = false);
@@ -83,7 +83,7 @@
               vm.isLoading = false;
             })
             .catch((error) => {
-              console.log("Error", error);
+              console.log("Error", error.data);
               if (error.status !== 403 && error.status !== 401) {
                 setTimeout(function () {
                   vm.getListContacts();
@@ -100,10 +100,10 @@
               vm.assignedTos.unshift(vm.nullData);
 
               vm.ngTableAssignedTos = [];
-              vm.assignedTos.forEach((element) => {
+              angular.forEach(vm.assignedTos, function (value) {
                 vm.ngTableAssignedTos.push({
-                  id: element.name,
-                  title: element.name,
+                  id: value.name,
+                  title: value.name,
                 });
               });
             })

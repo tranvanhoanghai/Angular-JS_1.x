@@ -1,4 +1,4 @@
-<div>
+<section>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -13,6 +13,15 @@
     <div class="header text-center text-uppercase mb-3">
       <h1>{{'CONTACT.TITLE.EDIT_CONTACT' | translate}}</h1>
     </div>
+
+    <contact-form
+      on-submit="$ctrl.submit()"
+      on-cancel="$ctrl.cancel()"
+      contact="$ctrl.contact"
+      submit-btn="{{$ctrl.submitBtn}}"
+      cancel-btn="{{$ctrl.cancelBtn}}"
+      show-btn-cancel="$ctrl.show"
+    ></contact-form>
 
     <!-- <form ng-submit="$ctrl.update()" name="form" role="form">
       <div class="row">
@@ -180,14 +189,5 @@
         </div>
       </div>
     </form> -->
-
-    <contact-form
-      on-submit="$ctrl.submit()"
-      on-cancel="$ctrl.cancel()"
-      contact="$ctrl.contact"
-      submit-btn="{{$ctrl.submitBtn}}"
-      cancel-btn="{{$ctrl.cancelBtn}}"
-      show-btn-cancel="$ctrl.show"
-    />
   </div>
-</div>
+</section>
