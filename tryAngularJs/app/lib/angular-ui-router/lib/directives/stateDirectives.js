@@ -202,7 +202,7 @@ function bindEvents(element, scope, hookFn, uiStateOpts) {
  *
  * <ul>
  *     <li ng-repeat="contact in contacts">
- *         <a href="#/contacts/1" ui-sref="contacts.detail({ id: contact.id })">Joe</a>
+ *         <a href="#/contact/1" ui-sref="contacts.detail({ id: contact.id })">Joe</a>
  *     </li>
  *     <li ng-repeat="contact in contacts">
  *         <a href="#/contacts/2" ui-sref="contacts.detail({ id: contact.id })">Alice</a>

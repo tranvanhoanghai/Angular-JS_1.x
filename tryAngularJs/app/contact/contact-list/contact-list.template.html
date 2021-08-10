@@ -52,7 +52,11 @@
 
   <loading loading="$ctrl.isLoading"></loading>
 
-  <div class="content-table" ng-if="$ctrl.ngTableAssignedTos.length">
+  <div
+    class="content-table"
+    ng-if="$ctrl.ngTableAssignedTos.length"
+    ng-hide="$ctrl.isLoading"
+  >
     <table
       ng-hide="$ctrl.isLoading"
       ng-table="$ctrl.tableParams"

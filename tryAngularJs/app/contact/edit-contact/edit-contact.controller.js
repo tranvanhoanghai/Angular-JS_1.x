@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("contact").component("editContact", {
-  templateUrl: "contacts/edit-contact/edit-contact.template.html",
+  templateUrl: "contact/edit-contact/edit-contact.template.html",
   controller: [
     "$state",
     "$stateParams",
@@ -21,7 +21,7 @@ angular.module("contact").component("editContact", {
       SharedService,
       Notification
     ) {
-      cssInjector.add("contacts/contact.template.css");
+      cssInjector.add("contact/contact.template.css");
       var vm = this;
       vm.currentId = $stateParams.id;
 

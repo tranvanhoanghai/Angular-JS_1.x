@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("contact").component("createContact", {
-  templateUrl: "contacts/create-contact/create-contact.template.html",
+  templateUrl: "contact/create-contact/create-contact.template.html",
   controller: [
     "$state",
     "cssInjector",
@@ -17,7 +17,7 @@ angular.module("contact").component("createContact", {
       localStorageFactory,
       Notification
     ) {
-      cssInjector.add("contacts/contact.template.css");
+      cssInjector.add("contact/contact.template.css");
       var vm = this;
       vm.isLoading = true;
 

@@ -2,7 +2,7 @@
   "use strict";
 
   angular.module("contact").component("contactList", {
-    templateUrl: "contacts/contact-list/contact-list.template.html",
+    templateUrl: "contact/contact-list/contact-list.template.html",
     controller: [
       "$rootScope",
       "NgTableParams",

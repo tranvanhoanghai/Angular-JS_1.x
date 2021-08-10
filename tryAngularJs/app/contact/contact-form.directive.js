@@ -16,7 +16,7 @@
         contact: "=",
         showBtnCancel: "=",
       },
-      templateUrl: "contacts/contact-form.directive.html",
+      templateUrl: "contact/contact-form.directive.html",
 
       link: function (scope, element, attrs) {
         scope.regexEmail = SharedConstant.regex.email;
