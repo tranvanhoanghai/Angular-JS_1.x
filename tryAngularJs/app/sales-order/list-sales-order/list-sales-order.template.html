@@ -23,14 +23,15 @@
     >
       <tr ng-repeat="data in $data track by $index">
         <td header="'ng-table/headers/checkbox.html'">
-          <!-- header="'ng-table/headers/checkbox.html'" -->
-          <input
-            id="{{data.id}}"
-            ng-model="$ctrl.isSelected[data.id]"
-            type="checkbox"
-            ng-change="$ctrl.checkBox($ctrl.isSelected)"
-          />
-          <label class="checkbox" for="{{data.id}}"></label>
+          <div class="td-checkbox">
+            <input
+              id="{{data.id}}"
+              ng-model="$ctrl.isSelected[data.id]"
+              type="checkbox"
+              ng-change="$ctrl.checkBox($ctrl.isSelected)"
+            />
+            <label class="checkbox" for="{{data.id}}"></label>
+          </div>
         </td>
 
         <td data-title="'#'">{{$index+1}}</td>

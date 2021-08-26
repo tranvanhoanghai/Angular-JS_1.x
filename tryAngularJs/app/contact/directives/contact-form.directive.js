@@ -2,9 +2,19 @@
   "use strict";
 
   angular.module("contact").directive("contactForm", directiveFunction);
-  directiveFunction.$inject = ["UserService", "Notification", "SharedConstant"];
+  directiveFunction.$inject = [
+    "UserService",
+    "Notification",
+    "SharedConstant",
+    "ContactConstant",
+  ];
 
-  function directiveFunction(UserService, Notification, SharedConstant) {
+  function directiveFunction(
+    UserService,
+    Notification,
+    SharedConstant,
+    ContactConstant
+  ) {
     return {
       restrict: "E",
       replace: true,
@@ -16,7 +26,7 @@
         contact: "=",
         showBtnCancel: "=",
       },
-      templateUrl: "contact/contact-form.directive.html",
+      templateUrl: ContactConstant.contacts.formTpl,
 
       link: function (scope, element, attrs) {
         scope.regexEmail = SharedConstant.regex.email;

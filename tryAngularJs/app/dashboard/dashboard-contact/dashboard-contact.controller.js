@@ -12,8 +12,10 @@ angular.module("dashboard").component("dashboardContact", {
       var vm = this;
       vm.isLoading = true;
       vm.redirect = redirect;
+      vm.chartData = [];
       vm.pieChartContact = pieChartContact;
       vm.pieChartContact();
+
       function pieChartContact() {
         vm.labels = [
           "Existing Customer",
@@ -23,6 +25,7 @@ angular.module("dashboard").component("dashboardContact", {
           "Word of mouth",
           "Other",
         ];
+        vm.colours = ["#17a2b8", "#FF6384", "#CC65FE", "#FFCE56"];
 
         DashboardService.listDashBoard()
           .then((response) => {
@@ -49,6 +52,14 @@ angular.module("dashboard").component("dashboardContact", {
                 default:
                   break;
               }
+              vm.chartData = [
+                vm.countExistingCustomer,
+                vm.countPartner,
+                vm.countConference,
+                vm.countWebsite,
+                vm.countWordOfMouth,
+                vm.countOther,
+              ];
             });
 
             vm.isLoading = false;
@@ -70,17 +81,17 @@ angular.module("dashboard").component("dashboardContact", {
             });
           }
         };
-
         vm.options = {
           legend: {
             display: true,
-            position: "bottom",
-          },
-          tooltipEvents: [],
-          showTooltips: true,
-          tooltipCaretSize: 0,
-          onAnimationComplete: function () {
-            this.showTooltip(this.segments, true);
+            position: "right",
+            labels: {
+              boxWidth: 15,
+              padding: 20,
+              pieceLabel: {
+                render: "value",
+              },
+            },
           },
         };
       }

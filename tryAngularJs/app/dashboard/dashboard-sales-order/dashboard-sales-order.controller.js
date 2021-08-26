@@ -13,7 +13,7 @@ angular.module("dashboard").component("dashboardSalesOrder", {
       cssInjector.add("dashboard/dashboard.template.css");
       var vm = this;
       vm.isLoading = true;
-
+      vm.chartData = [];
       vm.getCountSalesOrder = getCountSalesOrder;
       vm.redirect = redirect;
 
@@ -24,6 +24,7 @@ angular.module("dashboard").component("dashboardSalesOrder", {
 
       function getCountSalesOrder() {
         vm.labels = ["Created", "Approved", "Delivered", "Cancelled"];
+        vm.colours = ["#36A2EB", "#28a745", "#007bff", "#dc3545"];
         DashboardService.listDashBoard()
           .then((response) => {
             response.data[1].forEach((element) => {
@@ -43,6 +44,12 @@ angular.module("dashboard").component("dashboardSalesOrder", {
                 default:
                   break;
               }
+              vm.chartData = [
+                vm.countCreated,
+                vm.countApproved,
+                vm.countDelivered,
+                vm.countCancelled,
+              ];
             });
             vm.isLoading = false;
           })
@@ -67,7 +74,7 @@ angular.module("dashboard").component("dashboardSalesOrder", {
         vm.options = {
           legend: {
             display: true,
-            position: "bottom",
+            position: "right",
           },
           tooltipEvents: [],
           showTooltips: true,

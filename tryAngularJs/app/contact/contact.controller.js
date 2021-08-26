@@ -5,12 +5,18 @@ angular.module("contact").component("contact", {
   controller: [
     "$scope",
     "cssInjector",
-    "$window",
+    "ContactConstant",
     "ContactService",
     "SharedService",
     "Notification",
-    function ($scope, cssInjector, $window, ContactService, Notification) {
-      cssInjector.add("contact/contact.template.css");
+    function (
+      $scope,
+      cssInjector,
+      ContactConstant,
+      ContactService,
+      Notification
+    ) {
+      cssInjector.add(ContactConstant.contacts.cssTpl);
       var vm = this;
       vm.isLoading = true;
     },

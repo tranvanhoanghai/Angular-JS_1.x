@@ -8,12 +8,13 @@
   <div class="row" ng-hide="$ctrl.isLoading">
     <div class="col-lg-12">
       <canvas
-        id="pie"
+        id="pieContact"
         class="chart chart-pie"
-        chart-data="[$ctrl.countExistingCustomer,$ctrl.countPartner,$ctrl.countConference, $ctrl.countWebsite,$ctrl.countWordOfMouth, $ctrl.countOther ]"
+        chart-data="$ctrl.chartData"
         chart-labels="$ctrl.labels"
         chart-options="$ctrl.options"
         chart-click="$ctrl.onClick"
+        chart-colors="$ctrl.colours"
       >
       </canvas>
     </div>

@@ -1,25 +1,38 @@
 <div class="wrapper">
-  <!-- Sidebar Holder -->
-  <nav id="sidebar">
-    <div class="sidebar-header">
-      <!-- <h3>Bootstrap Sidebar</h3> -->
-      <img
-        style="width: 100%; height: 50px"
-        ng-src="/assets/images/logo.PNG"
-        alt=""
-      />
+  <div class="sidebar open">
+    <div class="logo-details">
+      <i class="bx bxl-c-plus-plus icon"></i>
+      <div class="logo_name">CRM</div>
+      <i class="bx bx-menu-alt-right" id="btn"></i>
     </div>
-    <ul class="list-unstyled components">
+    <ul class="nav-list">
+      <!-- <li>
+        <i class="bx bx-search"></i>
+        <input type="text" placeholder="Search..." />
+        <span class="tooltip">Search</span>
+      </li> -->
+
       <li ng-repeat="item in $ctrl.sideBarMenu.menuItems">
-        <a ui-sref="{{item.url}}" ui-sref-active="active">
+        <a ui-sref="{{item.state}}" ui-sref-active="active">
           <i class="{{item.icon}}"></i>
-          <span>{{ item.title | translate }}</span>
+          <span class="links_name">{{ item.title | translate }}</span>
         </a>
+        <span class="tooltip">{{ item.title | translate }}</span>
+      </li>
+
+      <li class="profile">
+        <div class="profile-details">
+          <!-- <img src="profile.jpg" alt="profileImg" />
+          <div class="name_job">
+            <div class="name">Prem Shahi</div>
+            <div class="job">Web designer</div>
+          </div> -->
+        </div>
+        <i class="bx bx-log-out" id="log_out"></i>
       </li>
     </ul>
-  </nav>
-  <!-- Page Content Holder -->
-  <div id="content">
+  </div>
+  <section class="home-section">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="">
         <button type="button" id="sidebarCollapse" class="navbar-btn">
@@ -37,13 +50,38 @@
       <!-- <div ng-view></div> -->
       <div ui-view></div>
     </div>
-  </div>
-</div>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $("#sidebarCollapse").on("click", function () {
-      $("#sidebar").toggleClass("active");
-      $(this).toggleClass("active");
+  </section>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+        $(this).toggleClass("active");
+      });
+
+      let sidebar = document.querySelector(".sidebar");
+      let closeBtn = document.querySelector("#btn");
+      let searchBtn = document.querySelector(".bx-search");
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange(); //calling the function(optional)
+      });
+
+      // searchBtn.addEventListener("click", () => {
+      //   // Sidebar open when you click on the search iocn
+      //   sidebar.classList.toggle("open");
+      //   menuBtnChange(); //calling the function(optional)
+      // });
+
+      // following are the code to change sidebar button(optional)
+      function menuBtnChange() {
+        if (sidebar.classList.contains("open")) {
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+        } else {
+          closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+        }
+      }
     });
-  });
-</script>
+  </script>
+</div>

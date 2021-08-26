@@ -24,42 +24,40 @@
       item.dashboard = {
         id: "dashboard",
         title: "MENU.DASHBOARD",
-        url: "main.dashboard",
-        icon: "fa fa-th-large",
+        state: "main.dashboard",
+        icon: "bx bx-grid-alt",
       };
       item.contact = {
         id: "contact",
         title: "MENU.CONTACT",
-        url: "main.contact",
-        icon: "fa fa-address-book",
+        state: "main.contact",
+        icon: "bx bx-chat",
       };
       item.salesOrder = {
         id: "salesOrder",
         title: "MENU.SALES_ORDER",
-        url: "main.sales-order",
-        icon: "fa fa-cart-plus",
+        state: "main.sales-order",
+        icon: "bx bx-cart-alt",
       };
       item.user = {
         id: "user",
         title: "MENU.USER_MANAGEMENT",
-        url: "main.user",
-        icon: "fa fa-users",
+        state: "main.user",
+        icon: "bx bx-user",
       };
       if ($localStorage.data) {
-        if ($localStorage.data.isAdmin === true) {
-          sideBarMenu.menuItems = [
-            item.dashboard,
-            item.contact,
-            item.salesOrder,
-            item.user,
-          ];
-        } else {
-          sideBarMenu.menuItems = [
-            item.dashboard,
-            item.contact,
-            item.salesOrder,
-          ];
-        }
+        $localStorage.data.isAdmin === true
+          ? (sideBarMenu.menuItems = [
+              item.dashboard,
+              item.contact,
+              item.salesOrder,
+              item.user,
+            ])
+          : (sideBarMenu.menuItems = [
+              item.dashboard,
+              item.contact,
+              item.salesOrder,
+            ]);
       }
 
       return {

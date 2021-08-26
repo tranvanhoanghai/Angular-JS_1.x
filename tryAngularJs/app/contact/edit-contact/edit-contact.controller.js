@@ -29,7 +29,7 @@ angular.module("contact").component("editContact", {
       vm.title = "Do you want to update it?";
       vm.submitBtn = "UPDATE";
       vm.cancelBtn = "CANCEL";
-      vm.show = false;
+      vm.showBtnCancel = false;
 
       vm.detailContact = detailContact;
       vm.submit = updateContact;
@@ -61,7 +61,7 @@ angular.module("contact").component("editContact", {
           if (ContactService.formEdit.id === vm.currentId) {
             vm.contact = ContactService.formEdit;
             // ContactService.formEdit = null;
-            vm.show = true;
+            vm.showBtnCancel = true;
           } else {
             vm.detailContact();
           }

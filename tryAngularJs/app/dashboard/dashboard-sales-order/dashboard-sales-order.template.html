@@ -10,10 +10,11 @@
       <canvas
         id="pie"
         class="chart chart-pie"
-        chart-data="[$ctrl.countCreated,$ctrl.countApproved,$ctrl.countDelivered, $ctrl.countCancelled]"
+        chart-data="$ctrl.chartData"
         chart-labels="$ctrl.labels"
         chart-options="$ctrl.options"
         chart-click="$ctrl.onClick"
+        chart-colors="$ctrl.colours"
       >
       </canvas>
     </div>
